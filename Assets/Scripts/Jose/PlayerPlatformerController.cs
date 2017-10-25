@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerPlatformerController : PhysicsObject {
 
 	public float maxSpeed = 7;
-	public float jumpTakeOffSpeed = 7;
+	public float jumpForce = 7;
 
 	private float direction;
 	private float _posX;
@@ -29,11 +29,10 @@ public class PlayerPlatformerController : PhysicsObject {
 		//Vector3 move = Vector3.zero;
 		Vector2 move = Vector2.zero;
 		move = rigidBody.velocity;
-
 		move.x = Input.GetAxis ("Horizontal");
 
 		if (Input.GetButtonDown ("Jump") && grounded) {
-			velocity.y = jumpTakeOffSpeed;
+			velocity.y = jumpForce;
 		} else if (Input.GetButtonUp ("Jump")) 
 		{
 			if (velocity.y > 0) {
