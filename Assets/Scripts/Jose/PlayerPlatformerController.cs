@@ -8,6 +8,7 @@ public class PlayerPlatformerController : PhysicsObject {
 	public float jumpForce = 7;
 
 	private float direction;
+	private float _posX;
 
 	private SpriteRenderer spriteRenderer;
 	private Animator animator;
