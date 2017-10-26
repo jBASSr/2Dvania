@@ -208,7 +208,7 @@ Prefab:
     - target: {fileID: 114213362091791758, guid: 63aa64d13dc34604a8eb14d81bdbc268,
         type: 2}
       propertyPath: maxSpeed
-      value: 15.66
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 50285572802808188, guid: 63aa64d13dc34604a8eb14d81bdbc268,
         type: 2}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 1661710634}
   m_Layer: 0
   m_Name: ceo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

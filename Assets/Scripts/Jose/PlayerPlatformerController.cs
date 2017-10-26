@@ -13,6 +13,8 @@ public class PlayerPlatformerController : PhysicsObject {
 	private SpriteRenderer spriteRenderer;
 	private Animator animator;
 	private Rigidbody2D rigidBody;
+	private ceo myCeo;
+	private bool is_move_right=true;
 
 	// Use this for initialization
 	void Awake () 
@@ -40,16 +42,34 @@ public class PlayerPlatformerController : PhysicsObject {
 			}
 		}
 		// Flip gameObject based on moving direction and state of Scale X
-		if (move.x < 0 && direction == 1) {
-			transform.localScale = new Vector2 (-direction, transform.localScale.y);
+		if (move.x >= 0) {
+			transform.localRotation = Quaternion.Euler(0, 180, 0);
+			/*transform.localScale = new Vector2 (-direction, transform.localScale.y);
+			direction = -direction;
+             */
+			is_move_right = true;
 		}
-		if (move.x > 0 && direction == -1) {
-			transform.localScale = new Vector2 (-direction, transform.localScale.y);
+		else{
+			transform.localRotation = Quaternion.Euler(0, 0, 0);
+			//transform.localScale = new Vector2 (direction, transform.localScale.y);
+			is_move_right = false;
+
 		}
-		direction = transform.localScale.x;
 		// animator.SetBool ("grounded", grounded);
 		// animator.SetFloat ("velocityX", Mathf.Abs (velocity.x) / maxSpeed);
 
 		targetVelocity = move * maxSpeed;
+	}
+
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "Enemy") {
+			Debug.Log ("ENEMY COLLISION!!!!");
+			myCeo = coll.collider.gameObject.GetComponent<ceo>();
+			if (myCeo.getIsRight () != is_move_right) {
+				myCeo.setCollided (true);
+				myCeo.transform.Translate (new Vector2 (0, 0));
+			}
+		}
 	}
 }
