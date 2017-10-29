@@ -10,6 +10,9 @@ public class ceo : MonoBehaviour {
     private bool is_right;
 	private bool is_collided;
 
+	public GameObject bloodPrefab;
+	public Transform bloodSpawn;
+
     // Use this for initialization
     void Start () {
         vec = new Vector2(1, 0);        
@@ -49,6 +52,18 @@ public class ceo : MonoBehaviour {
             }
 
         }
+
+		else if(coll.gameObject.tag == "Bullet") {
+				Debug.Log ("SHOT ENEMY!!!");
+							GameObject tempBlood;
+			tempBlood = (GameObject)Instantiate (
+				bloodPrefab,
+				bloodSpawn.position,
+				bloodSpawn.rotation
+			);
+			Destroy(tempBlood, 2.0f);
+		}
+		Debug.Log ("COLLISION OBJECT=" + coll.gameObject.tag);
 
     }
 	
