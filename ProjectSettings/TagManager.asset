@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Object
   - Column
+  - ColumnLeft
+  - ColumnRight
+  - Bullet
   layers:
   - Default
   - TransparentFX

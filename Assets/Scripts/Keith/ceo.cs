@@ -29,8 +29,11 @@ public class ceo : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Debug.Log("COLLISION!!!!");
-        if (coll.gameObject.tag == "Column")
+		if (coll.gameObject.tag == "ColumnLeft" || coll.gameObject.tag == "ColumnRight" || coll.gameObject.tag == "Player")
         {
+			if (coll.gameObject.tag == "Player") {
+				Debug.Log ("PLAYER COLLISION!!");
+			}
             //speed *= -1;
             //sr.flipX = !sr.flipX;
 			is_right = !is_right;

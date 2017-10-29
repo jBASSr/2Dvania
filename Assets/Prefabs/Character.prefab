@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 114352713222777300}
   - component: {fileID: 50285572802808188}
   - component: {fileID: 70383670906754858}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,9 @@ MonoBehaviour:
   gravityModifier: 1
   maxSpeed: 7
   jumpForce: 7
+  bulletPrefab: {fileID: 1171637057212244, guid: 81219feaaab742548bd3d8648d6a68d9,
+    type: 2}
+  bulletSpawn: {fileID: 0}
 --- !u!114 &114352713222777300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,8 +157,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1633610987
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0543a2eadaef37840bfe26b9996ba374, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
