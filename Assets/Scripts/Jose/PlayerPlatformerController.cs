@@ -80,33 +80,9 @@ public class PlayerPlatformerController : PhysicsObject {
 			//float force = 3;
 			myCeo = coll.collider.gameObject.GetComponent<ceo> ();
 			if (myCeo.getIsRight () != is_move_right) {
-				//myCeo.setCollided (true);
-				GameObject col_l = GameObject.FindGameObjectWithTag ("ColumnLeft");
-				GameObject col_r = GameObject.FindGameObjectWithTag ("ColumnLeft");
-				float coll_x = col_l.transform.position.x;
-				float colr_x = col_r.transform.position.x;
-				Debug.Log ("coll_x=" + coll_x);
-				if (transform.position.x > (coll_x + 10)) {
-					Vector2 force = coll.gameObject.GetComponent<Rigidbody2D> ().velocity;
-					rigidBody = GetComponent<Rigidbody2D> ();
-					transform.Translate (new Vector2 (rigidBody.velocity.x - 3, 0));
-					is_collide = true;
-				}
-				if (transform.position.x < (colr_x - 10)) {
-					Vector2 force = coll.gameObject.GetComponent<Rigidbody2D> ().velocity;
-					rigidBody = GetComponent<Rigidbody2D> ();
-					transform.Translate (new Vector2 (rigidBody.velocity.x + 3, 0));
-					is_collide = true;
-				}
-				/*Vector2 dir = coll.transform.position - transform.position;
-				dir = dir.normalized;
-
-				//force.Normalize();
-				var magnitude = 5000;
-
-				rigidBody.AddForce(-force * magnitude);
-				*/
-
+				rigidBody = GetComponent<Rigidbody2D> ();
+				rigidBody.AddForce(-5000*rigidBody.velocity*Time.deltaTime);
+				is_collide = true;
 			}
 		} 
 	}

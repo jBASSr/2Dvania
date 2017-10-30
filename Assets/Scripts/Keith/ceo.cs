@@ -12,6 +12,7 @@ public class ceo : MonoBehaviour {
 
 	public GameObject bloodPrefab;
 	public Transform bloodSpawn;
+	private GameObject tempBlood;
 
     // Use this for initialization
     void Start () {
@@ -19,12 +20,22 @@ public class ceo : MonoBehaviour {
         //sr = new SpriteRenderer();
 		is_right = true;
 		is_collided = false;
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
     }
 	
 	// Update is called once per frame
 	void Update () {
 		if (is_collided==false){
-        this.transform.Translate(vec * speed * Time.deltaTime);        
+        //this.transform.Translate(vec * speed * Time.deltaTime);        
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
+			if (tempBlood != null) {
+				//tempBlood.GetComponent<Rigidbody2D> ().velocity = this.GetComponent<Rigidbody2D> ().velocity;
+				Vector2 pos = tempBlood.transform.position;
+				Vector2 pos2 = transform.position;
+				pos.x = pos2.x;
+				pos.y = pos2.y;
+				tempBlood.transform.position = pos;
+			}
 		}
 	}
 		
@@ -50,20 +61,9 @@ public class ceo : MonoBehaviour {
 				transform.localRotation = Quaternion.Euler(0, 180, 0);                
                 //this.transform.Translate(new Vector2(-20, 0));
             }
+			speed *= -1;
 
         }
-
-		else if(coll.gameObject.tag == "Bullet") {
-				Debug.Log ("SHOT ENEMY!!!");
-							GameObject tempBlood;
-			tempBlood = (GameObject)Instantiate (
-				bloodPrefab,
-				bloodSpawn.position,
-				bloodSpawn.rotation
-			);
-			Destroy(tempBlood, 2.0f);
-		}
-		Debug.Log ("COLLISION OBJECT=" + coll.gameObject.tag);
 
     }
 	
@@ -73,6 +73,22 @@ public class ceo : MonoBehaviour {
 
 	public bool getIsRight(){
 		return is_right;
+	}
+
+	public void Bleed(){		
+		if (tempBlood == null) {
+			tempBlood = (GameObject)Instantiate (
+				bloodPrefab,
+				bloodSpawn.position,
+				bloodSpawn.rotation
+			);
+			Vector2 pos = tempBlood.transform.position;
+			Vector2 pos2 = transform.position;
+			pos.x = pos2.x;
+			pos.y = pos2.y;
+			tempBlood.transform.position = pos;
+			Destroy (tempBlood, 2.0f);
+		}
 	}
 
 }
