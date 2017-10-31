@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Tino/Menu/Scenes/Menu.unity
+    guid: 0a7b4b689fd19f846a0415f0cb1ec775
+  - enabled: 1
+    path: Assets/_Scenes/CharacterTest.unity
+    guid: 7dfd1ee40a03632498e509d6be68b562
