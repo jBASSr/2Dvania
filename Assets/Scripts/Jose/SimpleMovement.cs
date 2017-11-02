@@ -35,6 +35,7 @@ public class SimpleMovement : MonoBehaviour
 	{
 		collider = GetComponent<CapsuleCollider2D> ();
 		rb = GetComponent<Rigidbody2D> ();
+		anim = GetComponent<Animator> ();
 		//rb.sleepThreshold = 0.0f;
 
 		// Find groundCheck transform object
@@ -46,6 +47,9 @@ public class SimpleMovement : MonoBehaviour
 	void FixedUpdate ()
 	{
 		//BodyState ();
+		anim.SetFloat ("moveX", speedX);
+		anim.SetFloat ("moveY", speedY);
+
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
 											 groundRadius,
 					 						 whatIsGround);
