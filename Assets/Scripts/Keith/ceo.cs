@@ -18,13 +18,13 @@ public class ceo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("velx=" + velx);
+        //Debug.Log("velx=" + velx);
         this.transform.Translate(vec * speed * Time.deltaTime);        
 	}
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("COLLISION!!!!");
+        //Debug.Log("COLLISION!!!!");
         if (coll.gameObject.tag == "Column")
         {
             //speed *= -1;
