@@ -9,6 +9,7 @@ public class SimpleMovement : MonoBehaviour
 	public bool forward = true;
 	public float speedX;
 	public float speedY;
+	private float speed;
 
 	// Jumping
 	public int maxJumps = 5;
@@ -30,12 +31,14 @@ public class SimpleMovement : MonoBehaviour
 	public bool turning = false;
 
 	private Animator anim;
+	Transform pGraphics;
 
 	void Awake ()
 	{
 		collider = GetComponent<CapsuleCollider2D> ();
 		rb = GetComponent<Rigidbody2D> ();
-		anim = GetComponent<Animator> ();
+		anim = GetComponentInChildren<Animator> ();
+		pGraphics = transform.Find ("Graphics");
 		//rb.sleepThreshold = 0.0f;
 
 		// Find groundCheck transform object
@@ -47,14 +50,17 @@ public class SimpleMovement : MonoBehaviour
 	void FixedUpdate ()
 	{
 		//BodyState ();
+		speed = Mathf.Abs(speedX);
 		anim.SetFloat ("moveX", speedX);
 		anim.SetFloat ("moveY", speedY);
+		anim.SetFloat ("Speed", speed);
 
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
 											 groundRadius,
 					 						 whatIsGround);
 		if (isGrounded) {
 			jumpCount = 0;
+			anim.SetBool ("isGrounded", true);
 		}
 		if ((speedX > 0.0f && !forward) || (speedX < 0.0f && forward)) {
 			Flip ();
@@ -89,6 +95,7 @@ public class SimpleMovement : MonoBehaviour
 
 	void Jump()
 	{
+		anim.SetBool ("isGrounded", false);
 		if (rb.velocity.y >= 0.5f)
 			isMovingUp = true;
 		else
