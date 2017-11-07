@@ -140,4 +140,6 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.x += knockbackX;
 		}
 	}
+
+
 }

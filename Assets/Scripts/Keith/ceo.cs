@@ -13,6 +13,8 @@ public class ceo : MonoBehaviour {
 	public GameObject bloodPrefab;
 	public Transform bloodSpawn;
 	private GameObject tempBlood;
+	public SimpleMovement robot;
+	public Animation shooting;
 
     // Use this for initialization
     void Start () {
@@ -37,6 +39,15 @@ public class ceo : MonoBehaviour {
 				tempBlood.transform.position = pos;
 			}
 		}
+		if (robot != null) {
+			if (robot.isGrounded) {
+				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
+					Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
+					shooting.Play ();
+				}
+			}
+		}
+
 	}
 		
 
