@@ -7,42 +7,88 @@ public class ceo : MonoBehaviour {
     public float speed = 1.0f;
     private Vector2 vec;    
     private SpriteRenderer sr;
-    private bool is_flipX;
+    private bool is_right;
+	private bool is_collided;
+
+	public GameObject bloodPrefab;
+	public Transform bloodSpawn;
+	private GameObject tempBlood;
 
     // Use this for initialization
     void Start () {
         vec = new Vector2(1, 0);        
         //sr = new SpriteRenderer();
-        is_flipX = false;
+		is_right = true;
+		is_collided = false;
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log("velx=" + velx);
-        this.transform.Translate(vec * speed * Time.deltaTime);        
+		if (is_collided==false){
+        //this.transform.Translate(vec * speed * Time.deltaTime);        
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
+			if (tempBlood != null) {
+				//tempBlood.GetComponent<Rigidbody2D> ().velocity = this.GetComponent<Rigidbody2D> ().velocity;
+				Vector2 pos = tempBlood.transform.position;
+				Vector2 pos2 = transform.position;
+				pos.x = pos2.x;
+				pos.y = pos2.y;
+				tempBlood.transform.position = pos;
+			}
+		}
 	}
+		
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Debug.Log("COLLISION!!!!");
-        if (coll.gameObject.tag == "Column")
+		if (coll.gameObject.tag == "ColumnLeft" || coll.gameObject.tag == "ColumnRight" || coll.gameObject.tag == "Player")
         {
+			if (coll.gameObject.tag == "Player") {
+				Debug.Log ("PLAYER COLLISION!!");
+			}
             //speed *= -1;
             //sr.flipX = !sr.flipX;
-            is_flipX = !is_flipX;
-            if (is_flipX == true)
+			is_right = !is_right;
+			if (is_right == true)
             {
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
+				transform.localRotation = Quaternion.Euler(0, 0, 0);
                 //this.transform.Translate(new Vector2(2, 0));
             }
             else
             {
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+				transform.localRotation = Quaternion.Euler(0, 180, 0);                
                 //this.transform.Translate(new Vector2(-20, 0));
             }
+			speed *= -1;
 
         }
 
     }
+	
+	public void setCollided(bool _is_collided){
+		is_collided = _is_collided;
+	}
+
+	public bool getIsRight(){
+		return is_right;
+	}
+
+	public void Bleed(){		
+		if (tempBlood == null) {
+			tempBlood = (GameObject)Instantiate (
+				bloodPrefab,
+				bloodSpawn.position,
+				bloodSpawn.rotation
+			);
+			Vector2 pos = tempBlood.transform.position;
+			Vector2 pos2 = transform.position;
+			pos.x = pos2.x;
+			pos.y = pos2.y;
+			tempBlood.transform.position = pos;
+			Destroy (tempBlood, 2.0f);
+		}
+	}
 
 }

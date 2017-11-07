@@ -58,8 +58,8 @@ public class SimpleMovement : MonoBehaviour
 		anim.SetFloat ("Speed", speed);
 
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
-											 groundRadius,
-					 						 whatIsGround);
+			groundRadius,
+			whatIsGround);
 		anim.SetBool ("isGrounded", isGrounded);
 		if (isGrounded) {
 			jumpCount = 0;
