@@ -39,10 +39,15 @@ public class SimpleMovement : MonoBehaviour
 		collider = GetComponent<CapsuleCollider2D> ();
 		rb = GetComponent<Rigidbody2D> ();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		anim = GetComponentInChildren<Animator> ();
 		pGraphics = transform.Find ("Graphics");
 =======
 >>>>>>> parent of 29ddd8a... Begin animations
+=======
+		anim = GetComponentInChildren<Animator> ();
+		pGraphics = transform.Find ("Graphics");
+>>>>>>> jose
 		//rb.sleepThreshold = 0.0f;
 
 		// Find groundCheck transform object
@@ -55,6 +60,9 @@ public class SimpleMovement : MonoBehaviour
 	{
 		//BodyState ();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jose
 		speed = Mathf.Abs(speedX);
 		speedY = rb.velocity.y;
 		anim.SetFloat ("moveX", speedX);
