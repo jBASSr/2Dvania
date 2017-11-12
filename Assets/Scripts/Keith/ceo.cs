@@ -15,6 +15,9 @@ public class ceo : MonoBehaviour {
 	private GameObject tempBlood;
 	public SimpleMovement robot;
 	private Animator animator;
+	public GameObject bulletPrefab;
+	public Transform bulletSpawn;
+
 
     // Use this for initialization
     void Start () {
@@ -44,13 +47,16 @@ public class ceo : MonoBehaviour {
 			if (robot.isGrounded) {
 				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
 					Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
-					//Animation shoot = shooting.GetComponents<animation> ();
 					if (animator.GetBool ("is_shooting") == false) {
 						animator.SetBool ("is_shooting", true);
+						Fire ();
 					} else {
 						animator.SetBool ("is_shooting", false);
 					}
+
 				}					
+			} else {//IF PLAYER NOT GROUNDED
+				animator.SetBool ("is_shooting", false);
 			}
 		}
 
@@ -107,5 +113,18 @@ public class ceo : MonoBehaviour {
 			Destroy (tempBlood, 2.0f);
 		}
 	}
+
+	void Fire(){
+		var bullet = (GameObject)Instantiate (
+			             bulletPrefab,
+			             bulletSpawn.position,
+			             bulletSpawn.rotation);
+
+		bullet.GetComponent<Rigidbody2D> ().velocity = bullet.transform.forward * 6;
+		Destroy (bullet, 2.0f);
+
+	}
+
+
 
 }
