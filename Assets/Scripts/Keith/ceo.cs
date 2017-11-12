@@ -14,7 +14,7 @@ public class ceo : MonoBehaviour {
 	public Transform bloodSpawn;
 	private GameObject tempBlood;
 	public SimpleMovement robot;
-	public Animation shooting;
+	private Animator animator;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +23,7 @@ public class ceo : MonoBehaviour {
 		is_right = true;
 		is_collided = false;
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
+		animator = GetComponent<Animator> ();
     }
 	
 	// Update is called once per frame
@@ -43,8 +44,13 @@ public class ceo : MonoBehaviour {
 			if (robot.isGrounded) {
 				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
 					Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
-					shooting.Play ();
-				}
+					//Animation shoot = shooting.GetComponents<animation> ();
+					if (animator.GetBool ("is_shooting") == false) {
+						animator.SetBool ("is_shooting", true);
+					} else {
+						animator.SetBool ("is_shooting", false);
+					}
+				}					
 			}
 		}
 
