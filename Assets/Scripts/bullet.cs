@@ -10,11 +10,12 @@ public class bullet : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll)
 	{
 		Debug.Log("TRIGGER CALLED");
-		if (coll.gameObject.tag == "Enemy") {
+		/*if (coll.gameObject.tag == "Enemy") {
 			Debug.Log ("ENEMY SHOT!!!");
 			myCeo = coll.GetComponent<ceo> ();
 			myCeo.Bleed();
 		}
+		*/
 		Debug.Log("TRIGGER CALLED");
 		if (coll.gameObject.tag == "Player") {
 			Debug.Log ("PLAYER SHOT!!!");
