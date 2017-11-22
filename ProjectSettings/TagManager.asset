@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Background
   - 
   - 
   - 
@@ -40,4 +40,37 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: blueback
+    uniqueID: 3877048615
+    locked: 0
+  - name: ground1
+    uniqueID: 3414587521
+    locked: 0
+  - name: oilw2
+    uniqueID: 1812878915
+    locked: 0
+  - name: oilw1
+    uniqueID: 426841189
+    locked: 0
+  - name: barrel1
+    uniqueID: 4174573431
+    locked: 0
+  - name: lmountain
+    uniqueID: 3755794835
+    locked: 0
+  - name: mmountain
+    uniqueID: 4061793243
+    locked: 0
+  - name: hmountain
+    uniqueID: 1601294045
+    locked: 0
+  - name: oilblob1
+    uniqueID: 3251853919
+    locked: 0
+  - name: oiltower
+    uniqueID: 3812880139
+    locked: 0
+  - name: player
+    uniqueID: 2523474285
     locked: 0
