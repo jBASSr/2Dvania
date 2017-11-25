@@ -9,9 +9,11 @@ public class SimpleMovement : MonoBehaviour
 	public bool forward = true;
 	public float speedX;
 	public float speedY;
+	public float thrust;
+	private float speed;
 
 	// Jumping
-	public int maxJumps = 5;
+	public int extraJumps = 5;
 	public int jumpCount = 0;
 	public float jumpSpeed = 70;
 
@@ -30,11 +32,14 @@ public class SimpleMovement : MonoBehaviour
 	public bool turning = false;
 
 	private Animator anim;
+	Transform pGraphics;
 
 	void Awake ()
 	{
 		collider = GetComponent<CapsuleCollider2D> ();
 		rb = GetComponent<Rigidbody2D> ();
+		anim = GetComponentInChildren<Animator> ();
+		pGraphics = transform.Find ("Graphics");
 		//rb.sleepThreshold = 0.0f;
 
 		// Find groundCheck transform object
@@ -46,9 +51,16 @@ public class SimpleMovement : MonoBehaviour
 	void FixedUpdate ()
 	{
 		//BodyState ();
+		speed = Mathf.Abs(speedX);
+		speedY = rb.velocity.y;
+		anim.SetFloat ("moveX", speedX);
+		anim.SetFloat ("moveY", speedY);
+		anim.SetFloat ("Speed", speed);
+
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
-											 groundRadius,
-					 						 whatIsGround);
+			groundRadius,
+			whatIsGround);
+		anim.SetBool ("isGrounded", isGrounded);
 		if (isGrounded) {
 			jumpCount = 0;
 		}
@@ -72,7 +84,7 @@ public class SimpleMovement : MonoBehaviour
 		}
 		*/
 		speedX = Input.GetKey (KeyCode.A) ? -1 : Input.GetKey (KeyCode.D) ? 1 : 0;
-		speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
+		// speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
 		Jump ();
 		if (turning) {
 			turnTime += Time.deltaTime;
@@ -91,9 +103,9 @@ public class SimpleMovement : MonoBehaviour
 			isMovingUp = false;
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			if ((isGrounded || jumpCount < maxJumps)) {
+			if ((isGrounded || jumpCount < extraJumps)) {
 				rb.AddForce (new Vector2 (0.0f, jumpSpeed));
-				if (jumpCount < maxJumps && !isGrounded)
+				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
 			}
 		}
@@ -114,18 +126,18 @@ public class SimpleMovement : MonoBehaviour
 			transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 		*/
 	}
-	/*
+
 	void OnCollisionEnter2D (Collision2D c)
 	{
 		if (c.gameObject.tag == "Enemy") {
 			// rigidBody.AddForce(Vector3.left * 100);
 			//rb.AddForce(transform.right * -thrust);
-			rb.AddForce (transform.up * thrust);
-			rb.velocity = new Vector2 (knockback, rb.velocity.y);
+			rb.AddForce (transform.up * (thrust));
+			rb.AddForce (transform.right * -(thrust));
+			rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y);
 			// isGrounded = false;
 			// velocity.y += knockbackY;
 			// velocity.x += knockbackX;
 		}
 	}
-	*/
 }
