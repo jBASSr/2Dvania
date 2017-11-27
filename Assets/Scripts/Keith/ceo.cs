@@ -18,7 +18,16 @@ public class ceo : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public float fireRate = 0.5F;
 	private float nextFire = 0.0F;
+	private float notNextFire = 0.0f;
+
+	private float firingTime = 0.0f;
+	private float fireTime = 0.0f;
+	private float notFireTime = 0.5f;
+	private bool isFire = false;
+	private bool isStart = true;
 	public float bullet_speed = 3.0f;
+	AnimatorStateInfo stateInfo;
+	int currentFrame;
 
 
     // Use this for initialization
@@ -29,10 +38,20 @@ public class ceo : MonoBehaviour {
 		is_collided = false;
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
 		animator = GetComponent<Animator> ();
+		RuntimeAnimatorController ac = animator.runtimeAnimatorController;    //Get Animator controller
+		for(int i = 0; i<ac.animationClips.Length; i++)                 //For all animations
+		{
+			if(ac.animationClips[i].name == "ceo_shooting")        //If it has the same name as your clip
+			{
+				fireTime = ac.animationClips[i].length;
+			}
+		}
+		Debug.Log ("ceo_shooting length=" +fireTime);
     }
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (is_collided==false){
         //this.transform.Translate(vec * speed * Time.deltaTime);        
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
@@ -49,34 +68,47 @@ public class ceo : MonoBehaviour {
 			if (robot.isGrounded) {
 				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
 					//Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
-					if (animator.GetBool ("is_shooting") == false) {
+					//INITIALIZE:
+					if (isStart == true) {
 						animator.SetBool ("is_shooting", true);
-						/*
-						AnimationClip clip;
+						nextFire = Time.time + fireTime;
+						isFire = true;
+						isStart = false;
+						Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+					}
+					//--------------------------------------
 
-						// new event created
-						AnimationEvent evt;
-						evt = new AnimationEvent();
-						evt.intParameter = 12345;
-						evt.time = 1.3f;
-						evt.functionName = "Fire";
-
-						// get the animation clip and add the AnimationEvent
-						clip = animator.runtimeAnimatorController.animationClips[0];
-
-						clip.AddEvent(evt);
-                         */ 
-						if (Time.time > nextFire) {
-							nextFire = Time.time + fireRate;
-							Fire ();
-						}
-					} else {
+					if (isFire && Time.time > nextFire) {												
+						notNextFire = Time.time + notFireTime;
+						Fire ();
+						isFire = false;
 						animator.SetBool ("is_shooting", false);
+						Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+						//animator.SetBool ("is_shooting",false);
+					}
+					if (!isFire && Time.time > notNextFire) {												
+						nextFire = Time.time + fireTime;
+						isFire = true;
+						animator.SetBool ("is_shooting", true);
+						Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+							//animator.SetBool ("is_shoosting",false);
+					}
+					//STOP THE ENEMY SO HE CAN SHOOT:
+					if (animator.GetBool ("is_shooting") == true) {
+						this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
+					} else {
+						this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
 					}
 
+
 				}					
+			    else {//IF NOT FACING EACH OTHER...
+				   animator.SetBool ("is_shooting", false);
+					nextFire = Time.time + fireTime;
+			    }
 			} else {//IF PLAYER NOT GROUNDED
 				animator.SetBool ("is_shooting", false);
+				nextFire = Time.time + fireTime;
 			}
 		}
 
@@ -143,6 +175,14 @@ public class ceo : MonoBehaviour {
 		bullet.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed*bullet_speed, 0);
 		Destroy (bullet, 10.0f);
 
+	}
+
+	private IEnumerator WaitForAnimation ( Animation animation )
+	{
+		do
+		{
+			yield return null;
+		} while ( animation.isPlaying );
 	}
 
 
