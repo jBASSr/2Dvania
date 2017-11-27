@@ -78,15 +78,17 @@ public class ceo : MonoBehaviour {
 					}
 					//--------------------------------------
 
-					if (isFire && Time.time > nextFire) {												
-						notNextFire = Time.time + notFireTime;
-						Fire ();
-						isFire = false;
-						animator.SetBool ("is_shooting", false);
-						Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
-						//animator.SetBool ("is_shooting",false);
+					if (isFire && Time.time > nextFire) {																		
+						if (bulletPrefab != null) {
+							notNextFire = Time.time + notFireTime;
+							Fire ();
+							isFire = false;
+							animator.SetBool ("is_shooting", false);
+							Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+							//animator.SetBool ("is_shooting",false);
+						}
 					}
-					if (!isFire && Time.time > notNextFire) {												
+					else if (!isFire && Time.time > notNextFire) {												
 						nextFire = Time.time + fireTime;
 						isFire = true;
 						animator.SetBool ("is_shooting", true);
@@ -118,7 +120,7 @@ public class ceo : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Debug.Log("COLLISION!!!!");
-		if (coll.gameObject.tag == "ColumnLeft" || coll.gameObject.tag == "ColumnRight" || coll.gameObject.tag == "Player")
+		if (coll.gameObject.tag == "Wall" || coll.gameObject.tag == "Player")
         {
 			if (coll.gameObject.tag == "Player") {
 				Debug.Log ("PLAYER COLLISION!!");
@@ -173,7 +175,9 @@ public class ceo : MonoBehaviour {
 			             transform.rotation);
 
 		bullet.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed*bullet_speed, 0);
-		Destroy (bullet, 10.0f);
+		if (bullet != null) {
+			//Destroy (bullet, 10.0f);
+		}
 
 	}
 
