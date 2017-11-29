@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Wall
   - Ground
+  - MiddleGround
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Player
   - Backround
   - Background2
-  - 
-  - 
+  - oil
+  - Ground
   - 
   - 
   - 

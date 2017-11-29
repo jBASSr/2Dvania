@@ -65,7 +65,9 @@ public class ceo : MonoBehaviour {
 			}
 		}
 		if (robot != null) {
+			
 			if (robot.isGrounded) {
+				//Debug.Log ("ROBOT GROUNDED!!!");
 				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
 					//Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
 					//INITIALIZE:
@@ -81,10 +83,12 @@ public class ceo : MonoBehaviour {
 					if (isFire && Time.time > nextFire) {																		
 						if (bulletPrefab != null) {
 							notNextFire = Time.time + notFireTime;
+							//WaitForSeconds(0.3);
+							Debug.Log("SHOOTING NOW!!!");
 							Fire ();
 							isFire = false;
 							animator.SetBool ("is_shooting", false);
-							Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+							//Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
 							//animator.SetBool ("is_shooting",false);
 						}
 					}
@@ -114,6 +118,7 @@ public class ceo : MonoBehaviour {
 			}
 		}
 
+
 	}
 		
 
@@ -131,11 +136,13 @@ public class ceo : MonoBehaviour {
 			if (is_right == true)
             {
 				transform.localRotation = Quaternion.Euler(0, 0, 0);
+				transform.Translate (new Vector2 (-0.1f,0));
                 //this.transform.Translate(new Vector2(2, 0));
             }
             else
             {
 				transform.localRotation = Quaternion.Euler(0, 180, 0);                
+				transform.Translate (new Vector2 (0.1f,0));
                 //this.transform.Translate(new Vector2(-20, 0));
             }
 			speed *= -1;
