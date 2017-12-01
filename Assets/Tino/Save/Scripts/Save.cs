@@ -16,7 +16,7 @@ namespace Tino.Save
             if(SavedGame == null) { SavedGame = new Tino.Save.Game(); }
 
             GetGameState();
-
+            
             BinaryFormatter bf = new BinaryFormatter();
             using (FileStream file = File.Create(Path))
             {
