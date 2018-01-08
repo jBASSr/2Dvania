@@ -129,6 +129,7 @@ public class SimpleMovement : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D c)
 	{
+		//Debug.Log ("COLLIDED?");
 		if (c.gameObject.tag == "Enemy") {
 			// rigidBody.AddForce(Vector3.left * 100);
 			//rb.AddForce(transform.right * -thrust);

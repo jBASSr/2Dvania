@@ -11,7 +11,6 @@ public class ceo : MonoBehaviour {
 	private bool is_collided;
 
 	public GameObject bloodPrefab;
-	public Transform bloodSpawn;
 	private GameObject tempBlood;
 	public SimpleMovement robot;
 	private Animator animator;
@@ -65,9 +64,7 @@ public class ceo : MonoBehaviour {
 			}
 		}
 		if (robot != null) {
-			
 			if (robot.isGrounded) {
-				//Debug.Log ("ROBOT GROUNDED!!!");
 				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
 					//Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
 					//INITIALIZE:
@@ -76,7 +73,7 @@ public class ceo : MonoBehaviour {
 						nextFire = Time.time + fireTime;
 						isFire = true;
 						isStart = false;
-						Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+						//Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
 					}
 					//--------------------------------------
 
@@ -96,7 +93,7 @@ public class ceo : MonoBehaviour {
 						nextFire = Time.time + fireTime;
 						isFire = true;
 						animator.SetBool ("is_shooting", true);
-						Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
+						//Debug.Log("is_shooting=" + animator.GetBool ("is_shooting"));
 							//animator.SetBool ("is_shoosting",false);
 					}
 					//STOP THE ENEMY SO HE CAN SHOOT:
@@ -163,8 +160,8 @@ public class ceo : MonoBehaviour {
 		if (tempBlood == null) {
 			tempBlood = (GameObject)Instantiate (
 				bloodPrefab,
-				bloodSpawn.position,
-				bloodSpawn.rotation
+				transform.position,
+				transform.rotation
 			);
 			Vector2 pos = tempBlood.transform.position;
 			Vector2 pos2 = transform.position;

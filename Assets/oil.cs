@@ -23,6 +23,7 @@ public class oil : MonoBehaviour {
 		direction = "horizontal";
 		is_right = true;
 		onGround = true;
+		Debug.Log ("Setting oil sped to " + speed);
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
 		//height = this.GetComponent<Collider>().bounds.size.y;
 		//width = this.GetComponent<Collider>().bounds.size.x;
@@ -30,11 +31,12 @@ public class oil : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log ("OIL IS UPDATED?!!!!!");
 		if (oilPrefab != null) {
 			Destroy (oilPrefab,0.0f);
 		}
 		if (direction == "vertical") {//To move up->right			
-			//Debug.Log("WALL HEIGHT=" + wall_height + "y=" + this.transform.position.y) ;
+			  Debug.Log("WALL HEIGHT=" + wall_height + "y=" + this.transform.position.y) ;
 
 
 			if (this.transform.position.y + 0.5*height - 0.5> wall.GetComponent<Transform>().position.y + 0.5*wall_height) {				
@@ -43,7 +45,7 @@ public class oil : MonoBehaviour {
 				} else {
 					is_right_mul = -1.0f;
 				}
-				//Debug.Log ("TOP OF WALL");
+				Debug.Log ("TOP OF WALL");
 				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (is_right_mul*speed, 0);
 				direction = "horizontal";
 			}
@@ -54,13 +56,13 @@ public class oil : MonoBehaviour {
 				if (this.transform.position.x + (0.5 * width) - 0.7 > wall.GetComponent<Transform> ().position.x + (0.5 * wall_width)) {
 					this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -speed);
 					direction = "vertical";
-					//Debug.Log ("MOVING RIGHT & DOWN");
+					Debug.Log ("MOVING RIGHT & DOWN");
 				}
 			} else {
 				if (this.transform.position.x - (0.5 * width) + 0.7 < wall.GetComponent<Transform> ().position.x - (0.5 * wall_width)) {
 					this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -speed);
 					direction = "vertical";
-					//Debug.Log ("MOVING LEFT & DOWN");
+				    Debug.Log ("MOVING LEFT & DOWN");
 				}			
 			}
 		}
@@ -91,12 +93,12 @@ public class oil : MonoBehaviour {
 				wall_width = coll.collider.bounds.size.x;
 				direction = "vertical";
 				onGround = false;
-				//Debug.Log("MOVING UP");
+				Debug.Log("MOVING UP");
 				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, speed);
 			}
 		}
 		if (coll.gameObject.tag == "Ground" && direction == "vertical"){//to move down->right
-			//Debug.Log("BOUNCED ON GROUND");
+			Debug.Log("BOUNCED ON GROUND");
 		    is_right = !is_right;
 			this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, speed);	
 	    }
