@@ -17,57 +17,65 @@ public class oil : MonoBehaviour {
 	float is_right_mul = -1.0f;
 	public SimpleMovement robot;
 	private GameObject oilPrefab;
+	private Vector2 velocityNow;
+	private SpriteRenderer sr, wsr;
+	private CapsuleCollider2D capcol;
+	private BoxCollider2D boxcol;
 
 	// Use this for initialization
 	void Start () {
 		direction = "horizontal";
 		is_right = true;
 		onGround = true;
-		Debug.Log ("Setting oil sped to " + speed);
-		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
-		//height = this.GetComponent<Collider>().bounds.size.y;
-		//width = this.GetComponent<Collider>().bounds.size.x;
+		velocityNow = new Vector2 (speed, 0);
+		this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
+		sr = GetComponent<SpriteRenderer> ();
+		capcol = robot.GetComponent<CapsuleCollider2D> ();
+		boxcol = this.GetComponent<BoxCollider2D> ();
+
 	}
 
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log ("OIL IS UPDATED?!!!!!");
+		this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 		if (oilPrefab != null) {
 			Destroy (oilPrefab,0.0f);
 		}
 		if (direction == "vertical") {//To move up->right			
-			  Debug.Log("WALL HEIGHT=" + wall_height + "y=" + this.transform.position.y) ;
-
-
-			if (this.transform.position.y + 0.5*height - 0.5> wall.GetComponent<Transform>().position.y + 0.5*wall_height) {				
+			if (sr.bounds.min.y> wsr.bounds.max.y+0.1) {				
 				if (is_right) {
 					is_right_mul = 1.0f;
 				} else {
 					is_right_mul = -1.0f;
 				}
-				Debug.Log ("TOP OF WALL");
-				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (is_right_mul*speed, 0);
+				velocityNow = new Vector2 (is_right_mul*speed, 0);
+				this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 				direction = "horizontal";
 			}
 		}
 		else if (direction == "horizontal" && onGround==false) {//to move right->down
-			//RectTransform rt =(RectTransform)this.transform;
 			if (is_right) {
-				if (this.transform.position.x + (0.5 * width) - 0.7 > wall.GetComponent<Transform> ().position.x + (0.5 * wall_width)) {
-					this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -speed);
+				if (sr.bounds.min.x > wsr.bounds.max.x + 0.1) {
+					velocityNow = new Vector2 (0, -speed);
+					this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 					direction = "vertical";
-					Debug.Log ("MOVING RIGHT & DOWN");
 				}
 			} else {
-				if (this.transform.position.x - (0.5 * width) + 0.7 < wall.GetComponent<Transform> ().position.x - (0.5 * wall_width)) {
-					this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -speed);
+				if (sr.bounds.max.x + 0.1 < wsr.bounds.min.x) {
+					velocityNow = new Vector2 (0, -speed);
+					this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 					direction = "vertical";
-				    Debug.Log ("MOVING LEFT & DOWN");
 				}			
 			}
 		}
-
-		if (robot.GetComponent<CapsuleCollider2D>().bounds.Intersects(this.GetComponent<BoxCollider2D>().bounds)) {
+		/*if (robot.scene.name) {
+			Debug.Log ("THE ROBOT IS active?");
+		}
+		*/
+		bool inx = (capcol.bounds.min.x < boxcol.bounds.max.x) && (capcol.bounds.max.x > boxcol.bounds.min.x);
+		bool iny = (capcol.bounds.min.y < boxcol.bounds.max.y) && (capcol.bounds.max.y > boxcol.bounds.min.y);
+		if (inx && iny){
 			Debug.Log ("OIL ON PLAYER!!!!");
 			if (oilPrefab == null) {
 				oilPrefab = (GameObject)Instantiate (
@@ -81,35 +89,37 @@ public class oil : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		//if (coll.gameObject.tag == "Player") {
-		//	Debug.Log ("OIL ON PLAYER!!!!");
-		//}
 
 		if (coll.gameObject.tag == "Wall")
 		{
-			if (direction == "horizontal") {//to move right->up
+			//Debug.Log ("OIL COLLIDED WITH WALL. this=" + this.gameObject.tag);
+			if (direction == "horizontal") {//to move right->up							
 				wall = coll.gameObject;
-				wall_height = coll.collider.bounds.size.y;
-				wall_width = coll.collider.bounds.size.x;
+				wsr = wall.GetComponent<SpriteRenderer> ();
+				wall_height = wall.GetComponent<BoxCollider2D>().size.y;
+				wall_width = wall.GetComponent<BoxCollider2D>().size.x;
 				direction = "vertical";
 				onGround = false;
-				Debug.Log("MOVING UP");
-				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, speed);
+				//Debug.Log("MOVING UP wall_height=" + wall_height + ", wall_width=" + wall_width);
+				velocityNow = new Vector2 (0, speed);
+				this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 			}
 		}
 		if (coll.gameObject.tag == "Ground" && direction == "vertical"){//to move down->right
-			Debug.Log("BOUNCED ON GROUND");
+			//Debug.Log("BOUNCED ON GROUND");
 		    is_right = !is_right;
-			this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, speed);	
+			velocityNow = new Vector2 (0, speed);	
+			this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 	    }
 		if (coll.gameObject.tag == "MiddleGround" && direction == "vertical"){//to move down->right
 			onGround = true;
 			direction = "horizontal";
 			if (is_right) {
-				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);	
+				velocityNow = new Vector2 (speed, 0);	
 			} else {
-				this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (-speed, 0);	
+				velocityNow = new Vector2 (-speed, 0);	
 			}
+			this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 		}
    }
 }

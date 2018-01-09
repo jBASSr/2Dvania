@@ -81,7 +81,7 @@ public class ceo : MonoBehaviour {
 						if (bulletPrefab != null) {
 							notNextFire = Time.time + notFireTime;
 							//WaitForSeconds(0.3);
-							Debug.Log("SHOOTING NOW!!!");
+							//Debug.Log("SHOOTING NOW!!!");
 							Fire ();
 							isFire = false;
 							animator.SetBool ("is_shooting", false);
