@@ -22,6 +22,8 @@ public class oil : MonoBehaviour {
 	private CapsuleCollider2D capcol;
 	private BoxCollider2D boxcol;
 	public int hitCount = 3;
+	private float startRocketHitTime = 0.0f;
+	public float hitRocketTime = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -85,6 +87,15 @@ public class oil : MonoBehaviour {
 					transform.rotation);
 			}
 		}
+		if (Time.time < startRocketHitTime + hitRocketTime) {
+			if (oilPrefab == null) {
+				Debug.Log ("Instantiating oil mess...");
+				oilPrefab = (GameObject)Instantiate (
+					oil_mess,
+					transform.position,
+					transform.rotation);
+			}
+		}
 		
 	}
 
@@ -126,6 +137,7 @@ public class oil : MonoBehaviour {
 			Debug.Log ("ROCKET COLLIDED CEO");
 			Destroy (coll.gameObject);
 			hitCount--;
+			startRocketHitTime = Time.time;
 			if (hitCount == 0) {
 				Destroy (this.gameObject);
 			}

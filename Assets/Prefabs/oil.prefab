@@ -102,6 +102,8 @@ MonoBehaviour:
   oil_mess: {fileID: 1590442891817632, guid: 8e07737fca324b245a98cc2ae80a202b, type: 2}
   speed: 3
   robot: {fileID: 0}
+  hitCount: 3
+  hitRocketTime: 0.5
 --- !u!212 &212806042280159418
 SpriteRenderer:
   m_ObjectHideFlags: 1
