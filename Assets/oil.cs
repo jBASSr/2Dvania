@@ -21,6 +21,7 @@ public class oil : MonoBehaviour {
 	private SpriteRenderer sr, wsr;
 	private CapsuleCollider2D capcol;
 	private BoxCollider2D boxcol;
+	public int hitCount = 3;
 
 	// Use this for initialization
 	void Start () {
@@ -120,6 +121,14 @@ public class oil : MonoBehaviour {
 				velocityNow = new Vector2 (-speed, 0);	
 			}
 			this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
+		}
+		if (coll.gameObject.tag == "Rocket") {
+			Debug.Log ("ROCKET COLLIDED CEO");
+			Destroy (coll.gameObject);
+			hitCount--;
+			if (hitCount == 0) {
+				Destroy (this.gameObject);
+			}
 		}
    }
 }

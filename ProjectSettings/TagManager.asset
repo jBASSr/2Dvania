@@ -12,6 +12,7 @@ TagManager:
   - MiddleGround
   - Door
   - Object
+  - Rocket
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class SimpleMovement : MonoBehaviour
 	// Movement
 	public float maxSpeed = 2.0f;
 	public bool forward = true;
+	private float forward_mult = 1.0f;
 	public float speedX;
 	public float speedY;
 	public float thrust;
@@ -33,6 +34,12 @@ public class SimpleMovement : MonoBehaviour
 
 	private Animator anim;
 	Transform pGraphics;
+
+	//FOR FIRING:
+	public GameObject rocketPrefab;
+	public float fireRate = 0.5F;
+	public float rocket_speed = 5.0f;
+	private float lastFire = 0.0f;
 
 	void Awake ()
 	{
@@ -95,6 +102,10 @@ public class SimpleMovement : MonoBehaviour
 		}
 		if (Input.GetKey (KeyCode.F)) {
 			anim.SetBool ("isShooting", true);
+			if (Time.time > lastFire + fireRate) {
+				lastFire = Time.time;
+				Fire ();
+			}
 		} else {
 			anim.SetBool ("isShooting", false);
 		}
@@ -145,6 +156,24 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.y += knockbackY;
 			// velocity.x += knockbackX;
 		}
+	}
+
+	void Fire(){
+		if (forward) {
+			forward_mult = 1.0f;
+		} else {
+			forward_mult = -1.0f;
+		}
+		var rocket = (GameObject)Instantiate (
+			rocketPrefab,
+			new Vector2((float)(transform.position.x + forward_mult*1.02), (float)(transform.position.y + 0.29)),
+			transform.rotation);
+		//Debug.Log ("rocket velocity=" + speedX + forward_mult * rocket_speed);
+		rocket.GetComponent<Rigidbody2D> ().velocity = new Vector2 (forward_mult * rocket_speed, 0);
+		if (rocket != null) {
+			Destroy (rocket, 10.0f);
+		}
+
 	}
 
 

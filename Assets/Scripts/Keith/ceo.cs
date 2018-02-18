@@ -25,6 +25,7 @@ public class ceo : MonoBehaviour {
 	private bool isFire = false;
 	private bool isStart = true;
 	public float bullet_speed = 3.0f;
+	public int hitCount = 5;
 	AnimatorStateInfo stateInfo;
 	int currentFrame;
 
@@ -146,6 +147,16 @@ public class ceo : MonoBehaviour {
 
         }
 
+		if (coll.gameObject.tag == "Rocket") {
+			Debug.Log ("ROCKET COLLIDED CEO");
+			Destroy (coll.gameObject);
+			hitCount--;
+			if (hitCount == 0) {
+				Destroy (this.gameObject);
+			}
+			Bleed ();
+		}
+
     }
 	
 	public void setCollided(bool _is_collided){
@@ -157,6 +168,7 @@ public class ceo : MonoBehaviour {
 	}
 
 	public void Bleed(){		
+		Debug.Log ("CEO BLEEDING!");
 		if (tempBlood == null) {
 			tempBlood = (GameObject)Instantiate (
 				bloodPrefab,
