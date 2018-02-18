@@ -93,6 +93,11 @@ public class SimpleMovement : MonoBehaviour
 				turnTime = 0;
 			}
 		}
+		if (Input.GetKey (KeyCode.F)) {
+			anim.SetBool ("isShooting", true);
+		} else {
+			anim.SetBool ("isShooting", false);
+		}
 	}
 
 	void Jump()
