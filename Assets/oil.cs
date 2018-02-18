@@ -46,7 +46,7 @@ public class oil : MonoBehaviour {
 			Destroy (oilPrefab,0.0f);
 		}
 		if (direction == "vertical") {//To move up->right			
-			if (sr.bounds.min.y> wsr.bounds.max.y+0.1) {				
+			if (sr.bounds.min.y> wsr.bounds.max.y+0.3) {				
 				if (is_right) {
 					is_right_mul = 1.0f;
 				} else {
@@ -59,13 +59,13 @@ public class oil : MonoBehaviour {
 		}
 		else if (direction == "horizontal" && onGround==false) {//to move right->down
 			if (is_right) {
-				if (sr.bounds.min.x > wsr.bounds.max.x + 0.1) {
+				if (sr.bounds.min.x > wsr.bounds.max.x + 0.3) {
 					velocityNow = new Vector2 (0, -speed);
 					this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 					direction = "vertical";
 				}
 			} else {
-				if (sr.bounds.max.x + 0.1 < wsr.bounds.min.x) {
+				if (sr.bounds.max.x + 0.3 < wsr.bounds.min.x) {
 					velocityNow = new Vector2 (0, -speed);
 					this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 					direction = "vertical";
