@@ -11,20 +11,27 @@ public class SimpleMovement : MonoBehaviour
 	public float speedY;
 	public float thrust;
 	private float speed;
-
-	// Jumping
-	public int extraJumps = 5;
+	public int extraJumps = 2;
 	public int jumpCount = 0;
-	public float jumpSpeed = 70;
+	public float jumpSpeed = 80;
 
-	// Objects & Physics
+	// Objects, Masks & Physics
 	private Rigidbody2D rb;
 	private CapsuleCollider2D collider;
 	public Transform groundCheck;
+	public Transform wallCheck;
 	public LayerMask whatIsGround;
+	public LayerMask whatIsWall;
+	public LayerMask whatIsDoor;
 	public bool isGrounded = false;
 	public bool isMovingUp = false;
+	public bool isWall = false;
 	public float groundRadius = 0.0001f;
+
+	// GameObjects & Prefabs
+	private GameObject bullet;
+	Rigidbody clone;
+	public int aim = 0;
 
 	// Animations
 	public float turnWait = 0.2f;
@@ -56,19 +63,28 @@ public class SimpleMovement : MonoBehaviour
 		anim.SetFloat ("moveX", speedX);
 		anim.SetFloat ("moveY", speedY);
 		anim.SetFloat ("Speed", speed);
-
+		// Animation States
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
 			groundRadius,
 			whatIsGround);
 		anim.SetBool ("isGrounded", isGrounded);
+		// Reset Jump Count
 		if (isGrounded) {
 			jumpCount = 0;
 		}
+		// Sprite Orientation
 		if ((speedX > 0.0f && !forward) || (speedX < 0.0f && forward)) {
 			Flip ();
 		}
+		// Implement Wall Slide/Hold (aka prevent played being stuck to wall)
+		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
 		if (!turning) {
-			rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
+			if (!isWall) {
+				rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
+			} else {
+				rb.velocity = new Vector2 (speedX * -1, rb.velocity.y);
+				//Debug.Log("Hit a wall");
+			}
 		}
 	}
 
@@ -125,6 +141,16 @@ public class SimpleMovement : MonoBehaviour
 		if (speedX > 0 && !forward)
 			transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 		*/
+	}
+
+	void Fire()
+	{
+		Vector3 bulletPos = bullet.transform.position;
+		Quaternion bulletRot = bullet.transform.rotation;
+		// new Prefab for "weapons"
+		// clone = (weaponprefab, bulletPos, bulletRot) as Rigidbody;
+		// add actual bullet velocity
+		// clone.AddForce(...);
 	}
 
 	void OnCollisionEnter2D (Collision2D c)
