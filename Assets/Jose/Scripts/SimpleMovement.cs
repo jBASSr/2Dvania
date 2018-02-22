@@ -152,7 +152,7 @@ public class SimpleMovement : MonoBehaviour
 		// add actual bullet velocity
 		// clone.AddForce(...);
 	}
-
+	/*
 	void OnCollisionEnter2D (Collision2D c)
 	{
 		if (c.gameObject.tag == "Enemy") {
@@ -166,4 +166,5 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.x += knockbackX;
 		}
 	}
+	*/
 }
