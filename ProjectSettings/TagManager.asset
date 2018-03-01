@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Default
+  - Enemy
+  - Bullet
+  - Wall
+  - Ground
+  - MiddleGround
+  - Door
+  - Object
+  - Rocket
   layers:
   - Default
   - TransparentFX
@@ -13,12 +22,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Backround
+  - Background2
+  - Wall
+  - oil
+  - Ground
+  - Object
   - 
   - 
   - 
@@ -40,4 +50,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2836637473
+    locked: 0
+  - name: Player
+    uniqueID: 2661356309
+    locked: 0
+  - name: New Layer
+    uniqueID: 664977711
+    locked: 0
+  - name: Characters
+    uniqueID: 3214234901
     locked: 0
