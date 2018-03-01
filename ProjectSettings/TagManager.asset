@@ -6,12 +6,13 @@ TagManager:
   tags:
   - Default
   - Enemy
-  - Object
-  - Column
-  - ColumnLeft
-  - ColumnRight
   - Bullet
   - Wall
+  - Ground
+  - MiddleGround
+  - Door
+  - Object
+  - Rocket
   layers:
   - Default
   - TransparentFX
@@ -25,8 +26,9 @@ TagManager:
   - Backround
   - Background2
   - Wall
-  - 
-  - 
+  - oil
+  - Ground
+  - Object
   - 
   - 
   - 
@@ -57,4 +59,7 @@ TagManager:
     locked: 0
   - name: New Layer
     uniqueID: 664977711
+    locked: 0
+  - name: Characters
+    uniqueID: 3214234901
     locked: 0

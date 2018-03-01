@@ -7,6 +7,7 @@ public class SimpleMovement : MonoBehaviour
 	// Movement
 	public float maxSpeed = 2.0f;
 	public bool forward = true;
+	private float forward_mult = 1.0f;
 	public float speedX;
 	public float speedY;
 	public float thrust;
@@ -40,6 +41,12 @@ public class SimpleMovement : MonoBehaviour
 
 	private Animator anim;
 	Transform pGraphics;
+
+	//FOR FIRING:
+	public GameObject rocketPrefab;
+	public float fireRate = 0.5F;
+	public float rocket_speed = 5.0f;
+	private float lastFire = 0.0f;
 
 	void Awake ()
 	{
@@ -109,6 +116,15 @@ public class SimpleMovement : MonoBehaviour
 				turnTime = 0;
 			}
 		}
+		if (Input.GetKey (KeyCode.F)) {
+			anim.SetBool ("isShooting", true);
+			if (Time.time > lastFire + fireRate) {
+				lastFire = Time.time;
+				Fire ();
+			}
+		} else {
+			anim.SetBool ("isShooting", false);
+		}
 	}
 
 	void Jump()
@@ -142,19 +158,10 @@ public class SimpleMovement : MonoBehaviour
 			transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 		*/
 	}
-
-	void Fire()
-	{
-		Vector3 bulletPos = bullet.transform.position;
-		Quaternion bulletRot = bullet.transform.rotation;
-		// new Prefab for "weapons"
-		// clone = (weaponprefab, bulletPos, bulletRot) as Rigidbody;
-		// add actual bullet velocity
-		// clone.AddForce(...);
-	}
-	/*
+  
 	void OnCollisionEnter2D (Collision2D c)
 	{
+		//Debug.Log ("COLLIDED?");
 		if (c.gameObject.tag == "Enemy") {
 			// rigidBody.AddForce(Vector3.left * 100);
 			//rb.AddForce(transform.right * -thrust);
@@ -166,5 +173,22 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.x += knockbackX;
 		}
 	}
-	*/
+  
+	void Fire(){
+		if (forward) {
+			forward_mult = 1.0f;
+		} else {
+			forward_mult = -1.0f;
+		}
+		var rocket = (GameObject)Instantiate (
+			rocketPrefab,
+			new Vector2((float)(transform.position.x + forward_mult*1.02), (float)(transform.position.y + 0.29)),
+			transform.rotation);
+		//Debug.Log ("rocket velocity=" + speedX + forward_mult * rocket_speed);
+		rocket.GetComponent<Rigidbody2D> ().velocity = new Vector2 (forward_mult * rocket_speed, 0);
+		if (rocket != null) {
+			Destroy (rocket, 10.0f);
+		}
+
+	}
 }
