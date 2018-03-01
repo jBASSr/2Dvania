@@ -25,6 +25,7 @@ TagManager:
   - Player
   - Backround
   - Background2
+  - Wall
   - oil
   - Ground
   - Object
