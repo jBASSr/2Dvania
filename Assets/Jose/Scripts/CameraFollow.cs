@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour {
 	//public GameObject player;
 	// Camera Settings
 	public float trackSpeed = 1.0f;
-	public Vector3 offset;
+	//public Vector3 offset;
 	// Tracking
 	private Vector3 cameraPosition;
 	private Vector3 playerPosition;
@@ -28,8 +28,7 @@ public class CameraFollow : MonoBehaviour {
 		//cameraPosition = transform.position;
 		if (cameraTarget == null)
 			Debug.Log ("No camera target set?");
-	}
-	
+	}	
 	// Update is called once per frame
 	void FixedUpdate () {
 		Follow ();
