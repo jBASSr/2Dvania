@@ -6,7 +6,7 @@ namespace Tino
 {
     public class Health : MonoBehaviour
     {
-        public int Bars = 3;
+        public int Amount = 3;
 
         void Start()
         {
