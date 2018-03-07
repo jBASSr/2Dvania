@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour {
 	// Health/Armor
 	public Text healthText;
-	public int health = 100;
+    public int health = 50;
+    public int maxHealth = 100;
 	//public int armor = 250;
 	// Refs
 	SimpleMovement charSpeed;
@@ -31,8 +33,8 @@ public class HealthSystem : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		healthText = GetComponent<Text> ();
-		// Init HUD
-	}
+        // Init HUD
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -72,4 +74,57 @@ public class HealthSystem : MonoBehaviour {
 	void Death() {
 
 	}
+    
+    public bool RefillHealth(int health)
+    {
+        if(this.health >= this.maxHealth) { return false; }
+        if(health == 0)
+        {
+            this.health = this.maxHealth;
+            return true;
+        }
+        this.health = this.health + health > this.maxHealth ? this.maxHealth : this.health + health;
+        return true;
+    }
+
+    public bool MaxHealthIncrease(int amount)
+    {
+        this.maxHealth += amount;
+        return true;
+    }
+
+    public void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnload;
+    }
+
+    public void OnDisable()
+    {
+        Tino.PlayerState.Health = this.health;
+        Tino.PlayerState.MaxHealth = this.maxHealth;
+    }
+
+    public void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        this.health = Tino.PlayerState.Health;
+        this.maxHealth = Tino.PlayerState.MaxHealth;
+
+        //note(tino): why is this here in the health script instead of its own script?
+        //I put it here to avoid any meta file merge conflicts. It can be freely moved into its own script after we merge all the code together.
+        string doorName = Tino.WorldState.GetDoorName();
+        if(!string.IsNullOrEmpty(doorName))
+        {
+            GameObject doorObject = GameObject.Find(doorName);
+            Vector3 doorPos = doorObject.transform.position;
+            this.transform.position = new Vector3(doorPos.x, doorPos.y + 0.5f, doorPos.z);
+        }
+    }
+
+    public void OnSceneUnload(Scene scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnload;
+    }
+
 }

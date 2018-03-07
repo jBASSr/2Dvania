@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/CharacterTest.unity
     guid: 7dfd1ee40a03632498e509d6be68b562
+  - enabled: 1
+    path: Assets/_Scenes/Tino.unity
+    guid: 36ee2b7f5541f3a40950ff0237507c9d
+  - enabled: 1
+    path: Assets/_Scenes/Tino2.unity
+    guid: 11779f74661e3064c8cc303a9a10735f

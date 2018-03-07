@@ -4,25 +4,21 @@ using UnityEngine;
 
 namespace Tino
 {
-    public class HPRefill : MonoBehaviour
+    public class DoubleJump : MonoBehaviour
     {
-        public int RefillAmount = 0;
-
         void OnTriggerEnter2D(Collider2D c)
         {
             if (c.gameObject.tag != "Player")
             {
                 return;
             }
-            HealthSystem playerHealth = c.gameObject.GetComponent<HealthSystem>();
-            if(playerHealth == null)
+            SimpleMovement playerMovement = c.gameObject.GetComponent<SimpleMovement>();
+            if (playerMovement == null)
             {
                 return;
             }
-            if(playerHealth.RefillHealth(RefillAmount))
-            {
-                Destroy(this.gameObject);
-            }
+            playerMovement.extraJumps++;
+            Destroy(this.gameObject);
         }
     }
 }

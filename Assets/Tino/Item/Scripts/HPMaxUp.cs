@@ -4,9 +4,13 @@ using UnityEngine;
 
 namespace Tino
 {
-    public class HPRefill : MonoBehaviour
+    public class HPMaxUp : MonoBehaviour
     {
-        public int RefillAmount = 0;
+        public int MaxUpAmount = 10;
+
+        void Start() { }
+
+        void Update() { }
 
         void OnTriggerEnter2D(Collider2D c)
         {
@@ -15,14 +19,12 @@ namespace Tino
                 return;
             }
             HealthSystem playerHealth = c.gameObject.GetComponent<HealthSystem>();
-            if(playerHealth == null)
+            if (playerHealth == null)
             {
                 return;
             }
-            if(playerHealth.RefillHealth(RefillAmount))
-            {
-                Destroy(this.gameObject);
-            }
+            playerHealth.MaxHealthIncrease(MaxUpAmount);
+            Destroy(this.gameObject);
         }
     }
 }
