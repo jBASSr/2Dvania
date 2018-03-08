@@ -1677,6 +1677,17 @@ Prefab:
       propertyPath: whatIsWall.m_Bits
       value: 2048
       objectReference: {fileID: 0}
+    - target: {fileID: 50302015921354736, guid: 156ae37e049b0274ba0aa75ced14be1b,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114151691974089618, guid: 156ae37e049b0274ba0aa75ced14be1b,
+        type: 2}
+      propertyPath: rocketPrefab
+      value: 
+      objectReference: {fileID: 1243961190228826, guid: 6bf825421e421894a96f08f6a248be27,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
   m_IsPrefabParent: 0
@@ -1712,9 +1723,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b446ac35b53ff474fb4b3b8867ee477f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
   health: 100
-  kbForceX: 150
-  kbForceY: 10
+  kbForceX: 100
+  kbForceY: 150
+  StunnedState: 0
+  stunTime: 0
+  recoverTime: 1.25
 --- !u!1 &1337947338
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2154,7 @@ MonoBehaviour:
   speedX: 0
   speedY: 0
   thrust: 250
+  speed: 0
   extraJumps: 1
   jumpCount: 0
   jumpSpeed: 300
@@ -2161,6 +2177,9 @@ MonoBehaviour:
   turnWait: 0.2
   turnTime: 0
   turning: 0
+  rocketPrefab: {fileID: 0}
+  fireRate: 0.5
+  rocket_speed: 5
 --- !u!4 &1523582155
 Transform:
   m_ObjectHideFlags: 0
@@ -2258,7 +2277,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2783,7 +2802,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 7.68}
+    oldSize: {x: 5, y: 7.68}
     newSize: {x: 4, y: 7.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2806,7 +2825,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   bloodPrefab: {fileID: 0}
-  bloodSpawn: {fileID: 0}
+  robot: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  fireRate: 0.5
+  bullet_speed: 3
+  hitCount: 5
 --- !u!95 &2034501283
 Animator:
   serializedVersion: 3

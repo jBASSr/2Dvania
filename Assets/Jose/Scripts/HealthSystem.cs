@@ -18,9 +18,13 @@ public class HealthSystem : MonoBehaviour {
 	Animator anim;
 	// Variables
 	public float kbForceX = 100;
-	public float kbForceY = 10;
+	public float kbForceY = 150;
+	public bool StunnedState = false;
+	public float stunTime;
+	public float recoverTime = 1.25f;
 
 	void Awake() {
+		// Required to prevent movement while stunned
 		charSpeed = GetComponent<SimpleMovement> ();
 		anim = GetComponentInChildren<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
@@ -39,6 +43,12 @@ public class HealthSystem : MonoBehaviour {
 		//healthText.text = health.ToString ();
 		// Implement
 		// 1. Invulnerability Timer
+		if (StunnedState && stunTime <= recoverTime) {
+			stunTime += Time.deltaTime;
+		} else {
+			StunnedState = false;
+			stunTime = 0.0f;
+		}
 		// 2. Sprite / Animations
 	}
 
@@ -46,7 +56,7 @@ public class HealthSystem : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D c)
 	{
 		//Debug.Log("Test");
-		if (c.gameObject.tag == "Enemy" && health > 0) {
+		if (c.gameObject.tag == "Enemy" && health > 0 && !StunnedState) {
 			// Deal damage to player
 			health = Mathf.Clamp(health - 15, 0, 100);
 			Debug.Log ("-15 HP!");
@@ -60,16 +70,25 @@ public class HealthSystem : MonoBehaviour {
 			}
 			// 3. Animations
 			// 4. Invul or Knockback?
-			Vector2 knockback = new Vector2 (charSpeed.forward ? -kbForceX : kbForceX, kbForceY);
-			//rb.AddForce (knockback);
-			rb.AddForce (transform.up * (100));
-			rb.AddForce (transform.right * -(100));
-			rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y);
+			StunnedState = true;
+			Vector2 knockback = new Vector2 (charSpeed.forward ? 
+				-kbForceX : kbForceX, kbForceY);
+			//Debug.Log (knockback);
+			rb.AddForce (knockback);
+			//rb.AddForce (Vector3.left * 10, ForceMode2D.Impulse);
+			//rb.AddForce (transform.up * (10));
+			//rb.AddForce (transform.right * -(100));
+			//rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y);
 			// 5. Stun / Recovery Time
 			//charSpeed.bodyState = 0;
 		}
 	}
 	void Death() {
-
+		// Disable Object
+		this.enabled = false;
+		// Disable Controller
+		charSpeed.enabled = false;
+		// Death Animation
+		// Game Over Screen
 	}
 }

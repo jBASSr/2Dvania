@@ -11,7 +11,7 @@ public class SimpleMovement : MonoBehaviour
 	public float speedX;
 	public float speedY;
 	public float thrust;
-	private float speed;
+	public float speed;
 	public int extraJumps = 2;
 	public int jumpCount = 0;
 	public float jumpSpeed = 80;
@@ -48,12 +48,16 @@ public class SimpleMovement : MonoBehaviour
 	public float rocket_speed = 5.0f;
 	private float lastFire = 0.0f;
 
+	// External Stuff
+	HealthSystem hp;
+
 	void Awake ()
 	{
 		collider = GetComponent<CapsuleCollider2D> ();
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponentInChildren<Animator> ();
 		pGraphics = transform.Find ("Graphics");
+		hp = GetComponent<HealthSystem> ();
 		//rb.sleepThreshold = 0.0f;
 
 		// Find groundCheck transform object
@@ -85,7 +89,7 @@ public class SimpleMovement : MonoBehaviour
 		}
 		// Implement Wall Slide/Hold (aka prevent played being stuck to wall)
 		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
-		if (!turning) {
+		if (!turning && !hp.StunnedState) {
 			if (!isWall) {
 				rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
 			} else {
@@ -158,7 +162,7 @@ public class SimpleMovement : MonoBehaviour
 			transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 		*/
 	}
-  
+  	/*
 	void OnCollisionEnter2D (Collision2D c)
 	{
 		//Debug.Log ("COLLIDED?");
@@ -173,7 +177,7 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.x += knockbackX;
 		}
 	}
-  
+	*/  
 	void Fire(){
 		if (forward) {
 			forward_mult = 1.0f;
