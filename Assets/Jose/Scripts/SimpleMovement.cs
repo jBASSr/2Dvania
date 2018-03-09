@@ -40,6 +40,7 @@ public class SimpleMovement : MonoBehaviour
 	public float fireRate = 0.5F;
 	public float rocket_speed = 5.0f;
 	private float lastFire = 0.0f;
+	private bool isShooting = false;
 
 	void Awake ()
 	{
@@ -77,6 +78,15 @@ public class SimpleMovement : MonoBehaviour
 		if (!turning) {
 			rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
 		}
+		if (Input.GetKey (KeyCode.F)) {
+			anim.SetBool ("isShooting", true);
+			if (Time.time > lastFire + fireRate) {
+				lastFire = Time.time;
+				Fire ();
+			} 
+		} else {
+			anim.SetBool ("isShooting", false);
+		}
 	}
 
 	void Update()
@@ -99,15 +109,6 @@ public class SimpleMovement : MonoBehaviour
 				turning = false;
 				turnTime = 0;
 			}
-		}
-		if (Input.GetKey (KeyCode.F)) {
-			anim.SetBool ("isShooting", true);
-			if (Time.time > lastFire + fireRate) {
-				lastFire = Time.time;
-				Fire ();
-			}
-		} else {
-			anim.SetBool ("isShooting", false);
 		}
 	}
 
@@ -156,6 +157,7 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.y += knockbackY;
 			// velocity.x += knockbackX;
 		}
+		Debug.Log ("PLAYER HIT " + c.gameObject.tag);
 	}
 
 	void Fire(){

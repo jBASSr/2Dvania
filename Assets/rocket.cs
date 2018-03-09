@@ -15,7 +15,7 @@ public class rocket : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag != "Enemey" || coll.gameObject.tag != "oil") {
+		if (coll.gameObject.tag != "Enemy" || coll.gameObject.tag != "oil") {
 			Destroy (this.gameObject);
 		}
 	}

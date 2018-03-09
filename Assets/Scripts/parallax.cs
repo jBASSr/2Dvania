@@ -10,11 +10,13 @@ public class parallax : MonoBehaviour {
 
 	public Transform cam;		   // Reference to Main_Camera transform
 	private Vector3 prevCamPos;    // Position of camera in previous frame
+	public bool reverseScale = false;
+	private float spriteWidth = 0f;
 
 	// Use this for references
 	void Awake () {
 		// Camera Reference
-		//cam = Camera.main.transform;
+		cam = Camera.main.transform;
 	}
 
 	// Use this for initialization
@@ -43,4 +45,5 @@ public class parallax : MonoBehaviour {
 		// Update prevCamPos to current position at end of frame
 		prevCamPos = cam.position;
 	}
+		
 }

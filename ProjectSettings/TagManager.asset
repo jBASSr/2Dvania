@@ -13,6 +13,11 @@ TagManager:
   - Door
   - Object
   - Rocket
+  - ColumnRight
+  - ColumnLeft
+  - sky
+  - dirt
+  - sand
   layers:
   - Default
   - TransparentFX
@@ -28,8 +33,8 @@ TagManager:
   - oil
   - Ground
   - Object
-  - 
-  - 
+  - Transparent_Enemies
+  - Wall
   - 
   - 
   - 

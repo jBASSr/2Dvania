@@ -11,11 +11,9 @@ public class oil : MonoBehaviour {
 	private float wall_height=0, wall_width=0;
 	private bool onGround=true;
 	private GameObject wall;
-	float height=0.1462913f;
-	float width = 0.1658955f;
 
 	float is_right_mul = -1.0f;
-	public SimpleMovement robot;
+	private SimpleMovement robot;
 	private GameObject oilPrefab;
 	private Vector2 velocityNow;
 	private SpriteRenderer sr, wsr;
@@ -27,6 +25,7 @@ public class oil : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
 		direction = "horizontal";
 		is_right = true;
 		onGround = true;
