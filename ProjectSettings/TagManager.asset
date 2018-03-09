@@ -13,6 +13,8 @@ TagManager:
   - Door
   - Object
   - Rocket
+  - ColumnRight
+  - ColumnLeft
   layers:
   - Default
   - TransparentFX
@@ -29,8 +31,7 @@ TagManager:
   - oil
   - Ground
   - Object
-  - 
-  - 
+  - Transparent_Enemies
   - 
   - 
   - 

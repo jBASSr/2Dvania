@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ceo : MonoBehaviour {
-    private int velx=1;
-    public float speed = 1.0f;
+	public float speed = 1.0f;
+	public float fireRate = 0.5F;
+	public float bullet_speed = 3.0f;
+
+	public GameObject bloodPrefab;
+	public GameObject bulletPrefab;
+
+    private int velx=1;    
     private Vector2 vec;    
     private SpriteRenderer sr;
     private bool is_right;
 	private bool is_collided;
-
-	public GameObject bloodPrefab;
 	private GameObject tempBlood;
-	public SimpleMovement robot;
+	private SimpleMovement robot;
 	private Animator animator;
-	public GameObject bulletPrefab;
-	public float fireRate = 0.5F;
+
 	private float nextFire = 0.0F;
 	private float notNextFire = 0.0f;
-
 	private float firingTime = 0.0f;
 	private float fireTime = 0.0f;
 	private float notFireTime = 0.5f;
 	private bool isFire = false;
 	private bool isStart = true;
-	public float bullet_speed = 3.0f;
 	public int hitCount = 5;
 	AnimatorStateInfo stateInfo;
 	int currentFrame;
@@ -32,6 +33,7 @@ public class ceo : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
         vec = new Vector2(1, 0);        
         //sr = new SpriteRenderer();
 		is_right = true;
@@ -148,7 +150,7 @@ public class ceo : MonoBehaviour {
         }
 
 		if (coll.gameObject.tag == "Rocket") {
-			Debug.Log ("ROCKET COLLIDED CEO");
+			Debug.Log ("ROCKET COLLIDED WITH ENEMY CEO");
 			Destroy (coll.gameObject);
 			hitCount--;
 			if (hitCount == 0) {
