@@ -16,6 +16,8 @@ public class HealthSystem : MonoBehaviour {
 	// Animations
 	SpriteRenderer spriteRenderer;
 	Animator anim;
+	public Image black;
+	public Animator fadeanim;
 	// Variables
 	public float kbForceX = 100;
 	public float kbForceY = 150;
@@ -89,6 +91,9 @@ public class HealthSystem : MonoBehaviour {
 		// Disable Controller
 		charSpeed.enabled = false;
 		// Death Animation
+		anim.SetFloat ("Speed", 0);
+		//anim.SetBool("Death", true);
 		// Game Over Screen
+		fadeanim.SetBool("Fade", true);
 	}
 }

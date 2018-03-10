@@ -42,6 +42,11 @@ public class SimpleMovement : MonoBehaviour
 	private Animator anim;
 	Transform pGraphics;
 
+	// Weapons
+	private float bulletSpeed = 100;
+	public float cooldown = 0.5f;
+	public float cooldown_start = 0.0f;
+
 	//FOR FIRING:
 	public GameObject rocketPrefab;
 	public float fireRate = 0.5F;
@@ -139,7 +144,7 @@ public class SimpleMovement : MonoBehaviour
 			isMovingUp = false;
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			if ((isGrounded || jumpCount < extraJumps)) {
+			if ((isGrounded || jumpCount < extraJumps && !hp.StunnedState)) {
 				rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
@@ -178,7 +183,8 @@ public class SimpleMovement : MonoBehaviour
 		}
 	}
 	*/  
-	void Fire(){
+	void Fire()
+	{
 		if (forward) {
 			forward_mult = 1.0f;
 		} else {
@@ -186,8 +192,9 @@ public class SimpleMovement : MonoBehaviour
 		}
 		var rocket = (GameObject)Instantiate (
 			rocketPrefab,
-			new Vector2((float)(transform.position.x + forward_mult*1.02), (float)(transform.position.y + 0.29)),
-			transform.rotation);
+			new Vector2((float)(transform.position.x + forward_mult*1.02), 
+				(float)(transform.position.y + 0.29)),
+				transform.rotation);
 		//Debug.Log ("rocket velocity=" + speedX + forward_mult * rocket_speed);
 		rocket.GetComponent<Rigidbody2D> ().velocity = new Vector2 (forward_mult * rocket_speed, 0);
 		if (rocket != null) {
