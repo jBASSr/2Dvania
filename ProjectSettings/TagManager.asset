@@ -18,6 +18,7 @@ TagManager:
   - sky
   - dirt
   - sand
+  - Door_Cave
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - Object
   - Transparent_Enemies
   - Wall
-  - 
+  - Door
   - 
   - 
   - 

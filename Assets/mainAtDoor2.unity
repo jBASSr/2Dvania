@@ -436,7 +436,7 @@ Prefab:
         type: 2}
       propertyPath: TargetDoor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 730319561}
     - target: {fileID: 212841064348254540, guid: 37b04b5acb2948f47810c9e82123a80a,
         type: 2}
       propertyPath: m_SortingLayerID
@@ -455,7 +455,7 @@ Prefab:
     - target: {fileID: 114447645681222372, guid: 37b04b5acb2948f47810c9e82123a80a,
         type: 2}
       propertyPath: TargetScene
-      value: 
+      value: cave
       objectReference: {fileID: 0}
     - target: {fileID: 1922861387694478, guid: 37b04b5acb2948f47810c9e82123a80a, type: 2}
       propertyPath: m_Layer
@@ -793,6 +793,11 @@ Prefab:
 --- !u!4 &730319560 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4536440111751028, guid: c57ff7f06b4b7cd4fade17f35e011747,
+    type: 2}
+  m_PrefabInternal: {fileID: 730319559}
+--- !u!1 &730319561 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1973718669306140, guid: c57ff7f06b4b7cd4fade17f35e011747,
     type: 2}
   m_PrefabInternal: {fileID: 730319559}
 --- !u!1001 &792018334
@@ -1242,11 +1247,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4534920224075940, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.69
+      value: 16.35
       objectReference: {fileID: 0}
     - target: {fileID: 4534920224075940, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.05
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4534920224075940, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
       propertyPath: m_LocalPosition.z

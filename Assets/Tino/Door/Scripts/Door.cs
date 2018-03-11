@@ -33,8 +33,10 @@ namespace Tino
 
         void OnTriggerEnter2D(Collider2D c)
         {
+			Debug.Log ("COLLIDED WITH DOOR!!!!");
             if(c.gameObject.tag == "Player")
             {
+				Debug.Log ("PLAYER -------->>>>>>  COLLIDED WITH DOOR!!!!");
                 this.Player = c.gameObject;
                 this.IsColliding = true;
             }
