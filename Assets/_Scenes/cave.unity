@@ -160,6 +160,11 @@ Prefab:
       propertyPath: speed
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 212842078681018076, guid: 163795847978a2d4d9a56c5af26c8d46,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 163795847978a2d4d9a56c5af26c8d46, type: 2}
   m_IsPrefabParent: 0
@@ -834,6 +839,7 @@ GameObject:
   - component: {fileID: 1741788025}
   - component: {fileID: 1741788024}
   - component: {fileID: 1741788026}
+  - component: {fileID: 1741788027}
   m_Layer: 14
   m_Name: key (1)
   m_TagString: Untagged
@@ -923,6 +929,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.18, y: 3.76}
   m_EdgeRadius: 0
+--- !u!114 &1741788027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1741788023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ca732f3562f8b418e926a5b4ba0105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1824994136
 GameObject:
   m_ObjectHideFlags: 0
