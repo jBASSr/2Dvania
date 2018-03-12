@@ -11,3 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/CharacterTest.unity
     guid: 7dfd1ee40a03632498e509d6be68b562
+  - enabled: 1
+    path: Assets/_Scenes/level1.unity
+    guid: 8e25852058814af4cb9e8fd4973f4c06
+  - enabled: 1
+    path: Assets/_Scenes/level1B.unity
+    guid: c792a69d8ceaba140bc2dca2a7508450
+  - enabled: 1
+    path: Assets/_Scenes/cave.unity
+    guid: 16d9a20b1444f444a8ea9126ae58f762

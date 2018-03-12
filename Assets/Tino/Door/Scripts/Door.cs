@@ -22,6 +22,7 @@ namespace Tino
             {
                 if(this.TargetScene.Length > 0)
                 {
+					Debug.Log ("LOADING " + this.TargetScene + " SCENE?");
                     UnityEngine.SceneManagement.SceneManager.LoadScene(this.TargetScene);
                 }
                 else if(this.TargetDoor != null)
@@ -32,9 +33,11 @@ namespace Tino
 	    }
 
         void OnTriggerEnter2D(Collider2D c)
-        {
+		{
+			Debug.Log (c.gameObject.tag + "... COLLIDED WITH DOOR?");	
             if(c.gameObject.tag == "Player")
             {
+				
                 this.Player = c.gameObject;
                 this.IsColliding = true;
             }
