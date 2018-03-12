@@ -18,7 +18,7 @@ public class key : MonoBehaviour {
 	{		
 		if (coll.gameObject.tag == "Player"){
 			Debug.Log("GOT THE KEY!");
-			PlayerPrefs.SetInt("HasKey",1);
+			GameManager.hasKey = true;
 			Destroy (this.gameObject);
 		}
     }

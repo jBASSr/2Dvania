@@ -251,11 +251,26 @@ Prefab:
     - target: {fileID: 114447645681222372, guid: 37b04b5acb2948f47810c9e82123a80a,
         type: 2}
       propertyPath: TargetScene
-      value: level1B
+      value: level1
       objectReference: {fileID: 0}
     - target: {fileID: 1922861387694478, guid: 37b04b5acb2948f47810c9e82123a80a, type: 2}
       propertyPath: m_Layer
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114447645681222372, guid: 37b04b5acb2948f47810c9e82123a80a,
+        type: 2}
+      propertyPath: myScene
+      value: cave
+      objectReference: {fileID: 0}
+    - target: {fileID: 114447645681222372, guid: 37b04b5acb2948f47810c9e82123a80a,
+        type: 2}
+      propertyPath: doorName
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 114447645681222372, guid: 37b04b5acb2948f47810c9e82123a80a,
+        type: 2}
+      propertyPath: targetDoorName
+      value: Door2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37b04b5acb2948f47810c9e82123a80a, type: 2}
@@ -842,7 +857,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1498694413}
-  - component: {fileID: 1498694412}
   m_Layer: 0
   m_Name: loadScene
   m_TagString: Untagged
@@ -850,17 +864,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1498694412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1498694411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b84c5f00e4fe8d142be7ff64957885f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1498694413
 Transform:
   m_ObjectHideFlags: 0
