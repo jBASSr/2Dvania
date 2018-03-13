@@ -435,7 +435,7 @@ Prefab:
     - target: {fileID: 114227045751765830, guid: 54f9159ada5873c4eb4efed3b748384e,
         type: 2}
       propertyPath: targetDoorName
-      value: Door1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4922596588586854, guid: 54f9159ada5873c4eb4efed3b748384e, type: 2}
       propertyPath: m_LocalScale.z

@@ -29,11 +29,15 @@ namespace Tino
 					if (myScene == "level1" && myDoorName == "Door_Locked") {
 						Debug.Log ("TRYING TO OPEN LOCKED DOOR.....");
 						if (GameManager.hasKey == true) {
-							GameManager.door_start = targetDoorName;
+							if (targetDoorName != "") {
+								GameManager.door_start = targetDoorName;
+							}
 							UnityEngine.SceneManagement.SceneManager.LoadScene (this.TargetScene);
 						}
 					} else {
-						GameManager.door_start = targetDoorName;
+						if (targetDoorName != "") {
+							GameManager.door_start = targetDoorName;
+						}
 						UnityEngine.SceneManagement.SceneManager.LoadScene (this.TargetScene);
 					}
                 }
