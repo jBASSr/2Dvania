@@ -6,13 +6,20 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour {
 	// Health/Armor
 	public Text healthText;
-	public int health = 100;
+	public float health = 100;
 	//public int armor = 250;
 	// Refs
 	SimpleMovement charSpeed;
+	CameraFollow camera;
 	Rigidbody2D rb;
 	CapsuleCollider2D collider;
 	//Text healthText;
+	// GUI
+	public float hpBar = 0.0f;
+	Vector2 pos = new Vector2 (20, 20);
+	Vector2 size = new Vector2 (100, 15);
+	public Texture2D emptyBar;
+	public Texture2D fullBar;
 	// Animations
 	SpriteRenderer spriteRenderer;
 	Animator anim;
@@ -24,14 +31,17 @@ public class HealthSystem : MonoBehaviour {
 	public bool StunnedState = false;
 	public float stunTime;
 	public float recoverTime = 1.25f;
+	// Camera Control
+	private LookAhead look_ahead;
 
 	void Awake() {
 		// Required to prevent movement while stunned
 		charSpeed = GetComponent<SimpleMovement> ();
+		camera = GameObject.Find ("Main Camera").GetComponent<CameraFollow> ();
 		anim = GetComponentInChildren<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
 		collider = GetComponent<CapsuleCollider2D> ();
-		//healthText = GetComponentInChildren<Text>();
+		healthText = GetComponentInChildren<Text>();
 		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
 	}
 	// Use this for initialization
@@ -51,7 +61,21 @@ public class HealthSystem : MonoBehaviour {
 			StunnedState = false;
 			stunTime = 0.0f;
 		}
+		hpBar = health / 100;
 		// 2. Sprite / Animations
+	}
+
+	void OnGUI() {
+		// HP Bar Base
+		GUI.BeginGroup (new Rect (pos.x, pos.y, size.x, size.y));
+			GUI.Box (new Rect (0, 0, size.x, size.y), emptyBar);
+			// HP Bar 'Full' State
+			GUI.BeginGroup(new Rect(0, 0, size.x * hpBar, size.y));
+				GUI.Box(new Rect(0, 0, size.x, size.y), fullBar);
+			GUI.EndGroup();
+			GUI.color = Color.white;
+		GUI.Label (new Rect (3, -3f, 100, 20), health.ToString());
+		GUI.EndGroup();
 	}
 
 	// Collision with Enemy Hitbox
@@ -85,11 +109,14 @@ public class HealthSystem : MonoBehaviour {
 			//charSpeed.bodyState = 0;
 		}
 	}
+
 	void Death() {
 		// Disable Object
 		this.enabled = false;
 		// Disable Controller
 		charSpeed.enabled = false;
+		// Center Camera on Player "Robot"
+		camera.cameraTarget = GameObject.Find("Robot").transform;
 		// Death Animation
 		anim.SetFloat ("Speed", 0);
 		//anim.SetBool("Death", true);
