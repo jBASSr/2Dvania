@@ -67,11 +67,8 @@ public class oil_fall : MonoBehaviour {
 		if (coll.gameObject.tag == "Rocket") {
 			Debug.Log ("ROCKET COLLIDED WITH OIL");
 			Destroy (coll.gameObject);
-			hitCount--;
 			startRocketHitTime = Time.time;
-			if (hitCount == 0) {
-				Destroy (this.gameObject);
-			}
+			Destroy (this.gameObject);
 			if (oilMess != null) {
 				Destroy (oilMess);
 			}
