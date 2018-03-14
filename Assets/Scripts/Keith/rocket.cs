@@ -15,6 +15,7 @@ public class rocket : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
+		Debug.Log ("ROCKET COLLIDED!!!!!");
 		if (coll.gameObject.tag != "Enemey" || coll.gameObject.tag != "oil") {
 			Destroy (this.gameObject);
 		}
