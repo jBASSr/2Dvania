@@ -26,6 +26,8 @@ public class oil_decay : MonoBehaviour {
 	private float attackTime = 3.0f;
 	private float savedSpeed = 0.0f;
 	private bool isAttacking = false;
+	private float yPos = 0.0f;
+	private float offsetTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -46,7 +48,8 @@ public class oil_decay : MonoBehaviour {
 		//rb = this.GetComponent<Rigidbody2D> ();
 		//rb.velocity = new Vector2 (xRange * (Mathf.Sin(Time.time)), yRange * (Mathf.Sin(Time.time)));
 		if (isAttacking == false) {
-			transform.position = new Vector2 (transform.position.x + speed, startPosition.y + yRange * (Mathf.Sin (Time.time)));
+			float myTime = Time.time - offsetTime;
+			transform.position = new Vector2 (transform.position.x + speed, startPosition.y + yRange * (Mathf.Sin (myTime)));
 		}
 
 		if (Mathf.Abs(transform.position.x - startPosition.x) > xRange) {
@@ -54,14 +57,15 @@ public class oil_decay : MonoBehaviour {
 			count_pass++;
 		}
 
-		if (count_pass >= 3 && (Mathf.Abs(transform.position.x - startPosition.x)<0.2)){
+		if (count_pass >= 2 && (Mathf.Abs(transform.position.x - startPosition.x)<0.1)){
 			animator.SetBool ("isAttack", true);
+			offsetTime += attackTime;
 			startAttack = Time.time;
-			startPosition = transform.position;
+			transform.position = new Vector2 (transform.position.x, startPosition.y + yRange);
 			isAttacking = true;
 			count_pass = 0;
 		}
-		if (Time.time > (startAttack + attackTime)) {
+		if (Time.time > (startAttack + attackTime)) {			
 			animator.SetBool ("isAttack", false);
 			isAttacking = false;
 		}
@@ -80,7 +84,7 @@ public class oil_decay : MonoBehaviour {
 		}
 
 		//THIS FIRES DOWN OILS:
-			if (Time.time > lastFire + fireRate) {
+		if ((Time.time > lastFire + fireRate) && isAttacking == false) {
 				lastFire = Time.time;
 			  oilFall = (GameObject)Instantiate (
 				oil_fall,
