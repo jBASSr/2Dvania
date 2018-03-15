@@ -113,8 +113,20 @@ public class HealthSystem : MonoBehaviour {
         //note(tino): why is this here in the health script instead of its own script?
         //I put it here to avoid any meta file merge conflicts. It can be freely moved into its own script after we merge all the code together.
         string doorName = Tino.WorldState.GetDoorName();
-        if(!string.IsNullOrEmpty(doorName))
+        if (Tino.Save.SaveLoadGame.SaveExists && !Tino.Save.SaveLoadGame.PlayerHealthLoaded)
         {
+            Vector3 newPos;
+            newPos.x = Tino.Save.SaveLoadGame.SavedGame.PlayerPosition.X;
+            newPos.y = Tino.Save.SaveLoadGame.SavedGame.PlayerPosition.Y;
+            newPos.z = Tino.Save.SaveLoadGame.SavedGame.PlayerPosition.Z;
+            this.transform.position = new Vector3(newPos.x, newPos.y, newPos.z);
+            this.health = Tino.Save.SaveLoadGame.SavedGame.PlayerCurrentHealth;
+            this.maxHealth = Tino.Save.SaveLoadGame.SavedGame.PlayerMaxHealth;
+            Tino.Save.SaveLoadGame.PlayerHealthLoaded = true;
+        }
+        else if (!string.IsNullOrEmpty(doorName))
+        {
+            Debug.Log(doorName);
             GameObject doorObject = GameObject.Find(doorName);
             Vector3 doorPos = doorObject.transform.position;
             this.transform.position = new Vector3(doorPos.x, doorPos.y + 0.5f, doorPos.z);

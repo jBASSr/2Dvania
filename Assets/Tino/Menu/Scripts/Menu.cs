@@ -115,11 +115,11 @@ namespace Tino
             {
                 if (this.SelectedOption == 0)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("CharacterTest");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("tino");
                 }
                 else if (this.SelectedOption == 1)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("ceo_grass");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("tino");
                 }
             }
 

@@ -8,9 +8,13 @@ namespace Tino
     {
         public int MaxUpAmount = 10;
 
-        void Start() { }
-
-        void Update() { }
+        void OnEnable()
+        {
+            if(!WorldState.IsItemOn(this.gameObject.scene.name, this.name))
+            {
+                Destroy(this.gameObject);
+            }
+        }
 
         void OnTriggerEnter2D(Collider2D c)
         {
@@ -24,6 +28,8 @@ namespace Tino
                 return;
             }
             playerHealth.MaxHealthIncrease(MaxUpAmount);
+
+            WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
             Destroy(this.gameObject);
         }
     }

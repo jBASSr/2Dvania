@@ -206,7 +206,15 @@ public class SimpleMovement : MonoBehaviour
 
     public void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        this.extraJumps = Tino.PlayerState.ExtraJumps;
+        if (Tino.Save.SaveLoadGame.SaveExists && !Tino.Save.SaveLoadGame.PlayerMovementLoaded)
+        {
+            this.extraJumps = Tino.Save.SaveLoadGame.SavedGame.PlayerExtraJumps;
+            Tino.Save.SaveLoadGame.PlayerMovementLoaded = true;
+        }
+        else
+        {
+            this.extraJumps = Tino.PlayerState.ExtraJumps;
+        }
     }
 
     public void OnSceneUnload(Scene scene)
