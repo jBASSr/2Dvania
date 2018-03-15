@@ -139,6 +139,9 @@ public class oil : MonoBehaviour {
 			startRocketHitTime = Time.time;
 			if (hitCount == 0) {
 				Destroy (this.gameObject);
+				if (oilPrefab != null) {
+					Destroy (oilPrefab,0.0f);
+				}
 			}
 		}
    }

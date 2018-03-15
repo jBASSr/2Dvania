@@ -123,6 +123,7 @@ MonoBehaviour:
   batPrefab: {fileID: 1446600873166278, guid: 86b9434418286774c9dac28149ccea71, type: 2}
   hitCount: 2
   hitRocketTime: 1
+  isFlipped: 0
 --- !u!212 &212842078681018076
 SpriteRenderer:
   m_ObjectHideFlags: 1

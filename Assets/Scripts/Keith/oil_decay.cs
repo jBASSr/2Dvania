@@ -28,6 +28,9 @@ public class oil_decay : MonoBehaviour {
 	private bool isAttacking = false;
 	private float yPos = 0.0f;
 	private float offsetTime = 0.0f;
+	public int hitCount = 1;
+	private float startRocketHitTime = 1.1f;
+	public float hitRocketTime = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +41,7 @@ public class oil_decay : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		savedSpeed = speed;
 		animator.SetBool ("isAttack", false);
+		animator.SetBool ("isDie", false);
 	}
 	
 	// Update is called once per frame
@@ -91,6 +95,33 @@ public class oil_decay : MonoBehaviour {
 				new Vector2(transform.position.x,
 					this.GetComponent<SpriteRenderer>().bounds.min.y),
 				transform.rotation);
+		}
+
+		if (Time.time < startRocketHitTime + hitRocketTime) {
+			if (oilMess == null) {
+				Debug.Log ("Instantiating oil mess...");
+				oilMess = (GameObject)Instantiate (
+					oil_mess,
+					transform.position,
+					transform.rotation);
 			}
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "Rocket") {
+			Debug.Log ("ROCKET COLLIDED CEO");
+			Destroy (coll.gameObject);
+			hitCount--;
+			startRocketHitTime = Time.time;
+			if (hitCount == 0) {
+				animator.SetBool ("isDie", true);
+				Destroy (this.gameObject, 2.0f);
+				if (oilMess != null) {
+					Destroy (oilMess,0.0f);
+				}
+			}
+		}
 	}
 }

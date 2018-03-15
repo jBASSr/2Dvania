@@ -14,17 +14,12 @@ public class rocket : MonoBehaviour {
 		
 	}
 
+
 	void OnCollisionEnter2D(Collision2D coll){
 		Debug.Log ("ROCKET COLLIDED!!!!!");
-		//if (coll.gameObject.tag != "Enemey" || coll.gameObject.tag != "oil") {
+		//if (coll.gameObject.tag != "Enemy") {
 			Destroy (this.gameObject);
 		//}
 	}
-
-	void OnTriggerEnter2D(Collider2D c)
-	{
-		if (c.gameObject.tag == "Enemy") {
-			Destroy (this.gameObject);
-		}
-	}
+    
 }
