@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4314289149366092}
   - component: {fileID: 212806042280159418}
-  - component: {fileID: 114204386965189000}
   - component: {fileID: 61084018383827374}
   - component: {fileID: 50817319169960258}
+  - component: {fileID: 114187538673509924}
   m_Layer: 11
   m_Name: oil
   m_TagString: Enemy
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.281617, y: 4.34}
   m_EdgeRadius: 0
---- !u!114 &114204386965189000
+--- !u!114 &114187538673509924
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,14 +96,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1380420068585824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869bbf5f90e9d9b46aad6768aa321f3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a575165213d4804fb5ad395801d64a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   oil_mess: {fileID: 1590442891817632, guid: 8e07737fca324b245a98cc2ae80a202b, type: 2}
   speed: 3
-  robot: {fileID: 0}
   hitCount: 3
-  hitRocketTime: 0.5
+  hitRocketTime: 1
 --- !u!212 &212806042280159418
 SpriteRenderer:
   m_ObjectHideFlags: 1

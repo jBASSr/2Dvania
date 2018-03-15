@@ -55,9 +55,9 @@ GameObject:
   - component: {fileID: 4918854660746914}
   - component: {fileID: 212236224194945544}
   - component: {fileID: 95174382309735048}
-  - component: {fileID: 114488845963099750}
   - component: {fileID: 61940511101392326}
   - component: {fileID: 50867808746769062}
+  - component: {fileID: 114136393037734520}
   m_Layer: 0
   m_Name: Enemy_CEO
   m_TagString: Enemy
@@ -208,7 +208,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114488845963099750
+--- !u!114 &114136393037734520
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -216,17 +216,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779039122481888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 205d4aaff4860ff47b9685788279bf3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e6c9500818d8ca448a08cde6d57c1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  bloodPrefab: {fileID: 1781976850487716, guid: bbacf1e04c170ea4883673350beb2c8a,
-    type: 2}
-  robot: {fileID: 114401889954643046, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
-  bulletPrefab: {fileID: 1171637057212244, guid: 81219feaaab742548bd3d8648d6a68d9,
-    type: 2}
+  speed: 1
   fireRate: 0.5
   bullet_speed: 3
+  bloodPrefab: {fileID: 1781976850487716, guid: bbacf1e04c170ea4883673350beb2c8a,
+    type: 2}
+  bulletPrefab: {fileID: 1171637057212244, guid: 81219feaaab742548bd3d8648d6a68d9,
+    type: 2}
   hitCount: 5
 --- !u!212 &212236224194945544
 SpriteRenderer:
