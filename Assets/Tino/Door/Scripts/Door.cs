@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Tino
 {
     public class Door : MonoBehaviour {
 
+        public Image Black;
+        public Animator Animator;
         public string TargetScene;
         public GameObject TargetDoor;
 
@@ -13,16 +17,16 @@ namespace Tino
 
         private bool IsColliding = false;
 
-	    void Start () { }
+	    void Start() { }
 	
-	    void Update () {
+	    void Update() {
 		    if(!this.IsColliding) { return; }
 
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if(this.TargetScene.Length > 0)
+                if (this.TargetScene.Length > 0)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(this.TargetScene);
+                    StartCoroutine(this.FadeToNewScene());
                 }
                 else if(this.TargetDoor != null)
                 {
@@ -46,6 +50,15 @@ namespace Tino
             {
                 this.IsColliding = false;
             }
+        }
+
+        public IEnumerator FadeToNewScene()
+        {
+            this.Animator.SetBool("Fade", true);
+            yield return new WaitUntil(() => this.Black.color.a == 1);
+            Tino.WorldState.ComingFromDoor = this.name;
+            Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(this.TargetScene, LoadSceneMode.Single);
         }
     }
 }

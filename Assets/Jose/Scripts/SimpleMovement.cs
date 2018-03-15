@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SimpleMovement : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class SimpleMovement : MonoBehaviour
 	public float speedY;
 	public float thrust;
 	private float speed;
-	public int extraJumps = 2;
+	public int extraJumps = 1;
 	public int jumpCount = 0;
 	public float jumpSpeed = 80;
 
@@ -189,6 +191,35 @@ public class SimpleMovement : MonoBehaviour
 		if (rocket != null) {
 			Destroy (rocket, 10.0f);
 		}
-
 	}
+
+    public void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnload;
+    }
+
+    public void OnDisable()
+    {
+        Tino.PlayerState.ExtraJumps = this.extraJumps;
+    }
+
+    public void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (Tino.Save.SaveLoadGame.SaveExists && !Tino.Save.SaveLoadGame.PlayerMovementLoaded)
+        {
+            this.extraJumps = Tino.Save.SaveLoadGame.SavedGame.PlayerExtraJumps;
+            Tino.Save.SaveLoadGame.PlayerMovementLoaded = true;
+        }
+        else
+        {
+            this.extraJumps = Tino.PlayerState.ExtraJumps;
+        }
+    }
+
+    public void OnSceneUnload(Scene scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnload;
+    }
 }
