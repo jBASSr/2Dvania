@@ -30,12 +30,14 @@ public class SimpleMovement : MonoBehaviour
 	private CapsuleCollider2D collider;
 	public Transform groundCheck;
 	public Transform wallCheck;
+	public Transform ceilingCheck;
 	public LayerMask whatIsGround;
 	public LayerMask whatIsWall;
 	public LayerMask whatIsDoor;
 	public bool isGrounded = false;
 	public bool isMovingUp = false;
 	public bool isWall = false;
+	public bool isCeiling = false;
 	public float groundRadius = 0.0001f;
 
 	// GameObjects & Prefabs
@@ -94,6 +96,7 @@ public class SimpleMovement : MonoBehaviour
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
 			groundRadius,
 			whatIsGround);
+		isCeiling = Physics2D.OverlapCircle (ceilingCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("isGrounded", isGrounded);
 		// Reset Jump Count
 		if (isGrounded) {
@@ -187,7 +190,7 @@ public class SimpleMovement : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.S) && speed == 0) {
 				stance = stance < 2 ? stance + 1 : 2;
 			// Standing Up
-			} else if (Input.GetKeyDown (KeyCode.W)) {
+			} else if (Input.GetKeyDown (KeyCode.W) && !isCeiling) {
 				stance = stance > 0 ? stance - 1 : 0;
 			}
 			if (speed != 0 && stance == playerCrouched) {
