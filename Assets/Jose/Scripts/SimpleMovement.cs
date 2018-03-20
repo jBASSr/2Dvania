@@ -16,17 +16,28 @@ public class SimpleMovement : MonoBehaviour
 	public int jumpCount = 0;
 	public float jumpSpeed = 80;
 
+	// Player State
+	public int stance = 0;
+	private const int playerStanding = 0;
+	private const int playerCrouched = 1;
+	private const int playerRolling = 2;
+	private const float standHeight = 2f;
+	private const float crouchHeight = 1.5f;
+	private const float rollHeight = 0.7f;
+
 	// Objects, Masks & Physics
 	private Rigidbody2D rb;
 	private CapsuleCollider2D collider;
 	public Transform groundCheck;
 	public Transform wallCheck;
+	public Transform ceilingCheck;
 	public LayerMask whatIsGround;
 	public LayerMask whatIsWall;
 	public LayerMask whatIsDoor;
 	public bool isGrounded = false;
 	public bool isMovingUp = false;
 	public bool isWall = false;
+	public bool isCeiling = false;
 	public float groundRadius = 0.0001f;
 
 	// GameObjects & Prefabs
@@ -79,10 +90,13 @@ public class SimpleMovement : MonoBehaviour
 		anim.SetFloat ("moveX", speedX);
 		anim.SetFloat ("moveY", speedY);
 		anim.SetFloat ("Speed", speed);
+		anim.SetInteger ("Stance", stance);
 		// Animation States
+		ColliderState();
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
 			groundRadius,
 			whatIsGround);
+		isCeiling = Physics2D.OverlapCircle (ceilingCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("isGrounded", isGrounded);
 		// Reset Jump Count
 		if (isGrounded) {
@@ -117,6 +131,7 @@ public class SimpleMovement : MonoBehaviour
 		*/
 		speedX = Input.GetKey (KeyCode.A) ? -1 : Input.GetKey (KeyCode.D) ? 1 : 0;
 		// speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
+		PlayerState();
 		Jump ();
 		if (turning) {
 			turnTime += Time.deltaTime;
@@ -167,6 +182,36 @@ public class SimpleMovement : MonoBehaviour
 			transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 		*/
 	}
+
+	void PlayerState()
+	{
+		if (isGrounded) {
+			// Crouch
+			if (Input.GetKeyDown (KeyCode.S) && speed == 0) {
+				stance = stance < 2 ? stance + 1 : 2;
+			// Standing Up
+			} else if (Input.GetKeyDown (KeyCode.W) && !isCeiling) {
+				stance = stance > 0 ? stance - 1 : 0;
+			}
+			if (speed != 0 && stance == playerCrouched) {
+				stance = playerStanding;
+			}
+		} else {
+			
+		}
+	}
+
+	void ColliderState()
+	{
+		if (stance == playerStanding && collider.size.y != standHeight) {
+			collider.size = new Vector2(collider.size.x, standHeight);
+		} else if (stance == playerCrouched && collider.size.y != crouchHeight) {
+			collider.size = new Vector2(collider.size.x, crouchHeight);
+		} else if (stance == playerRolling && collider.size.y != rollHeight) {
+			collider.size = new Vector2(collider.size.x, rollHeight);
+		}
+	}
+
   	/*
 	void OnCollisionEnter2D (Collision2D c)
 	{

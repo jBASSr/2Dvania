@@ -25,12 +25,16 @@ public class HealthSystem : MonoBehaviour {
 	Animator anim;
 	public Image black;
 	public Animator fadeanim;
+	Color clearColor = new Color(1, 1, 1, 0);
+	Color normalColor = new Color(1, 1, 1, 1);
 	// Variables
 	public float kbForceX = 100;
 	public float kbForceY = 150;
 	public bool StunnedState = false;
 	public float stunTime;
 	public float recoverTime = 1.25f;
+	public float AnimationWaitTime;
+	public float recoverAnimationTime = 0.05f;
 	// Camera Control
 	private LookAhead look_ahead;
 
@@ -57,9 +61,12 @@ public class HealthSystem : MonoBehaviour {
 		// 1. Invulnerability Timer
 		if (StunnedState && stunTime <= recoverTime) {
 			stunTime += Time.deltaTime;
+			// Animation stuff
+			Stunned();
 		} else {
 			StunnedState = false;
 			stunTime = 0.0f;
+			spriteRenderer.color = normalColor;
 		}
 		hpBar = health / 100;
 		// 2. Sprite / Animations
@@ -107,6 +114,18 @@ public class HealthSystem : MonoBehaviour {
 			//rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y);
 			// 5. Stun / Recovery Time
 			//charSpeed.bodyState = 0;
+		}
+	}
+
+	void Stunned() {
+		if (recoverAnimationTime <= AnimationWaitTime) { recoverAnimationTime += Time.deltaTime; 
+		} else {
+			if (spriteRenderer.color.a == 0) { 
+				spriteRenderer.color = normalColor; 
+			} else { 
+				spriteRenderer.color = clearColor; 
+			}
+			recoverAnimationTime = 0;
 		}
 	}
 
