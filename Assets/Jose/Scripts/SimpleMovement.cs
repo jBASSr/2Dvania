@@ -37,6 +37,7 @@ public class SimpleMovement : MonoBehaviour
 	public bool isGrounded = false;
 	public bool isMovingUp = false;
 	public bool isWall = false;
+	public bool isWallTrig = false;
 	public bool isCeiling = false;
 	public float groundRadius = 0.0001f;
 
@@ -112,7 +113,7 @@ public class SimpleMovement : MonoBehaviour
 			if (!isWall) {
 				rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
 			} else {
-				rb.velocity = new Vector2 (speedX * -1, rb.velocity.y);
+				rb.velocity = new Vector2 (speedX * 0, rb.velocity.y);
 				//Debug.Log("Hit a wall");
 			}
 		}
@@ -153,13 +154,16 @@ public class SimpleMovement : MonoBehaviour
 
 	void Jump()
 	{
-		if (rb.velocity.y >= 0.5f)
+		if (rb.velocity.y >= 0.5f) {
 			isMovingUp = true;
-		else
+		} else {
 			isMovingUp = false;
+			anim.SetBool ("Jumped", false);
+		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			if ((isGrounded || jumpCount < extraJumps && !hp.StunnedState)) {
+				anim.SetBool ("Jumped", true);
 				rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
@@ -227,7 +231,7 @@ public class SimpleMovement : MonoBehaviour
 			// velocity.x += knockbackX;
 		}
 	}
-	*/  
+	*/ 
 	void Fire()
 	{
 		if (forward) {
@@ -246,5 +250,9 @@ public class SimpleMovement : MonoBehaviour
 			Destroy (rocket, 10.0f);
 		}
 
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		isWallTrig = true;
 	}
 }
