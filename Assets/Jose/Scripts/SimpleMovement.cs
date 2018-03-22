@@ -110,9 +110,9 @@ public class SimpleMovement : MonoBehaviour
 		// Implement Wall Slide/Hold (aka prevent played being stuck to wall)
 		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
 		if (!turning && !hp.StunnedState) {
-			if (!isWall) {
+			if (!isWallTrig || isGrounded) {
 				rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
-			} else {
+			} else if (isWallTrig && !isGrounded) {
 				rb.velocity = new Vector2 (speedX * 0, rb.velocity.y);
 				//Debug.Log("Hit a wall");
 			}
@@ -254,5 +254,8 @@ public class SimpleMovement : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other) {
 		isWallTrig = true;
+	}
+	void OnTriggerExit2D(Collider2D other) {
+		isWallTrig = false;
 	}
 }
