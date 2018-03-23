@@ -17,6 +17,7 @@ TagManager:
   - ColumnLeft
   - Door_Cave
   - Sky
+  - Ceiling
   layers:
   - Default
   - TransparentFX
