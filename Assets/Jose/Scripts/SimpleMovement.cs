@@ -12,9 +12,14 @@ public class SimpleMovement : MonoBehaviour
 	public float speedY;
 	public float thrust;
 	public float speed;
+	public bool jumping;
 	public int extraJumps = 2;
 	public int jumpCount = 0;
 	public float jumpSpeed = 80;
+	RaycastHit2D floor;
+	Vector2 gravity;
+	Vector2 movement;
+	Vector2 vel;
 
 	// Player State
 	public int stance = 0;
@@ -109,6 +114,32 @@ public class SimpleMovement : MonoBehaviour
 		}
 		// Implement Wall Slide/Hold (aka prevent played being stuck to wall)
 		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
+		// Fix "ramping" issue when walking up a postive ramp
+		if (!turning && !hp.StunnedState) {
+			if (isGrounded && !jumping) {
+				floor = Physics2D.Raycast (rb.position, -Vector2.up);
+				gravity = floor.normal;
+				movement = new Vector2 (gravity.y, -gravity.x);
+				if (forward) {
+					vel = (movement * speed) * 5.0f;
+				} else {
+					vel = (-movement * speed) * 5.0f;
+				}
+				//rb.velocity = new Vector2(vel.x, rb.velocity.y);
+				rb.velocity = vel;
+			} else if (isWallTrig && !isGrounded) {
+				//rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
+				rb.velocity = new Vector2 (speedX * 0, rb.velocity.y);
+			} else {
+				rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
+			}
+		}
+		//
+		Debug.DrawRay(rb.position, vel, Color.yellow);
+		Debug.DrawRay(rb.position, movement, Color.green);
+		Debug.DrawRay(rb.position, Physics2D.gravity * rb.mass, Color.red);
+		//
+		/*
 		if (!turning && !hp.StunnedState) {
 			if (!isWallTrig || isGrounded) {
 				rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
@@ -117,6 +148,7 @@ public class SimpleMovement : MonoBehaviour
 				//Debug.Log("Hit a wall");
 			}
 		}
+		*/
 	}
 
 	void Update()
@@ -159,11 +191,13 @@ public class SimpleMovement : MonoBehaviour
 		} else {
 			isMovingUp = false;
 			anim.SetBool ("Jumped", false);
+			jumping = false;
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			if ((isGrounded || jumpCount < extraJumps && !hp.StunnedState)) {
 				anim.SetBool ("Jumped", true);
+				jumping = true;
 				rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
