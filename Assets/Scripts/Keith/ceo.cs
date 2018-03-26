@@ -48,7 +48,7 @@ public class ceo : MonoBehaviour {
 				fireTime = ac.animationClips[i].length;
 			}
 		}
-		Debug.Log ("ceo_shooting length=" +fireTime);
+		//Debug.Log ("ceo_shooting length=" +fireTime);
     }
 	
 	// Update is called once per frame

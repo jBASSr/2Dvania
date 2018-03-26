@@ -47,7 +47,7 @@ public class TileEffect : MonoBehaviour {
 	}
 
 	void CreateTile (int side) {
-		Debug.Log("Create Tile Called.");
+		//Debug.Log("Create Tile Called.");
 		// Calculate position
 		Vector3 newPos = new Vector3 (myTransform.position.x + spriteWidth * side, myTransform.position.y, myTransform.position.z);
 		// Instantiate and assign new tile

@@ -43,10 +43,6 @@ namespace Tino
                     UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
                 }
             }
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                Tino.Save.SaveLoadGame.SaveGame();
-            }
         }
     }
 }

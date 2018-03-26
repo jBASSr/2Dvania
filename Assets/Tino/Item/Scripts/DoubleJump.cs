@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Tino
 {
-    public class HPRefill : MonoBehaviour
+    public class DoubleJump : MonoBehaviour
     {
-        public int RefillAmount = 0;
 
         void OnEnable()
         {
@@ -18,17 +17,17 @@ namespace Tino
 
         void OnTriggerEnter2D(Collider2D c)
         {
-            if (c.gameObject.tag != "Player")
             {
-                return;
-            }
-            HealthSystem playerHealth = c.gameObject.GetComponent<HealthSystem>();
-            if(playerHealth == null)
-            {
-                return;
-            }
-            if(playerHealth.RefillHealth(RefillAmount))
-            {
+                if (c.gameObject.tag != "Player")
+                {
+                    return;
+                }
+                SimpleMovement playerMovement = c.gameObject.GetComponent<SimpleMovement>();
+                if (playerMovement == null)
+                {
+                    return;
+                }
+                playerMovement.extraJumps++;
                 WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
                 Destroy(this.gameObject);
             }

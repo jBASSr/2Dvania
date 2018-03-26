@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SimpleMovement : MonoBehaviour
 {
@@ -283,7 +285,6 @@ public class SimpleMovement : MonoBehaviour
 		if (rocket != null) {
 			Destroy (rocket, 10.0f);
 		}
-
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -292,4 +293,34 @@ public class SimpleMovement : MonoBehaviour
 	void OnTriggerExit2D(Collider2D other) {
 		isWallTrig = false;
 	}
+
+    public void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnload;
+    }
+
+    public void OnDisable()
+    {
+        Tino.PlayerState.ExtraJumps = this.extraJumps;
+    }
+
+    public void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (Tino.Save.SaveLoadGame.SaveExists && !Tino.Save.SaveLoadGame.PlayerMovementLoaded)
+        {
+            this.extraJumps = Tino.Save.SaveLoadGame.SavedGame.PlayerExtraJumps;
+            Tino.Save.SaveLoadGame.PlayerMovementLoaded = true;
+        }
+        else
+        {
+            this.extraJumps = Tino.PlayerState.ExtraJumps;
+        }
+    }
+
+    public void OnSceneUnload(Scene scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnload;
+    }
 }
