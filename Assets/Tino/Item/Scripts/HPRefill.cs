@@ -8,14 +8,12 @@ namespace Tino
     {
         public int RefillAmount = 0;
 
-        void Start()
+        void OnEnable()
         {
-
-        }
-
-        void Update()
-        {
-
+            if (!WorldState.IsItemOn(this.gameObject.scene.name, this.name))
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         void OnTriggerEnter2D(Collider2D c)
@@ -24,10 +22,16 @@ namespace Tino
             {
                 return;
             }
-
-            //TODO: Try to increase player's health. Need to merge with Jose first.
-
-            Destroy(this.gameObject);
+            HealthSystem playerHealth = c.gameObject.GetComponent<HealthSystem>();
+            if(playerHealth == null)
+            {
+                return;
+            }
+            if(playerHealth.RefillHealth(RefillAmount))
+            {
+                WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
+                Destroy(this.gameObject);
+            }
         }
     }
 }

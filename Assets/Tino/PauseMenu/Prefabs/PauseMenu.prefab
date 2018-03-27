@@ -205,9 +205,7 @@ MonoBehaviour:
 
     ESC: Unpause
 
-    F1:    Exit
-
-    F2:    Save'
+    F1:    Exit'
 --- !u!222 &222891782111665384
 CanvasRenderer:
   m_ObjectHideFlags: 1

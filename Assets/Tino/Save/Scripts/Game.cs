@@ -9,7 +9,11 @@ namespace Tino.Save
     {
         public string CurrentScene;
         public Tino.Save.Vector3 PlayerPosition;
-        
+        public int PlayerCurrentHealth;
+        public int PlayerMaxHealth;
+        public int PlayerExtraJumps;
+        public SceneItemTuple[] WorldItems;
+        public bool[] WorldItemStates;
     }
 
     [System.Serializable]

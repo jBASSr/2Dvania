@@ -7,15 +7,12 @@ namespace Tino
     public class HUD : MonoBehaviour
     {
         private const int HpPerBar = 10;
-        private GameObject Player;
         private Sprite[] HealthBarSprite;
         private List<GameObject> HealthBars;
 
         void Start()
         {
-            this.Player = GameObject.FindWithTag("Player");
             this.HealthBarSprite = Resources.LoadAll<Sprite>("health_sprites");
-            Debug.Log(this.HealthBarSprite.GetLength(0));
             this.HealthBars = new List<GameObject>();
         }
 
@@ -38,8 +35,12 @@ namespace Tino
 
         void SetHealth()
         {
-            int playerHealth = 60;
-            int playerMaxHealth = 100;
+            GameObject player = GameObject.FindWithTag("Player");
+            if(player == null) { return; }
+            HealthSystem healthSystem = player.GetComponent<HealthSystem>();
+            if(healthSystem == null) { return; }
+            int playerHealth = healthSystem.health;
+            int playerMaxHealth = healthSystem.maxHealth;
             int healthBars = Mathf.FloorToInt(playerMaxHealth / HUD.HpPerBar);
             int filledBars = Mathf.FloorToInt(playerHealth / HUD.HpPerBar);
             while (this.HealthBars.Count < healthBars)
