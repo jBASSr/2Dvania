@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public AudioSource BGM;
-    // Use this for initialization
+    // Use for initialization
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -14,12 +14,10 @@ public class AudioManager : MonoBehaviour
         if (FindObjectsOfType<AudioManager>().Length > 1)
         {
             Destroy(gameObject);
-        }
-
-
+        }   
     }
 
-    // Update is called once per frame
+    // Updatecalled once per frame
     void Update()
     {
 
