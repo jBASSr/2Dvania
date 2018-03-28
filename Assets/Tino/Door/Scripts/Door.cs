@@ -10,28 +10,27 @@ namespace Tino
 
         public Image Black;
         public Animator Animator;
-        public string TargetScene;
-        public GameObject TargetDoor;
 
         private GameObject Player;
 
         private bool IsColliding = false;
+        private bool SceneTransitioning = false;
+        private bool StartDoor = false;
 
-	    void Start() { }
+	    void Start()
+        {
+            if(WorldState.GetDoorName() == this.gameObject.name)
+            {
+                this.StartDoor = true;
+            }
+        }
 	
 	    void Update() {
 		    if(!this.IsColliding) { return; }
-
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if(!this.SceneTransitioning && !this.StartDoor)
             {
-                if (this.TargetScene.Length > 0)
-                {
-                    StartCoroutine(this.FadeToNewScene());
-                }
-                else if(this.TargetDoor != null)
-                {
-                    this.Player.transform.position = this.TargetDoor.transform.position;
-                }
+                this.SceneTransitioning = true;
+                StartCoroutine(this.FadeToNewScene());
             }
 	    }
 
@@ -49,6 +48,7 @@ namespace Tino
             if (c.gameObject.tag == "Player")
             {
                 this.IsColliding = false;
+                this.StartDoor = false;
             }
         }
 
@@ -58,7 +58,11 @@ namespace Tino
             yield return new WaitUntil(() => this.Black.color.a == 1);
             Tino.WorldState.ComingFromDoor = this.name;
             Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(this.TargetScene, LoadSceneMode.Single);
+            string nextScene = WorldState.GetSceneName();
+            if(nextScene != null)
+            {
+                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+            }
         }
     }
 }

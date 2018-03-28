@@ -24,10 +24,12 @@ namespace Tino
         {
             WorldState.NewScenePosition = new Dictionary<SceneDoorTuple, SceneDoorTuple>()
             {
-                { new D("Tino", "Door 1"),  new D("Tino2", "Door 1")},
-                { new D("Tino", "Door 2"),  new D("Tino2", "Door 2")},
-                { new D("Tino2", "Door 1"), new D("Tino", "Door 1")},
-                { new D("Tino2", "Door 2"), new D("Tino", "Door 2")}
+                { new D("Tino", "Door 1"),  new D("Tino2", "Door 1") },
+                { new D("Tino", "Door 2"),  new D("Tino2", "Door 2") },
+                { new D("Tino2", "Door 1"), new D("Tino", "Door 1") },
+                { new D("Tino2", "Door 2"), new D("Tino", "Door 2") },
+                { new D("Tino3", "MetroidDoor"), new D("Tino3", "MF_Doors_23") },
+                { new D("Tino3", "MF_Doors_23"), new D("Tino3", "MetroidDoor") }
             };
 
             WorldState.SceneItemState = new Dictionary<SceneItemTuple, bool>()
@@ -37,7 +39,9 @@ namespace Tino
                 { new I("Tino", "DoubleJump 1"), true },
                 { new I("Tino2", "HPRefill 1"), true },
                 { new I("Tino2", "HPMaxUp 1"), true },
-                { new I("Tino2", "DoubleJump 1"), true }
+                { new I("Tino2", "DoubleJump 1"), true },
+                { new I("Tino3", "DoubleJump"), true },
+                { new I("Tino3", "HPMaxUp"), true }
             };
         }
 
@@ -47,6 +51,19 @@ namespace Tino
             if (WorldState.NewScenePosition.ContainsKey(s))
             {
                 return WorldState.NewScenePosition[s].Door;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string GetSceneName()
+        {
+            SceneDoorTuple s = new D(WorldState.ComingFromScene, WorldState.ComingFromDoor);
+            if(WorldState.NewScenePosition.ContainsKey(s))
+            {
+                return WorldState.NewScenePosition[s].Scene;
             }
             else
             {

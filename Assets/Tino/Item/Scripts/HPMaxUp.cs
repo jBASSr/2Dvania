@@ -28,6 +28,7 @@ namespace Tino
                 return;
             }
             playerHealth.MaxHealthIncrease(MaxUpAmount);
+            playerHealth.RefillHealth(playerHealth.maxHealth);
 
             WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
             Destroy(this.gameObject);

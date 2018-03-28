@@ -115,7 +115,7 @@ namespace Tino
             {
                 if (this.SelectedOption == 0)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("tino");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("tino3");
                 }
                 else if (this.SelectedOption == 1)
                 {
