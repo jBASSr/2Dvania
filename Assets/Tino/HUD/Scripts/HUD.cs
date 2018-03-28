@@ -30,6 +30,7 @@ namespace Tino
                 this.HealthBars[i].transform.position = 
                     Camera.main.ViewportToWorldPoint(position);
                 this.HealthBars[i].transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
+
             }
         }
 
@@ -51,6 +52,7 @@ namespace Tino
                 if (sr != null)
                 {
                     sr.sprite = this.HealthBarSprite[3];
+                    sr.sortingLayerName = "Player";
                 }
                 hBar.layer = 10;
                 hBar.SetActive(true);
