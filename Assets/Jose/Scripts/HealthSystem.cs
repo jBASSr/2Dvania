@@ -143,8 +143,18 @@ public class HealthSystem : MonoBehaviour {
 		//anim.SetBool("Death", true);
 		// Game Over Screen
 		fadeanim.SetBool("Fade", true);
+        Invoke("Reload", 2);
 	}
     
+    /// <summary>
+    /// Reloads the game from the last save point.
+    /// </summary>
+    private void Reload()
+    {
+        Tino.Save.SaveLoadGame.LoadGame();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(Tino.Save.SaveLoadGame.SavedGame.CurrentScene);
+    }
+
     public bool RefillHealth(int health)
     {
         if(this.health >= this.maxHealth) { return false; }
