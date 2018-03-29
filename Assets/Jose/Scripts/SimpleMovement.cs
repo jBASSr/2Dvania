@@ -48,25 +48,29 @@ public class SimpleMovement : MonoBehaviour
 	public bool isCeiling = false;
 	public float groundRadius = 0.0001f;
 
-	// GameObjects & Prefabs
-	private GameObject bullet;
-	Rigidbody clone;
-	public int aim = 0;
-
 	// Animations
 	public float turnWait = 0.2f;
 	public float turnTime = 0;
 	public bool turning = false;
+	public float transWait = 2f;
+	public float transTime = 0;
+	public bool transforming = false;
 
 	private Animator anim;
 	Transform pGraphics;
 
 	// Weapons
-	private float bulletSpeed = 100;
 	public float cooldown = 0.5f;
 	public float cooldown_start = 0.0f;
 
 	//FOR FIRING:
+	// new
+	public GameObject bulletSpawn;
+	public Rigidbody2D currentWeapon;
+	Rigidbody2D bullet;
+	public int aimDir = 0;
+	public float bulletSpeed = 400;
+	// old
 	public GameObject rocketPrefab;
 	public float fireRate = 0.5F;
 	public float rocket_speed = 5.0f;
@@ -118,7 +122,7 @@ public class SimpleMovement : MonoBehaviour
 		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
 		// Fix "ramping" issue when walking up a postive ramp
 		if (!turning && !hp.StunnedState) {
-			if (isGrounded && !jumping) {
+			if (isGrounded && !jumping && !transforming) {
 				floor = Physics2D.Raycast (rb.position, -Vector2.up);
 				gravity = floor.normal;
 				movement = new Vector2 (gravity.y, -gravity.x);
@@ -175,6 +179,13 @@ public class SimpleMovement : MonoBehaviour
 				turnTime = 0;
 			}
 		}
+		if (transforming) {
+			transTime += Time.deltaTime;
+			if (transTime >= transWait) {
+				transforming = false;
+				transTime = 0;
+			}
+		}
 		if (Input.GetKey (KeyCode.F)) {
 			anim.SetBool ("isShooting", true);
 			if (Time.time > lastFire + fireRate) {
@@ -229,6 +240,7 @@ public class SimpleMovement : MonoBehaviour
 			// Crouch
 			if (Input.GetKeyDown (KeyCode.S) && speed == 0) {
 				stance = stance < 2 ? stance + 1 : 2;
+				transforming = true;
 			// Standing Up
 			} else if (Input.GetKeyDown (KeyCode.W) && !isCeiling) {
 				stance = stance > 0 ? stance - 1 : 0;
@@ -270,6 +282,29 @@ public class SimpleMovement : MonoBehaviour
 	*/ 
 	void Fire()
 	{
+		// now with ANGLES (hopefully)! :D
+		// TODO: Assign aim direction based on player inputs
+		//	
+		// Prepare position and rotation of the bullet based on aim state
+		Vector3 bulletPos = bulletSpawn.transform.position;
+		Quaternion bulletRot = bulletSpawn.transform.rotation;
+		// Create bullet object
+		bullet = Instantiate(currentWeapon, bulletPos, bulletRot);// as Rigidbody2D;
+		// Apply players current x and y velocity
+		bullet.velocity = rb.velocity;
+		// TODO: 1. Aiming Direction vars
+		// 		 2. Negate y velocity if aiming straight-forward
+		if (aimDir == 0) {
+			Vector2 newVel = bullet.velocity; //take current bullet vel
+			newVel.y = 0;					  //zero y velocity
+			bullet.velocity = newVel;		  //assign new velocity to bullet
+		}
+		//		 3. Animation bools
+		// Apply actual bullet velocity to shot
+		bullet.AddForce(bulletSpawn.transform.right * bulletSpeed);
+		// Bullet destruction handled in 'bulletEvent.cs'
+		// Check the 'MisslePrefab' if you wish to adjust these values
+		/*
 		if (forward) {
 			forward_mult = 1.0f;
 		} else {
@@ -285,6 +320,7 @@ public class SimpleMovement : MonoBehaviour
 		if (rocket != null) {
 			Destroy (rocket, 10.0f);
 		}
+		*/
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
