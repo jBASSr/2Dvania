@@ -179,13 +179,13 @@ MonoBehaviour:
   m_Text: 'Credits
 
 
-    Cristino Lamadrid
+    Jose   Reyes
 
     Karen   Salinas
 
-    Jose
+    Keith   Harryman
 
-    Keith Harryman'
+    Cristino   Lamadrid'
 --- !u!222 &715275491
 CanvasRenderer:
   m_ObjectHideFlags: 0
