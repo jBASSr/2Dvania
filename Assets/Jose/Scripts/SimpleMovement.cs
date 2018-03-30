@@ -12,6 +12,7 @@ public class SimpleMovement : MonoBehaviour
 	private float forward_mult = 1.0f;
 	public float speedX;
 	public float speedY;
+	public float cSpeedY;
 	public float thrust;
 	public float speed;
 	public bool jumping;
@@ -23,11 +24,17 @@ public class SimpleMovement : MonoBehaviour
 	Vector2 movement;
 	Vector2 vel;
 
-	// Player State
+	// Player & Weapon State
 	public int stance = 0;
 	private const int playerStanding = 0;
 	private const int playerCrouched = 1;
 	private const int playerRolling = 2;
+	private const int aimIdle = 0;
+	private const int aimUp = 1;
+	private const int aimTopRight = 2;
+	private const int aimForward = 3;
+	private const int aimDownRight = 4;
+	private const int aimDown = 5;
 	private const float standHeight = 2f;
 	private const float crouchHeight = 1.5f;
 	private const float rollHeight = 0.7f;
@@ -68,6 +75,7 @@ public class SimpleMovement : MonoBehaviour
 	public GameObject bulletSpawn;
 	public Rigidbody2D currentWeapon;
 	Rigidbody2D bullet;
+	GameObject FrontCenter, TopRight, BottomRight, Top, Bottom;
 	public int aimDir = 0;
 	public float bulletSpeed = 400;
 	// old
@@ -86,8 +94,11 @@ public class SimpleMovement : MonoBehaviour
 		anim = GetComponentInChildren<Animator> ();
 		pGraphics = transform.Find ("Graphics");
 		hp = GetComponent<HealthSystem> ();
-		//rb.sleepThreshold = 0.0f;
-
+		FrontCenter = transform.Find ("Weapon/FrontCenter").gameObject;
+		TopRight 	= transform.Find ("Weapon/TopRight").gameObject;
+		BottomRight = transform.Find ("Weapon/BottomRight").gameObject;
+		Top 		= transform.Find ("Weapon/Top").gameObject;
+		Bottom 		= transform.Find ("Weapon/Bottom").gameObject;
 		// Find groundCheck transform object
 		// Implement Wall/Obstacle check?
 		// Implement Animations
@@ -98,13 +109,14 @@ public class SimpleMovement : MonoBehaviour
 	{
 		//BodyState ();
 		speed = Mathf.Abs(speedX);
-		speedY = rb.velocity.y;
+		cSpeedY = rb.velocity.y;
 		anim.SetFloat ("moveX", speedX);
-		anim.SetFloat ("moveY", speedY);
+		anim.SetFloat ("moveY", cSpeedY);
 		anim.SetFloat ("Speed", speed);
 		anim.SetInteger ("Stance", stance);
 		// Animation States
 		ColliderState();
+		AimingState();
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position,
 			groundRadius,
 			whatIsGround);
@@ -168,8 +180,9 @@ public class SimpleMovement : MonoBehaviour
 			Debug.Log("Left");
 		}
 		*/
+		// User Inputs for Aim AND Movement
 		speedX = Input.GetKey (KeyCode.A) ? -1 : Input.GetKey (KeyCode.D) ? 1 : 0;
-		// speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
+	    speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
 		PlayerState();
 		Jump ();
 		if (turning) {
@@ -186,7 +199,7 @@ public class SimpleMovement : MonoBehaviour
 				transTime = 0;
 			}
 		}
-		if (Input.GetKey (KeyCode.F)) {
+		if (Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) {
 			anim.SetBool ("isShooting", true);
 			if (Time.time > lastFire + fireRate) {
 				lastFire = Time.time;
@@ -219,6 +232,44 @@ public class SimpleMovement : MonoBehaviour
 		if (Input.GetKeyUp (KeyCode.Space) && isMovingUp) {
 			rb.velocity = new Vector2 (rb.velocity.x, 0f);
 		}
+	}
+
+	void AimingState()
+	{
+		if (speedX == 0 && speedY == 0) {
+			aimDir = aimIdle;
+			bulletSpawn = FrontCenter;
+		} else if (speedX == 0 && speedY > 0) {
+			aimDir = aimUp;
+			bulletSpawn = Top;
+		} else if (speedX > 0 && speedY > 0) {
+			aimDir = aimTopRight;
+			bulletSpawn = TopRight;
+		} else if (speedX > 0 && speedY == 0) {
+			aimDir = aimForward;
+			bulletSpawn = FrontCenter;
+		} else if (speedX > 0 && speedY < 0) {
+			aimDir = aimDownRight;
+			bulletSpawn = BottomRight;
+		} else if (speedX == 0 && speedY < 0) {
+			aimDir = aimDown;
+			bulletSpawn = Bottom;
+		} else if (speedX < 0 && speedY == 0) {
+			aimDir = aimIdle;
+			bulletSpawn = FrontCenter;
+		} else if (speedX < 0 && speedY < 0) {
+			aimDir = aimDownRight;
+			bulletSpawn = BottomRight;
+		}
+		// Bumpers
+		if (Input.GetKey (KeyCode.Q)) {
+			aimDir = aimTopRight;
+			bulletSpawn = TopRight;
+		} else if (Input.GetKey (KeyCode.E)) {
+			aimDir = aimDownRight;
+			bulletSpawn = BottomRight;
+		}
+
 	}
 
 	void Flip()
