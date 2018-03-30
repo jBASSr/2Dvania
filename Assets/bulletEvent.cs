@@ -1,0 +1,27 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class bulletEvent : MonoBehaviour {
+	public float bulletDuration = 2f;
+	public float bulletTime = 0f;
+	// TODO: Animations
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		// Increment time from creation
+		bulletTime += Time.deltaTime;
+		if (bulletTime > bulletDuration) {
+			Destroy (this.gameObject);
+		}
+	}
+	void OnTriggerEnter2D(Collider2D c) {
+		if (c.tag == "Enemy") {
+			Destroy (gameObject);
+		}
+	}
+}
