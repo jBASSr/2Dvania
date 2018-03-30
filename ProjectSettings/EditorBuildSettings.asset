@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/Menu.unity
+    guid: 0a7b4b689fd19f846a0415f0cb1ec775
+  - enabled: 1
+    path: Assets/_Scenes/Credits.unity
+    guid: b204758326b9d05458d150c030de326f
+  - enabled: 1
+    path: Assets/_Scenes/Tino3.unity
+    guid: 01fcb7139fe3a694bab461b6913d3eb3

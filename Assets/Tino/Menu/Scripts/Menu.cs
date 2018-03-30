@@ -7,6 +7,7 @@ namespace Tino
 {
     public class Menu : MonoBehaviour
     {
+        public string NewGameScene;
 
         private Sprite[] Strings;
         private GameObject[,] MainMenu = new GameObject[5, 2];
@@ -59,8 +60,7 @@ namespace Tino
                 Tino.Save.SaveLoadGame.LoadGame();
                 UnityEngine.SceneManagement.SceneManager.LoadScene(Tino.Save.SaveLoadGame.SavedGame.CurrentScene);
             }
-
-
+            
             if (this.SelectedOption == 2 && Input.GetKeyDown(KeyCode.Return))
             {
                 this.HideMenu(this.MainMenu);
@@ -68,7 +68,12 @@ namespace Tino
                 this.Handler = this.OptionsMenuHandler;
             }
 
-            if ((this.SelectedOption == 5 && Input.GetKeyDown(KeyCode.Return)) ||
+            if (this.SelectedOption == 3 && Input.GetKeyDown(KeyCode.Return))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
+            }
+
+            if ((this.SelectedOption == 4 && Input.GetKeyDown(KeyCode.Return)) ||
                 Input.GetKeyDown(KeyCode.Escape))
             {
                 Application.Quit();
@@ -115,11 +120,11 @@ namespace Tino
             {
                 if (this.SelectedOption == 0)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("tino3");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(this.NewGameScene);
                 }
                 else if (this.SelectedOption == 1)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("tino");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(this.NewGameScene);
                 }
             }
 

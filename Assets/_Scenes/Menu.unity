@@ -237,3 +237,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459adb20f4c75104fb3edc7a9c771b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NewGameScene: Tino3
