@@ -204,7 +204,9 @@ public class SimpleMovement : MonoBehaviour
 			if (Time.time > lastFire + fireRate) {
 				lastFire = Time.time;
 				Fire ();
-			}
+                //Shoot Sound
+                FindObjectOfType<AudioManager_2>().Play("Shoot");
+            }
 		} else {
 			anim.SetBool ("isShooting", false);
 		}
@@ -224,7 +226,9 @@ public class SimpleMovement : MonoBehaviour
 			if ((isGrounded || jumpCount < extraJumps && !hp.StunnedState)) {
 				anim.SetBool ("Jumped", true);
 				jumping = true;
-				rb.AddForce (new Vector2 (0.0f, jumpSpeed));
+                //Jumping Sound
+                FindObjectOfType<AudioManager_2>().Play("jump");
+                rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
 			}
@@ -292,10 +296,15 @@ public class SimpleMovement : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.S) && speed == 0) {
 				stance = stance < 2 ? stance + 1 : 2;
 				transforming = true;
-			// Standing Up
-			} else if (Input.GetKeyDown (KeyCode.W) && !isCeiling) {
+                //Crouch Sound
+                FindObjectOfType<AudioManager_2>().Play("Crouch");
+
+                // Standing Up
+            } else if (Input.GetKeyDown (KeyCode.W) && !isCeiling) {
 				stance = stance > 0 ? stance - 1 : 0;
-			}
+                //Stand Sound
+                FindObjectOfType<AudioManager_2>().Play("Crouch");
+            }
 			if (speed != 0 && stance == playerCrouched) {
 				stance = playerStanding;
 			}

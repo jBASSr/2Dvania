@@ -170,6 +170,8 @@ public class HealthSystem : MonoBehaviour {
     public bool MaxHealthIncrease(int amount)
     {
         this.maxHealth += amount;
+        //Health PickUp Sound
+        FindObjectOfType<AudioManager_2>().Play("Health");
         return true;
     }
 
