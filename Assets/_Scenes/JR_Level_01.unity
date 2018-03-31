@@ -765,7 +765,7 @@ RectTransform:
   m_GameObject: {fileID: 545703308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.15, y: -7.6, z: 90}
-  m_LocalScale: {x: 0.025396826, y: 0.025396826, z: 0.025396826}
+  m_LocalScale: {x: 0.017738359, y: 0.017738359, z: 0.017738359}
   m_Children:
   - {fileID: 1645577853}
   m_Father: {fileID: 0}
@@ -1121,11 +1121,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4556082276755342, guid: 4c42cd515460811469926ce4d1dedfae, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.95
+      value: 10.61
       objectReference: {fileID: 0}
     - target: {fileID: 4556082276755342, guid: 4c42cd515460811469926ce4d1dedfae, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.1
+      value: -8.02
       objectReference: {fileID: 0}
     - target: {fileID: 4556082276755342, guid: 4c42cd515460811469926ce4d1dedfae, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2007,11 +2007,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4314289149366092, guid: b168ed0b543acec468e7b16ff3c6222a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 15.18
+      value: 17.75
       objectReference: {fileID: 0}
     - target: {fileID: 4314289149366092, guid: b168ed0b543acec468e7b16ff3c6222a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17.96
+      value: -16.47
       objectReference: {fileID: 0}
     - target: {fileID: 4314289149366092, guid: b168ed0b543acec468e7b16ff3c6222a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2040,7 +2040,27 @@ Prefab:
     - target: {fileID: 114187538673509924, guid: b168ed0b543acec468e7b16ff3c6222a,
         type: 2}
       propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 50817319169960258, guid: b168ed0b543acec468e7b16ff3c6222a,
+        type: 2}
+      propertyPath: m_Constraints
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114187538673509924, guid: b168ed0b543acec468e7b16ff3c6222a,
+        type: 2}
+      propertyPath: xRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 50817319169960258, guid: b168ed0b543acec468e7b16ff3c6222a,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 50817319169960258, guid: b168ed0b543acec468e7b16ff3c6222a,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b168ed0b543acec468e7b16ff3c6222a, type: 2}
