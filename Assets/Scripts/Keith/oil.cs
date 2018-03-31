@@ -8,7 +8,6 @@ public class oil : MonoBehaviour {
 	public float speed = 3.0f;
 	private string direction;
 	private bool is_right;
-	private float wall_height=0, wall_width=0;
 	private bool onGround=true;
 	private GameObject wall;
 
@@ -22,11 +21,16 @@ public class oil : MonoBehaviour {
 	public int hitCount = 3;
 	private float startRocketHitTime = 0.0f;
 	public float hitRocketTime = 1.0f;
+	private float xStart = 0.0f;
+	private float xLast = 0.0f;
+	public float xRange = 3.0f;
+	private int NWALL = 11; 
+	private int NGROUND = 13;
 
 	// Use this for initialization
 	void Start () {
 		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
-		direction = "horizontal";
+		direction = "right";
 		is_right = true;
 		onGround = true;
 		velocityNow = new Vector2 (speed, 0);
@@ -34,43 +38,47 @@ public class oil : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		capcol = robot.GetComponent<CapsuleCollider2D> ();
 		boxcol = this.GetComponent<BoxCollider2D> ();
+		xStart = this.transform.position.x;
+		xLast = xStart;
 
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log ("OIL IS UPDATED?!!!!!");
+		//Debug.Log ("OIL IS UPDATED?!!!!!");	
 		this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
+
 		if (oilPrefab != null) {
 			Destroy (oilPrefab,0.0f);
 		}
-		if (direction == "vertical") {//To move up->right			
+		if (direction == "up") {//To move up->right			
 			if (sr.bounds.min.y> wsr.bounds.max.y+0.3) {				
 				if (is_right) {
 					is_right_mul = 1.0f;
+					direction = "right";
 				} else {
 					is_right_mul = -1.0f;
+					direction = "left";
 				}
 				velocityNow = new Vector2 (is_right_mul*speed, 0);
-				this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
-				direction = "horizontal";
 			}
 		}
-		else if (direction == "horizontal" && onGround==false) {//to move right->down
+		else if ((direction == "left" || direction == "right") && onGround==false) {//to move right->down
 			if (is_right) {
 				if (sr.bounds.min.x > wsr.bounds.max.x + 0.3) {
 					velocityNow = new Vector2 (0, -speed);
-					this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
-					direction = "vertical";
+					direction = "down";
 				}
 			} else {
+				Debug.Log("Direction=" + direction);
 				if (sr.bounds.max.x + 0.3 < wsr.bounds.min.x) {
+					Debug.Log("Direction=" + direction + "LEFT OF WALL!!!!");
 					velocityNow = new Vector2 (0, -speed);
-					this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
-					direction = "vertical";
+					direction = "down";
 				}			
 			}
 		}
+
 		/*if (robot.scene.name) {
 			Debug.Log ("THE ROBOT IS active?");
 		}
@@ -78,7 +86,7 @@ public class oil : MonoBehaviour {
 		bool inx = (capcol.bounds.min.x < boxcol.bounds.max.x) && (capcol.bounds.max.x > boxcol.bounds.min.x);
 		bool iny = (capcol.bounds.min.y < boxcol.bounds.max.y) && (capcol.bounds.max.y > boxcol.bounds.min.y);
 		if (inx && iny){
-			Debug.Log ("OIL ON PLAYER!!!!");
+			//Debug.Log ("OIL ON PLAYER!!!!");
 			if (oilPrefab == null) {
 				oilPrefab = (GameObject)Instantiate (
 					oil_mess,
@@ -88,49 +96,68 @@ public class oil : MonoBehaviour {
 		}
 		if (Time.time < startRocketHitTime + hitRocketTime) {
 			if (oilPrefab == null) {
-				Debug.Log ("Instantiating oil mess...");
+				//Debug.Log ("Instantiating oil mess...");
 				oilPrefab = (GameObject)Instantiate (
 					oil_mess,
 					transform.position,
 					transform.rotation);
 			}
 		}
-		
+		if (Mathf.Abs(this.transform.position.x - xStart) > xRange && Mathf.Abs(this.transform.position.x - xLast)>0.5f) {
+			Debug.Log ("SWITCHING DIRECTION!!!!!! direction=" + direction);
+			xLast = this.transform.position.x;
+			is_right = !is_right;
+			if (direction == "right") {
+				velocityNow = new Vector2 (-speed, 0);
+				Debug.Log ("SWITCHING LEFT!!!!!!");
+				direction = "left";
+				is_right = false;
+			}
+			else if (direction == "left"){
+				velocityNow = new Vector2 (speed, 0);
+				Debug.Log ("SWITCHING RIGHT!!!!!!");
+			    direction = "right";
+				is_right = true;
+			}
+			else if(direction == "up"){
+				Debug.Log ("SWITCHING RIGHT AND GOING UP???!!!!!!");
+			}
+			else if(direction == "down"){
+				Debug.Log ("SWITCHING RIGHT AND GOING DOWN???!!!!!!");
+			}
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-
-		if (coll.gameObject.tag == "Wall")
-		{
-			//Debug.Log ("OIL COLLIDED WITH WALL. this=" + this.gameObject.tag);
-			if (direction == "horizontal") {//to move right->up							
+		if (direction == "right" && coll.gameObject.layer == NWALL) {
+			    Debug.Log("RIGHT HIT WALL GOING UP?");
 				wall = coll.gameObject;
 				wsr = wall.GetComponent<SpriteRenderer> ();
-				wall_height = wall.GetComponent<BoxCollider2D>().size.y;
-				wall_width = wall.GetComponent<BoxCollider2D>().size.x;
-				direction = "vertical";
+				direction = "up";
 				onGround = false;
-				//Debug.Log("MOVING UP wall_height=" + wall_height + ", wall_width=" + wall_width);
 				velocityNow = new Vector2 (0, speed);
-				this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
-			}
-		}
-		if (coll.gameObject.tag == "Ground" && direction == "vertical"){//to move down->right
-			//Debug.Log("BOUNCED ON GROUND");
-		    is_right = !is_right;
-			velocityNow = new Vector2 (0, speed);	
-			this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 	    }
-		if (coll.gameObject.tag == "MiddleGround" && direction == "vertical"){//to move down->right
+
+		if (direction == "left" && coll.gameObject.layer == NWALL) {
+			Debug.Log("LEFT HIT WALL GOING UP? coll.gameObject.layer=" + coll.gameObject.layer );
+			wall = coll.gameObject;
+			wsr = wall.GetComponent<SpriteRenderer> ();
+		   direction = "up";
+			onGround = false;
+			velocityNow = new Vector2 (0, speed);
+		}
+		if (direction == "down" && coll.gameObject.layer == NGROUND) {				
 			onGround = true;
-			direction = "horizontal";
-			if (is_right) {
+			if (is_right == true) {
+				Debug.Log("DOWN HIT GROUND GOING RIGHT?");
+				direction = "right";
 				velocityNow = new Vector2 (speed, 0);	
 			} else {
+				direction = "left";
 				velocityNow = new Vector2 (-speed, 0);	
+				Debug.Log("DOWN HIT GROUND GOING LEFT?");
 			}
-			this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 		}
 		if (coll.gameObject.tag == "Rocket") {
 			Debug.Log ("ROCKET COLLIDED CEO");
@@ -144,5 +171,6 @@ public class oil : MonoBehaviour {
 				}
 			}
 		}
+		
    }
 }
