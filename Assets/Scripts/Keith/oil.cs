@@ -18,9 +18,11 @@ public class oil : MonoBehaviour {
 	private SpriteRenderer sr, wsr;
 	private CapsuleCollider2D capcol;
 	private BoxCollider2D boxcol;
-	public int hitCount = 3;
+	public float hitCount = 3.0f;
 	private float startRocketHitTime = 0.0f;
+	private float startBulletHitTime = 0.0f;
 	public float hitRocketTime = 1.0f;
+	public float hitBulletTime = 0.5f;
 	private float xStart = 0.0f;
 	private float xLast = 0.0f;
 	public float xRange = 3.0f;
@@ -70,9 +72,9 @@ public class oil : MonoBehaviour {
 					direction = "down";
 				}
 			} else {
-				Debug.Log("Direction=" + direction);
+				//Debug.Log("Direction=" + direction);
 				if (sr.bounds.max.x + 0.3 < wsr.bounds.min.x) {
-					Debug.Log("Direction=" + direction + "LEFT OF WALL!!!!");
+					//Debug.Log("Direction=" + direction + "LEFT OF WALL!!!!");
 					velocityNow = new Vector2 (0, -speed);
 					direction = "down";
 				}			
@@ -103,27 +105,36 @@ public class oil : MonoBehaviour {
 					transform.rotation);
 			}
 		}
+		if (Time.time < startBulletHitTime + hitBulletTime) {
+			if (oilPrefab == null) {
+				//Debug.Log ("Instantiating oil mess...");
+				oilPrefab = (GameObject)Instantiate (
+					oil_mess,
+					transform.position,
+					transform.rotation);
+			}
+		}
 		if (Mathf.Abs(this.transform.position.x - xStart) > xRange && Mathf.Abs(this.transform.position.x - xLast)>0.5f) {
-			Debug.Log ("SWITCHING DIRECTION!!!!!! direction=" + direction);
+			//Debug.Log ("SWITCHING DIRECTION!!!!!! direction=" + direction);
 			xLast = this.transform.position.x;
 			is_right = !is_right;
 			if (direction == "right") {
 				velocityNow = new Vector2 (-speed, 0);
-				Debug.Log ("SWITCHING LEFT!!!!!!");
+				//Debug.Log ("SWITCHING LEFT!!!!!!");
 				direction = "left";
 				is_right = false;
 			}
 			else if (direction == "left"){
 				velocityNow = new Vector2 (speed, 0);
-				Debug.Log ("SWITCHING RIGHT!!!!!!");
+				//Debug.Log ("SWITCHING RIGHT!!!!!!");
 			    direction = "right";
 				is_right = true;
 			}
 			else if(direction == "up"){
-				Debug.Log ("SWITCHING RIGHT AND GOING UP???!!!!!!");
+				//Debug.Log ("SWITCHING RIGHT AND GOING UP???!!!!!!");
 			}
 			else if(direction == "down"){
-				Debug.Log ("SWITCHING RIGHT AND GOING DOWN???!!!!!!");
+				//Debug.Log ("SWITCHING RIGHT AND GOING DOWN???!!!!!!");
 			}
 		}
 	}
@@ -131,7 +142,7 @@ public class oil : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (direction == "right" && coll.gameObject.layer == NWALL) {
-			    Debug.Log("RIGHT HIT WALL GOING UP?");
+			    //Debug.Log("RIGHT HIT WALL GOING UP?");
 				wall = coll.gameObject;
 				wsr = wall.GetComponent<SpriteRenderer> ();
 				direction = "up";
@@ -140,7 +151,7 @@ public class oil : MonoBehaviour {
 	    }
 
 		if (direction == "left" && coll.gameObject.layer == NWALL) {
-			Debug.Log("LEFT HIT WALL GOING UP? coll.gameObject.layer=" + coll.gameObject.layer );
+			//Debug.Log("LEFT HIT WALL GOING UP? coll.gameObject.layer=" + coll.gameObject.layer );
 			wall = coll.gameObject;
 			wsr = wall.GetComponent<SpriteRenderer> ();
 		   direction = "up";
@@ -150,21 +161,21 @@ public class oil : MonoBehaviour {
 		if (direction == "down" && coll.gameObject.layer == NGROUND) {				
 			onGround = true;
 			if (is_right == true) {
-				Debug.Log("DOWN HIT GROUND GOING RIGHT?");
+				//Debug.Log("DOWN HIT GROUND GOING RIGHT?");
 				direction = "right";
 				velocityNow = new Vector2 (speed, 0);	
 			} else {
 				direction = "left";
 				velocityNow = new Vector2 (-speed, 0);	
-				Debug.Log("DOWN HIT GROUND GOING LEFT?");
+				//Debug.Log("DOWN HIT GROUND GOING LEFT?");
 			}
 		}
 		if (coll.gameObject.tag == "Rocket") {
-			Debug.Log ("ROCKET COLLIDED CEO");
+			Debug.Log ("ROCKET COLLIDED WITH OIL");
 			Destroy (coll.gameObject);
-			hitCount--;
+			hitCount -= 1.0f;
 			startRocketHitTime = Time.time;
-			if (hitCount == 0) {
+			if (hitCount <= 0.0f) {
 				Destroy (this.gameObject);
 				if (oilPrefab != null) {
 					Destroy (oilPrefab,0.0f);
@@ -173,4 +184,19 @@ public class oil : MonoBehaviour {
 		}
 		
    }
+
+	void OnTriggerEnter2D(Collider2D c) {
+		if (c.gameObject.tag == "Bullet") {
+			Debug.Log ("BULLET COLLIDED WITH OIL!");
+			Destroy (c.gameObject);
+			hitCount -= 0.5f;
+			startBulletHitTime = Time.time;
+			if (hitCount<= 0.0f) {
+				Destroy (this.gameObject);
+				if (oilPrefab != null) {
+					Destroy (oilPrefab,0.0f);
+				}
+			}
+		}
+	}
 }

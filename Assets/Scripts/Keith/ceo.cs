@@ -26,7 +26,7 @@ public class ceo : MonoBehaviour {
 	private float notFireTime = 0.5f;
 	private bool isFire = false;
 	private bool isStart = true;
-	public int hitCount = 5;
+	public float hitCount = 5.0f;
 	AnimatorStateInfo stateInfo;
 	int currentFrame;
 
@@ -124,7 +124,7 @@ public class ceo : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        //Debug.Log("COLLISION!!!!");
+		Debug.Log("COLLISION WITH GAME OBJECT=" + coll.gameObject.tag);
 		if (coll.gameObject.tag == "Wall" || coll.gameObject.tag == "Player")
         {
 			if (coll.gameObject.tag == "Player") {
@@ -152,8 +152,8 @@ public class ceo : MonoBehaviour {
 		if (coll.gameObject.tag == "Rocket") {
 			Debug.Log ("ROCKET COLLIDED WITH ENEMY CEO");
 			Destroy (coll.gameObject);
-			hitCount--;
-			if (hitCount == 0) {
+			hitCount -= 1.0f;
+			if (hitCount <= 0.0f) {
 				Destroy (this.gameObject);
 			}
 			Bleed ();
@@ -207,6 +207,17 @@ public class ceo : MonoBehaviour {
 		} while ( animation.isPlaying );
 	}
 
+	void OnTriggerEnter2D(Collider2D c) {
+		if (c.tag == "Bullet") {
+			Debug.Log ("Bullet COLLIDED WITH ENEMY CEO");
+			Destroy (c.gameObject);
+			hitCount -= 0.5f;
+			if (hitCount <= 0) {
+				Destroy (this.gameObject);
+			}
+			Bleed ();
+		}
+	}
 
 
 }
