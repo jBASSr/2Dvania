@@ -32,4 +32,3 @@ Bullet uses onTriggerEnter2D event, which is same used by enemies.
 Menu System (Event Manager)
 ```
 
-### Enemies:
