@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8adf76c6b9027184a8afe1c1b475bfd8
-timeCreated: 1509648110
+timeCreated: 1522539574
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -28,6 +28,16 @@ TextureImporter:
     21300042: menu_strings_21
     21300044: menu_strings_22
     21300046: menu_strings_23
+    21300048: menu_strings_24
+    21300050: menu_strings_25
+    21300052: menu_strings_26
+    21300054: menu_strings_27
+    21300056: menu_strings_28
+    21300058: menu_strings_29
+    21300060: menu_strings_30
+    21300062: menu_strings_31
+    21300064: menu_strings_32
+    21300066: menu_strings_33
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -183,48 +193,6 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: menu_strings_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 239
-        width: 200
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: menu_strings_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 204
-        width: 200
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: menu_strings_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 171
-        width: 200
-        height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: menu_strings_9
       rect:
         serializedVersion: 2
@@ -309,12 +277,54 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
+      name: menu_strings_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 239
+        width: 205
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_7
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 240
+        width: 207
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205
+        width: 79
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
       name: menu_strings_15
       rect:
         serializedVersion: 2
-        x: 200
-        y: 237
-        width: 200
+        x: 0
+        y: 170
+        width: 81
         height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -326,10 +336,10 @@ TextureImporter:
       name: menu_strings_16
       rect:
         serializedVersion: 2
-        x: 200
-        y: 202
-        width: 200
-        height: 34
+        x: 105
+        y: 213
+        width: 121
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,10 +350,10 @@ TextureImporter:
       name: menu_strings_17
       rect:
         serializedVersion: 2
-        x: 200
-        y: 168
-        width: 200
-        height: 34
+        x: 105
+        y: 178
+        width: 123
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,12 +364,12 @@ TextureImporter:
       name: menu_strings_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 142
-        width: 118
+        x: 252
+        y: 213
+        width: 79
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -368,26 +378,12 @@ TextureImporter:
       name: menu_strings_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 107
-        width: 121
-        height: 24
+        x: 252
+        y: 178
+        width: 81
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: menu_strings_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 72
-        width: 122
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -396,12 +392,12 @@ TextureImporter:
       name: menu_strings_21
       rect:
         serializedVersion: 2
-        x: 201
-        y: 141
-        width: 120
-        height: 25
+        x: 0
+        y: 143
+        width: 121
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -410,26 +406,152 @@ TextureImporter:
       name: menu_strings_22
       rect:
         serializedVersion: 2
-        x: 201
-        y: 106
+        x: 0
+        y: 114
         width: 123
-        height: 25
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: menu_strings_23
+      name: menu_strings_24
       rect:
         serializedVersion: 2
-        x: 201
-        y: 71
-        width: 123
-        height: 25
+        x: 148
+        y: 143
+        width: 36
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_25
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 114
+        width: 37
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_26
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 143
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_27
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 114
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_28
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 143
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_29
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 114
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_30
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 143
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_31
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 114
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_32
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 143
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menu_strings_33
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 114
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

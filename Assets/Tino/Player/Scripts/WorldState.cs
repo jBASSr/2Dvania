@@ -11,6 +11,7 @@ namespace Tino
 
     public static class WorldState
     {
+        public static Difficulty Difficulty = Difficulty.EASY;
         public static string ComingFromDoor;
         public static string ComingFromScene;
 
@@ -61,7 +62,7 @@ namespace Tino
         public static string GetSceneName()
         {
             SceneDoorTuple s = new D(WorldState.ComingFromScene, WorldState.ComingFromDoor);
-            if(WorldState.NewScenePosition.ContainsKey(s))
+            if (WorldState.NewScenePosition.ContainsKey(s))
             {
                 return WorldState.NewScenePosition[s].Scene;
             }
@@ -140,4 +141,6 @@ namespace Tino
             return this.Scene.GetHashCode() ^ this.Item.GetHashCode();
         }
     }
+
+    public enum Difficulty { EASY, MEDIUM, HARD };
 }

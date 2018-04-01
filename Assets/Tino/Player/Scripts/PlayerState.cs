@@ -11,5 +11,6 @@ namespace Tino
         public static int Health;
         public static int MaxHealth;
         public static int ExtraJumps;
+        public static int StartingHealth;
     }
 }
