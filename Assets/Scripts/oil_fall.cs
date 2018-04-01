@@ -21,7 +21,9 @@ public class oil_fall : MonoBehaviour {
 	private BoxCollider2D boxcol;
 	public int hitCount = 3;
 	private float startRocketHitTime = 0.0f;
+	private float startBulletHitTime = 0.0f;
 	public float hitRocketTime = 1.0f;
+	public float hitBulletTime = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +61,15 @@ public class oil_fall : MonoBehaviour {
 					transform.rotation);
 			}
 		}
+		if (Time.time < startBulletHitTime + hitBulletTime) {
+			if (oilMess == null) {
+				Debug.Log ("Instantiating oil mess...");
+				oilMess = (GameObject)Instantiate (
+					oil_mess,
+					transform.position,
+					transform.rotation);
+			}
+		}
 
 	}
 
@@ -83,6 +94,18 @@ public class oil_fall : MonoBehaviour {
 			if (oilMess != null) {
 				Destroy (oilMess);
 			}
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D c) {
+		if (c.tag == "Bullet") {
+			Debug.Log ("BULLET COLLIDED WITH OIL FALL!");
+			Destroy (c.gameObject);
+			startBulletHitTime = Time.time;
+			Destroy (this.gameObject);
+			if (oilMess != null) {
+				Destroy (oilMess,0.0f);
+			}		
 		}
 	}
 }
