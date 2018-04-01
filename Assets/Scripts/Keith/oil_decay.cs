@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class oil_decay : MonoBehaviour {
 
@@ -28,9 +29,11 @@ public class oil_decay : MonoBehaviour {
 	private bool isAttacking = false;
 	private float yPos = 0.0f;
 	private float offsetTime = 0.0f;
-	public int hitCount = 1;
+	public float hitCount = 10.0f;
 	private float startRocketHitTime = 1.1f;
 	public float hitRocketTime = 1.0f;
+	private float startBulletHitTime = 1.1f;
+	public float hitBulletTime = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -106,6 +109,15 @@ public class oil_decay : MonoBehaviour {
 					transform.rotation);
 			}
 		}
+		if (Time.time < startBulletHitTime + hitBulletTime) {
+			if (oilMess == null) {
+				Debug.Log ("Instantiating oil mess...");
+				oilMess = (GameObject)Instantiate (
+					oil_mess,
+					transform.position,
+					transform.rotation);
+			}
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
@@ -113,14 +125,30 @@ public class oil_decay : MonoBehaviour {
 		if (coll.gameObject.tag == "Rocket") {
 			Debug.Log ("ROCKET COLLIDED CEO");
 			Destroy (coll.gameObject);
-			hitCount--;
+			hitCount -= 1.0f;
 			startRocketHitTime = Time.time;
-			if (hitCount == 0) {
+			if (hitCount <= 0.0f) {
 				animator.SetBool ("isDie", true);
 				Destroy (this.gameObject, 2.0f);
 				if (oilMess != null) {
 					Destroy (oilMess,0.0f);
 				}
+			}
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D c) {
+		if (c.tag == "Bullet") {
+			Debug.Log ("BULLET COLLIDED WITH OIL FALL!");
+			Destroy (c.gameObject);
+			hitCount -= 0.5f;
+			startBulletHitTime = Time.time;
+			if (hitCount<= 0.0f) {
+				Destroy (this.gameObject, 2.0f);
+				if (oilMess != null) {
+					Destroy (oilMess,0.0f);
+				}
+				SceneManager.LoadScene("Credits", LoadSceneMode.Single);
 			}
 		}
 	}
