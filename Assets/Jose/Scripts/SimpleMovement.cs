@@ -94,11 +94,11 @@ public class SimpleMovement : MonoBehaviour
 		anim = GetComponentInChildren<Animator> ();
 		pGraphics = transform.Find ("Graphics");
 		hp = GetComponent<HealthSystem> ();
-		FrontCenter = transform.Find ("Weapon/FrontCenter").gameObject;
-		TopRight 	= transform.Find ("Weapon/TopRight").gameObject;
-		BottomRight = transform.Find ("Weapon/BottomRight").gameObject;
-		Top 		= transform.Find ("Weapon/Top").gameObject;
-		Bottom 		= transform.Find ("Weapon/Bottom").gameObject;
+		//FrontCenter = transform.Find ("Weapon/FrontCenter").gameObject;
+		//TopRight 	= transform.Find ("Weapon/TopRight").gameObject;
+		//BottomRight = transform.Find ("Weapon/BottomRight").gameObject;
+		//Top 		= transform.Find ("Weapon/Top").gameObject;
+		//Bottom 		= transform.Find ("Weapon/Bottom").gameObject;
 		// Find groundCheck transform object
 		// Implement Wall/Obstacle check?
 		// Implement Animations
@@ -227,7 +227,7 @@ public class SimpleMovement : MonoBehaviour
 				anim.SetBool ("Jumped", true);
 				jumping = true;
                 //Jumping Sound
-                //FindObjectOfType<AudioManager_2>().Play("jump");
+                FindObjectOfType<AudioManager_2>().Play("jump");
                 rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
