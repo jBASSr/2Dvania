@@ -18,6 +18,7 @@ public class SimpleCameraFollow : MonoBehaviour {
 
 	public float smoothX = 2;
 	public float smoothY = 5;
+	public float y_offset = 6.0f;
 	public float marginX;
 	public float marginY;
 	//public Vector2 maxXY = new Vector2 (30, 10);
@@ -37,6 +38,6 @@ public class SimpleCameraFollow : MonoBehaviour {
 	}
 
 	void Follow() {
-		transform.position = new Vector3 (cameraTarget.position.x, cameraTarget.position.y, transform.position.z);
+		transform.position = new Vector3 (cameraTarget.position.x, cameraTarget.position.y+y_offset, transform.position.z);
 	}
 }
