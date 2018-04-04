@@ -125,13 +125,12 @@ public class bad_robot : MonoBehaviour {
 			Debug.Log ("Bullet COLLIDED WITH BAD ROBOT!");
 			Destroy (c.gameObject);
 			hitCount -= 0.5f;
-			if (hitCount <= 0) {
-				Destroy (this.gameObject);
-			}
-
-			//animator.SetBool ("is_shocked", true);
 			StartCoroutine(hitRobot());
-			//animator.SetBool ("is_shocked", false);
+			if (hitCount <= 0) {
+				animator.SetBool ("is_die", true);
+				Destroy (this.gameObject, 1.0f);
+				FindObjectOfType<AudioManager_2>().Play("explode");
+			}
 		}
 	}
 
