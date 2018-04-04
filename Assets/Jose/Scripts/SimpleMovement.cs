@@ -205,7 +205,7 @@ public class SimpleMovement : MonoBehaviour
 				lastFire = Time.time;
 				Fire ();
                 //Shoot Sound
-                //FindObjectOfType<AudioManager_2>().Play("Shoot");
+                FindObjectOfType<AudioManager_2>().Play("Shoot");
             }
 		} else {
 			anim.SetBool ("isShooting", false);
@@ -227,7 +227,7 @@ public class SimpleMovement : MonoBehaviour
 				anim.SetBool ("Jumped", true);
 				jumping = true;
                 //Jumping Sound
-                //FindObjectOfType<AudioManager_2>().Play("jump");
+                FindObjectOfType<AudioManager_2>().Play("jump");
                 rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;

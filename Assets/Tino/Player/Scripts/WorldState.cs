@@ -42,7 +42,9 @@ namespace Tino
                 { new I("Tino2", "HPMaxUp 1"), true },
                 { new I("Tino2", "DoubleJump 1"), true },
                 { new I("Tino3", "DoubleJump"), true },
-                { new I("Tino3", "HPMaxUp"), true }
+                { new I("Tino3", "HPMaxUp"), true },
+                { new I("Tino4", "DoubleJump"), true },
+                { new I("Tino4", "HPMaxUp"), true }
             };
         }
 
