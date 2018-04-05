@@ -74,9 +74,14 @@ public class SimpleMovement : MonoBehaviour
 	// new
 	public GameObject bulletSpawn;
 	public Rigidbody2D currentWeapon;
+	Rigidbody2D baseWeapon;
+	Rigidbody2D missileWeapon;
 	Rigidbody2D bullet;
 	GameObject FrontCenter, TopRight, BottomRight, Top, Bottom;
 	public int aimDir = 0;
+	public int equippedWeapon;
+	bool swapping;
+	float swapTime = 0f;
 	public float bulletSpeed = 400;
 	// old
 	public GameObject rocketPrefab;
@@ -99,6 +104,10 @@ public class SimpleMovement : MonoBehaviour
 		BottomRight = transform.Find ("Weapon/BottomRight").gameObject;
 		Top 		= transform.Find ("Weapon/Top").gameObject;
 		Bottom 		= transform.Find ("Weapon/Bottom").gameObject;
+		missileWeapon = Resources.Load ("Bullet_Missile_Prefab", typeof(Rigidbody2D)) as Rigidbody2D;
+		baseWeapon = Resources.Load ("Bullet_Base_Prefab", typeof(Rigidbody2D)) as Rigidbody2D;
+		equippedWeapon = 0;
+		swapping = false;
 		// Find groundCheck transform object
 		// Implement Wall/Obstacle check?
 		// Implement Animations
@@ -199,13 +208,24 @@ public class SimpleMovement : MonoBehaviour
 				transTime = 0;
 			}
 		}
+		if (swapping) {
+			swapTime += Time.deltaTime;
+			if (swapTime >= 0.5f) {
+				swapping = false;
+				swapTime = 0;
+			}
+		}
+		if (Input.GetKey (KeyCode.R) && !swapping) {
+			swapping = true;
+			SwapWeapons (equippedWeapon);
+		}
 		if (Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) {
 			anim.SetBool ("isShooting", true);
 			if (Time.time > lastFire + fireRate) {
 				lastFire = Time.time;
 				Fire ();
                 //Shoot Sound
-                FindObjectOfType<AudioManager_2>().Play("Shoot");
+                //FindObjectOfType<AudioManager_2>().Play("Shoot");
             }
 		} else {
 			anim.SetBool ("isShooting", false);
@@ -227,7 +247,8 @@ public class SimpleMovement : MonoBehaviour
 				anim.SetBool ("Jumped", true);
 				jumping = true;
                 //Jumping Sound
-                FindObjectOfType<AudioManager_2>().Play("jump");
+				// UNCOMMENT ONCE SOUND IS ADDED TO "JR_LEVEL_01"
+                //FindObjectOfType<AudioManager_2>().Play("jump");
                 rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				if (jumpCount < extraJumps && !isGrounded)
 					jumpCount++;
@@ -317,10 +338,13 @@ public class SimpleMovement : MonoBehaviour
 	{
 		if (stance == playerStanding && collider.size.y != standHeight) {
 			collider.size = new Vector2(collider.size.x, standHeight);
+			groundCheck.position = new Vector3 (rb.position.x, rb.position.y-1.15f, 0f);
 		} else if (stance == playerCrouched && collider.size.y != crouchHeight) {
 			collider.size = new Vector2(collider.size.x, crouchHeight);
+			groundCheck.position = new Vector3 (rb.position.x, rb.position.y-0.75f, 0f);
 		} else if (stance == playerRolling && collider.size.y != rollHeight) {
 			collider.size = new Vector2(collider.size.x, rollHeight);
+			groundCheck.position = new Vector3 (rb.position.x, rb.position.y-0.35f, 0f);
 		}
 	}
 
@@ -381,6 +405,16 @@ public class SimpleMovement : MonoBehaviour
 			Destroy (rocket, 10.0f);
 		}
 		*/
+	}
+	void SwapWeapons(int n) {
+		Debug.Log ("Swapping!");
+		if (n == 0) {
+			equippedWeapon++;
+			currentWeapon = missileWeapon;
+		} else if (n == 1) {
+			equippedWeapon = 0;
+			currentWeapon = baseWeapon;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

@@ -6,6 +6,8 @@ public class bulletEvent : MonoBehaviour {
 	public float bulletDuration = 2f;
 	public float bulletTime = 0f;
 	// TODO: Animations
+	public GameObject bulletHit_Prefab;
+	GameObject bulletHit;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,8 +22,12 @@ public class bulletEvent : MonoBehaviour {
 		}
 	}
 	void OnTriggerEnter2D(Collider2D c) {
-		if (c.tag == "Enemy") {
-			Destroy (gameObject);
+		if (c.tag == "Enemy" || c.tag == "Ground") {
+			//Debug.Log ("Bullet hit something");
+			Destroy (this.gameObject);
+			bulletHit = GameObject.Instantiate (bulletHit_Prefab, 
+				transform.position, transform.rotation) as GameObject;
+			Destroy (bulletHit, 0.6f);
 		}
 	}
 }
