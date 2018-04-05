@@ -16,9 +16,12 @@ public class SimpleMovement : MonoBehaviour
 	public float thrust;
 	public float speed;
 	public bool jumping;
+	bool landing = false;
+	float landTime = 0f;
 	public int extraJumps = 2;
 	public int jumpCount = 0;
 	public float jumpSpeed = 80;
+	public float boostSpeed = 150;
 	RaycastHit2D floor;
 	Vector2 gravity;
 	Vector2 movement;
@@ -132,7 +135,7 @@ public class SimpleMovement : MonoBehaviour
 		isCeiling = Physics2D.OverlapCircle (ceilingCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("isGrounded", isGrounded);
 		// Reset Jump Count
-		if (isGrounded) {
+		if (isGrounded && !isMovingUp && !jumping) {
 			jumpCount = 0;
 		}
 		// Sprite Orientation
@@ -143,7 +146,7 @@ public class SimpleMovement : MonoBehaviour
 		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
 		// Fix "ramping" issue when walking up a postive ramp
 		if (!turning && !hp.StunnedState) {
-			if (isGrounded && !jumping && !transforming) {
+			if (isGrounded && !jumping && !transforming && !landing) {
 				floor = Physics2D.Raycast (rb.position, -Vector2.up);
 				gravity = floor.normal;
 				movement = new Vector2 (gravity.y, -gravity.x);
@@ -154,7 +157,7 @@ public class SimpleMovement : MonoBehaviour
 				}
 				//rb.velocity = new Vector2(vel.x, rb.velocity.y);
 				rb.velocity = vel;
-			} else if (isWallTrig && !isGrounded) {
+			} else if (isWall && !isGrounded) {
 				//rb.velocity = new Vector2 (speedX * maxSpeed, rb.velocity.y);
 				rb.velocity = new Vector2 (speedX * 0, rb.velocity.y);
 			} else {
@@ -215,11 +218,18 @@ public class SimpleMovement : MonoBehaviour
 				swapTime = 0;
 			}
 		}
+		if (landing) {
+			landTime += Time.deltaTime;
+			if (landTime >= 0.35f) {
+				landing = false;
+				landTime = 0;
+			}
+		}
 		if (Input.GetKey (KeyCode.R) && !swapping) {
 			swapping = true;
 			SwapWeapons (equippedWeapon);
 		}
-		if (Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) {
+		if ((Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) && stance <= 1) {
 			anim.SetBool ("isShooting", true);
 			if (Time.time > lastFire + fireRate) {
 				lastFire = Time.time;
@@ -236,22 +246,33 @@ public class SimpleMovement : MonoBehaviour
 	{		
 		if (rb.velocity.y >= 0.5f) {
 			isMovingUp = true;
-		} else {
+		} else if (rb.velocity.y >= -1f && rb.velocity.y < 0f) {
 			isMovingUp = false;
 			anim.SetBool ("Jumped", false);
+			anim.SetBool ("Boosted", false);
 			jumping = false;
+			/*
+			if (isGrounded && !landing) {
+				Debug.Log ("Landed!!!!!");
+				landing = true;
+				collider.size = new Vector2(collider.size.x, crouchHeight);
+			}
+			*/
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			if ((isGrounded || jumpCount < extraJumps && !hp.StunnedState)) {
+			if ((isGrounded || jumpCount < extraJumps) && !hp.StunnedState) {
 				anim.SetBool ("Jumped", true);
 				jumping = true;
                 //Jumping Sound
 				// UNCOMMENT ONCE SOUND IS ADDED TO "JR_LEVEL_01"
                 //FindObjectOfType<AudioManager_2>().Play("jump");
                 rb.AddForce (new Vector2 (0.0f, jumpSpeed));
-				if (jumpCount < extraJumps && !isGrounded)
-					jumpCount++;
+				jumpCount++;
+			} else if (jumpCount == 1 && extraJumps == 1 && !isGrounded && !hp.StunnedState) {
+				anim.SetBool ("Boosted", true);
+				jumpCount++;
+				rb.AddForce (new Vector2 (0.0f, boostSpeed*4));
 			}
 		}
 		if (Input.GetKeyUp (KeyCode.Space) && isMovingUp) {
@@ -285,6 +306,9 @@ public class SimpleMovement : MonoBehaviour
 		} else if (speedX < 0 && speedY < 0) {
 			aimDir = aimDownRight;
 			bulletSpawn = BottomRight;
+		} else if (speedX < 0 && speedY > 0) {
+			aimDir = aimTopRight;
+			bulletSpawn = TopRight;
 		}
 		// Bumpers
 		if (Input.GetKey (KeyCode.Q)) {
@@ -336,7 +360,7 @@ public class SimpleMovement : MonoBehaviour
 
 	void ColliderState()
 	{
-		if (stance == playerStanding && collider.size.y != standHeight) {
+		if (stance == playerStanding && collider.size.y != standHeight && !landing) {
 			collider.size = new Vector2(collider.size.x, standHeight);
 			groundCheck.position = new Vector3 (rb.position.x, rb.position.y-1.15f, 0f);
 		} else if (stance == playerCrouched && collider.size.y != crouchHeight) {

@@ -3953,7 +3953,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4512707980667898, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -25.51
+      value: -24.76
       objectReference: {fileID: 0}
     - target: {fileID: 4512707980667898, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3997,6 +3997,16 @@ Prefab:
     - target: {fileID: 4315209304631012, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
       propertyPath: m_LocalPosition.y
       value: -1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318850026593730, guid: 156ae37e049b0274ba0aa75ced14be1b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 60284748628481232, guid: 156ae37e049b0274ba0aa75ced14be1b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
@@ -4257,6 +4267,7 @@ MonoBehaviour:
   extraJumps: 1
   jumpCount: 0
   jumpSpeed: 300
+  boostSpeed: 150
   stance: 0
   groundCheck: {fileID: 1876610592}
   wallCheck: {fileID: 0}
