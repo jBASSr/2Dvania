@@ -235,7 +235,7 @@ public class SimpleMovement : MonoBehaviour
 				lastFire = Time.time;
 				Fire ();
                 //Shoot Sound
-                //FindObjectOfType<AudioManager_2>().Play("Shoot");
+                FindObjectOfType<AudioManager_2>().Play("Shoot");
             }
 		} else {
 			anim.SetBool ("isShooting", false);
@@ -266,7 +266,7 @@ public class SimpleMovement : MonoBehaviour
 				jumping = true;
                 //Jumping Sound
 				// UNCOMMENT ONCE SOUND IS ADDED TO "JR_LEVEL_01"
-                //FindObjectOfType<AudioManager_2>().Play("jump");
+                FindObjectOfType<AudioManager_2>().Play("jump");
                 rb.AddForce (new Vector2 (0.0f, jumpSpeed));
 				jumpCount++;
 			} else if (jumpCount == 1 && extraJumps == 1 && !isGrounded && !hp.StunnedState) {
