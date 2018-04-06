@@ -384,6 +384,11 @@ Prefab:
       propertyPath: m_Name
       value: silo (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 212029160258142278, guid: e02b15c9848099c4e9414d54af0b3fa9,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02b15c9848099c4e9414d54af0b3fa9, type: 2}
   m_IsPrefabParent: 0
@@ -1032,6 +1037,11 @@ Prefab:
       propertyPath: m_Name
       value: silo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 212029160258142278, guid: e02b15c9848099c4e9414d54af0b3fa9,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02b15c9848099c4e9414d54af0b3fa9, type: 2}
   m_IsPrefabParent: 0
@@ -1149,6 +1159,11 @@ Prefab:
     - target: {fileID: 4933283767822002, guid: e02b15c9848099c4e9414d54af0b3fa9, type: 2}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 212029160258142278, guid: e02b15c9848099c4e9414d54af0b3fa9,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02b15c9848099c4e9414d54af0b3fa9, type: 2}
@@ -1345,6 +1360,11 @@ Prefab:
     - target: {fileID: 1394978577963620, guid: e02b15c9848099c4e9414d54af0b3fa9, type: 2}
       propertyPath: m_Name
       value: silo (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212029160258142278, guid: e02b15c9848099c4e9414d54af0b3fa9,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02b15c9848099c4e9414d54af0b3fa9, type: 2}
