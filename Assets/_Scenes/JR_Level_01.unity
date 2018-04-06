@@ -480,6 +480,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114829856838656260, guid: 1a516c78a332e8040b9d0cec0d2fda32,
+        type: 2}
+      propertyPath: sounds.Array.data[3].name
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 114829856838656260, guid: 1a516c78a332e8040b9d0cec0d2fda32,
+        type: 2}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b46eb7aa9bff40540abed9185a11c359, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a516c78a332e8040b9d0cec0d2fda32, type: 2}
   m_IsPrefabParent: 0
