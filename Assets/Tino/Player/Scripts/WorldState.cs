@@ -44,7 +44,9 @@ namespace Tino
                 { new I("Tino3", "DoubleJump"), true },
                 { new I("Tino3", "HPMaxUp"), true },
                 { new I("Tino4", "DoubleJump"), true },
-                { new I("Tino4", "HPMaxUp"), true }
+                { new I("Tino4", "HPMaxUp"), true },
+                 { new I("DesertLevel", "DoubleJump"), true },
+                { new I("DesertLevel", "HPMaxUp"), true }
             };
         }
 
