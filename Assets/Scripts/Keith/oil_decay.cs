@@ -35,6 +35,8 @@ public class oil_decay : MonoBehaviour {
 	public float hitRocketTime = 1.0f;
 	private float startBulletHitTime = 1.1f;
 	public float hitBulletTime = 0.5f;
+	private GameObject rollability;
+	public GameObject rollabilityPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -149,8 +151,18 @@ public class oil_decay : MonoBehaviour {
 				if (oilMess != null) {
 					Destroy (oilMess,0.0f);
 				}
-				SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+				StartCoroutine (dropRollability ());
 			}
 		}
+	}
+
+	IEnumerator dropRollability (){
+		Debug.Log ("SETTTING ROBOT COLOR???");
+		yield return new WaitForSeconds(1.8f);
+		rollability = (GameObject)Instantiate (
+			rollabilityPrefab,
+			transform.position,
+			transform.rotation);
+		//SceneManager.LoadScene("Credits", LoadSceneMode.Single);
 	}
 }

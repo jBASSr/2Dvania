@@ -59,9 +59,13 @@ namespace Tino
             Tino.WorldState.ComingFromDoor = this.name;
             Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
             string nextScene = WorldState.GetSceneName();
-            if(nextScene != null)
+			Debug.Log ("nextScene=" + nextScene);
+			if(nextScene != null)
             {
-                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+				//LOAD boos scene if hasKey
+				if (nextScene != "boss" || GameManager.hasKey == true) {
+					SceneManager.LoadScene (nextScene, LoadSceneMode.Single);
+				}
             }
         }
     }
