@@ -29,7 +29,9 @@ public class oil_decay : MonoBehaviour {
 	private bool isAttacking = false;
 	private float yPos = 0.0f;
 	private float offsetTime = 0.0f;
+
 	public float hitCount = 10.0f;
+
 	public float maxHealth = 10.0f;
 	private float startRocketHitTime = 1.1f;
 	public float hitRocketTime = 1.0f;
@@ -37,9 +39,12 @@ public class oil_decay : MonoBehaviour {
 	public float hitBulletTime = 0.5f;
 	private GameObject rollability;
 	public GameObject rollabilityPrefab;
+	private GameObject exitDoorPrefab;
 
 	// Use this for initialization
 	void Start () {
+		exitDoorPrefab = GameObject.Find ("DoorExit");
+		exitDoorPrefab.SetActive (false);
 		startPosition = transform.position;
 		robot = GameObject.Find ("Robot");
 		rob_col = robot.GetComponent<CapsuleCollider2D> ();
@@ -159,10 +164,12 @@ public class oil_decay : MonoBehaviour {
 	IEnumerator dropRollability (){
 		Debug.Log ("SETTTING ROBOT COLOR???");
 		yield return new WaitForSeconds(1.8f);
+		exitDoorPrefab.SetActive (true);
 		rollability = (GameObject)Instantiate (
 			rollabilityPrefab,
 			transform.position,
 			transform.rotation);
+		
 		//SceneManager.LoadScene("Credits", LoadSceneMode.Single);
 	}
 }

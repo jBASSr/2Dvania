@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class rollability : MonoBehaviour {
 
+	private GameObject exitDoorPrefab;
 	// Use this for initialization
 	void Start () {
-		
+		exitDoorPrefab = GameObject.Find ("DoorExit");
+		exitDoorPrefab.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -19,6 +21,7 @@ public class rollability : MonoBehaviour {
 		if (coll.gameObject.tag == "Player") {
 			Debug.Log ("PLAYER NOW HAS ROLLABILITY!");
 			Destroy (this.gameObject);
+			exitDoorPrefab.SetActive (true);
 		}
 	}
 }
