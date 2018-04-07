@@ -45,11 +45,11 @@ public class bad_robot : MonoBehaviour {
 	private float yPos = 0.0f;
 	private float offsetTime = 0.0f;
 	public float hitCount = 10.0f;
-	private Color old_color;
+	public float maxHealth = 10.0f;
+	private GameObject myBadRobot;
 
 
 	void Start () {
-		old_color = gameObject.GetComponent<SpriteRenderer> ().color;
 		animator = GetComponent<Animator> ();
 		robot = GameObject.Find ("Robot");
 		isGrounded = true;
@@ -123,7 +123,6 @@ public class bad_robot : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c) {
 		if (c.tag == "Bullet") {
 			Debug.Log ("Bullet COLLIDED WITH BAD ROBOT!");
-			Destroy (c.gameObject);
 			hitCount -= 0.5f;
 			StartCoroutine(hitRobot());
 			if (hitCount <= 0) {
@@ -131,13 +130,15 @@ public class bad_robot : MonoBehaviour {
 				Destroy (this.gameObject, 1.0f);
 				FindObjectOfType<AudioManager_2>().Play("explode");
 			}
+			Destroy (c.gameObject);
 		}
 	}
 
 	IEnumerator hitRobot (){
-		gameObject.GetComponent<SpriteRenderer>().color=new Color(0, 0, 1, 1);
+		Debug.Log ("SETTTING ROBOT COLOR???");
+		gameObject.GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.blue);
 		yield return new WaitForSeconds(0.2f);
-		gameObject.GetComponent<SpriteRenderer>().color=old_color;
+		gameObject.GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.white);
 	}
 
 

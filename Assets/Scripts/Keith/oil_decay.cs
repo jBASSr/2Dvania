@@ -30,6 +30,7 @@ public class oil_decay : MonoBehaviour {
 	private float yPos = 0.0f;
 	private float offsetTime = 0.0f;
 	public float hitCount = 10.0f;
+	public float maxHealth = 10.0f;
 	private float startRocketHitTime = 1.1f;
 	public float hitRocketTime = 1.0f;
 	private float startBulletHitTime = 1.1f;
