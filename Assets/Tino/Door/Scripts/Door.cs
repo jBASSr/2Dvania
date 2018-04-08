@@ -29,8 +29,17 @@ namespace Tino
 		    if(!this.IsColliding) { return; }
             if(!this.SceneTransitioning && !this.StartDoor)
             {
-                this.SceneTransitioning = true;
-                StartCoroutine(this.FadeToNewScene());
+				Tino.WorldState.ComingFromDoor = this.name;
+				Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
+				string nextScene = WorldState.GetSceneName();
+				Debug.Log ("nextScene=" + nextScene);
+				//LOAD boss scene if hasKey
+				if (nextScene!=null && nextScene != "boss" || GameManager.hasKey == true) {
+					this.SceneTransitioning = true;
+					StartCoroutine (this.FadeToNewScene (nextScene));
+				} else {
+					Debug.Log ("YOU DONT HAVE THE KEY!!!!!");
+				}
             }
 	    }
 
@@ -52,21 +61,11 @@ namespace Tino
             }
         }
 
-        public IEnumerator FadeToNewScene()
+		public IEnumerator FadeToNewScene(string nextScene)
         {
             this.Animator.SetBool("Fade", true);
             yield return new WaitUntil(() => this.Black.color.a == 1);
-            Tino.WorldState.ComingFromDoor = this.name;
-            Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
-            string nextScene = WorldState.GetSceneName();
-			Debug.Log ("nextScene=" + nextScene);
-			if(nextScene != null)
-            {
-				//LOAD boos scene if hasKey
-				if (nextScene != "boss" || GameManager.hasKey == true) {
-					SceneManager.LoadScene (nextScene, LoadSceneMode.Single);
-				}
-            }
+			SceneManager.LoadScene (nextScene, LoadSceneMode.Single);
         }
     }
 }

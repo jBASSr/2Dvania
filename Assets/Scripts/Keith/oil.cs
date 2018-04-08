@@ -26,12 +26,13 @@ public class oil : MonoBehaviour {
 	private float xStart = 0.0f;
 	private float xLast = 0.0f;
 	public float xRange = 3.0f;
-	private int NWALL = 11; 
-	private int NGROUND = 13;
+	//private int NWALL = 11; 
+	//private int NGROUND = 13;
 
 	// Use this for initialization
 	void Start () {
 		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
+		Debug.Log ("OIL STARTED!!!!!");
 		direction = "right";
 		is_right = true;
 		onGround = true;
@@ -47,7 +48,7 @@ public class oil : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log ("OIL IS UPDATED?!!!!!");	
+		
 		this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 
 		if (oilPrefab != null) {
@@ -141,8 +142,9 @@ public class oil : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (direction == "right" && coll.gameObject.layer == NWALL) {
-			    //Debug.Log("RIGHT HIT WALL GOING UP?");
+		Debug.Log ("OIL COLLIDED WITH SOMETHING!!!!!=" + coll.gameObject.tag);
+		if (direction == "right") {
+			    Debug.Log("RIGHT HIT WALL GOING UP?");
 				wall = coll.gameObject;
 				wsr = wall.GetComponent<SpriteRenderer> ();
 				direction = "up";
@@ -150,24 +152,24 @@ public class oil : MonoBehaviour {
 				velocityNow = new Vector2 (0, speed);
 	    }
 
-		if (direction == "left" && coll.gameObject.layer == NWALL) {
-			//Debug.Log("LEFT HIT WALL GOING UP? coll.gameObject.layer=" + coll.gameObject.layer );
+		if (direction == "left") {
+			Debug.Log("LEFT HIT WALL GOING UP? coll.gameObject.layer=" + coll.gameObject.layer );
 			wall = coll.gameObject;
 			wsr = wall.GetComponent<SpriteRenderer> ();
 		   direction = "up";
 			onGround = false;
 			velocityNow = new Vector2 (0, speed);
 		}
-		if (direction == "down" && coll.gameObject.layer == NGROUND) {				
+		if (direction == "down") {				
 			onGround = true;
 			if (is_right == true) {
-				//Debug.Log("DOWN HIT GROUND GOING RIGHT?");
+				Debug.Log("DOWN HIT GROUND GOING RIGHT?");
 				direction = "right";
 				velocityNow = new Vector2 (speed, 0);	
 			} else {
 				direction = "left";
 				velocityNow = new Vector2 (-speed, 0);	
-				//Debug.Log("DOWN HIT GROUND GOING LEFT?");
+				Debug.Log("DOWN HIT GROUND GOING LEFT?");
 			}
 		}
 		if (coll.gameObject.tag == "Rocket") {

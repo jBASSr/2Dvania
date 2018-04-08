@@ -25,9 +25,12 @@ namespace Tino
         {
             WorldState.NewScenePosition = new Dictionary<SceneDoorTuple, SceneDoorTuple>()
             {
+				{ new D("DesertLevel", "Door_Cave"),  new D("cave", "Door 1") },
 				{ new D("level1", "Door 1"),  new D("cave", "Door 1") },
-				{ new D("level1", "Door_Locked"),  new D("boss", "Door") },
-				{ new D("cave", "Door 1"),  new D("level1", "Door 1") },
+				//{ new D("level1", "Door_Locked"),  new D("boss", "Door") },
+				{ new D("DesertLevel", "Door_Locked"),  new D("boss", "Door") },
+				//{ new D("cave", "Door 1"),  new D("level1", "Door 1") },
+				{ new D("cave", "Door 1"),  new D("DesertLevel", "Door_Cave") },
 				{ new D("boss", "DoorExit"),  new D("JR_Level_01", "DoorEnter") },
                 { new D("Tino", "Door 1"),  new D("Tino2", "Door 1") },
                 { new D("Tino", "Door 2"),  new D("Tino2", "Door 2") },
