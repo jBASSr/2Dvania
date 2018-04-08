@@ -1137,6 +1137,7 @@ MonoBehaviour:
   extraJumps: 1
   jumpCount: 0
   jumpSpeed: 300
+  boostSpeed: 150
   stance: 0
   groundCheck: {fileID: 2124885311}
   wallCheck: {fileID: 0}
@@ -1167,6 +1168,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 0}
   currentWeapon: {fileID: 0}
   aimDir: 0
+  equippedWeapon: 0
   bulletSpeed: 400
   rocketPrefab: {fileID: 0}
   fireRate: 0.5
@@ -2328,11 +2330,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4501944097075986, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.95
+      value: 3.32
       objectReference: {fileID: 0}
     - target: {fileID: 4501944097075986, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.1
+      value: -24.96
       objectReference: {fileID: 0}
     - target: {fileID: 4501944097075986, guid: 9211723800c336e4fa0d51f57bfcd65d, type: 2}
       propertyPath: m_LocalPosition.z
