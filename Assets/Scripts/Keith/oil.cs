@@ -43,6 +43,8 @@ public class oil : MonoBehaviour {
 		boxcol = this.GetComponent<BoxCollider2D> ();
 		xStart = this.transform.position.x;
 		xLast = xStart;
+		startRocketHitTime = Time.time - hitRocketTime;
+		startBulletHitTime = Time.time - hitBulletTime;
 
 	}
 
