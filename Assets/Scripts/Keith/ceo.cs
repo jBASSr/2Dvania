@@ -35,6 +35,7 @@ public class ceo : MonoBehaviour {
 	public float hitCount = 5.0f;
 	AnimatorStateInfo stateInfo;
 	int currentFrame;
+	private float camera_width = 0.0f;
 
 
 
@@ -57,6 +58,9 @@ public class ceo : MonoBehaviour {
 			}
 		}
 		//Debug.Log ("ceo_shooting length=" +fireTime);
+		Camera cam = Camera.main;
+		float height = 2f * cam.orthographicSize;
+		camera_width = height * cam.aspect;
     }
 	
 	// Update is called once per frame
@@ -76,7 +80,7 @@ public class ceo : MonoBehaviour {
 		}
 		if (robot != null) {
 			if (robot.isGrounded) {
-				if ((robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
+				if ((Mathf.Abs(robot.transform.position.x - transform.position.x)<(camera_width/2.0f)) && (robot.forward && !is_right && robot.transform.position.x < transform.position.x) || (!robot.forward && is_right && robot.transform.position.x > transform.position.x)) {
 					//Debug.Log ("FACING EACHOTHER. SHOOT YOU!!!");
 					//INITIALIZE:
 					if (isStart == true) {
