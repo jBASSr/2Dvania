@@ -37,7 +37,9 @@ namespace Tino
                 { new D("Tino2", "Door 1"), new D("Tino", "Door 1") },
                 { new D("Tino2", "Door 2"), new D("Tino", "Door 2") },
                 { new D("Tino3", "MetroidDoor"), new D("Tino3", "MF_Doors_23") },
-                { new D("Tino3", "MF_Doors_23"), new D("Tino3", "MetroidDoor") }
+                { new D("Tino3", "MF_Doors_23"), new D("Tino3", "MetroidDoor") },
+                { new D("scenes1", "MetroidDoor"), new D("scenes1", "MF_Doors_23") },
+                { new D("scenes1", "MF_Doors_23"), new D("scenes1", "MetroidDoor") }
             };
 
             WorldState.SceneItemState = new Dictionary<SceneItemTuple, bool>()
@@ -53,7 +55,12 @@ namespace Tino
                 { new I("Tino4", "DoubleJump"), true },
                 { new I("Tino4", "HPMaxUp"), true },
                  { new I("DesertLevel", "DoubleJump"), true },
-                { new I("DesertLevel", "HPMaxUp"), true }
+                { new I("DesertLevel", "HPMaxUp"), true },
+                  { new I("scenes1", "DoubleJump"), true },
+                { new I("scenes1", "HPMaxUp"), true },
+                 { new I("DesertLevel 2", "DoubleJump"), true },
+                  { new I("DesertLevel 2", "DoubleJump1"), true },
+                { new I("DesertLevel 2", "HPMaxUp"), true }
             };
         }
 
