@@ -271,7 +271,8 @@ public class SimpleMovement : MonoBehaviour
 				jumpCount++;
 			} else if (jumpCount == 1 && extraJumps == 1 && !isGrounded && !hp.StunnedState) {
 				anim.SetBool ("Boosted", true);
-				jumpCount++;
+                jumpCount++;
+                FindObjectOfType<AudioManager_2>().Play("Boost");
 				rb.AddForce (new Vector2 (0.0f, boostSpeed*4));
 			}
 		}
