@@ -73,7 +73,7 @@ public class HealthSystem : MonoBehaviour {
 		hpBar = health / 100;
 		// 2. Sprite / Animations
 	}
-
+	/*
 	void OnGUI() {
 		// HP Bar Base
 		GUI.BeginGroup (new Rect (pos.x, pos.y, size.x, size.y));
@@ -86,7 +86,7 @@ public class HealthSystem : MonoBehaviour {
 		GUI.Label (new Rect (3, -3f, 100, 20), health.ToString());
 		GUI.EndGroup();
 	}
-
+	*/
 	// Collision with Enemy Hitbox
 	void OnCollisionEnter2D (Collision2D c)
 	{

@@ -27,6 +27,10 @@ public class SimpleMovement : MonoBehaviour
 	Vector2 movement;
 	Vector2 vel;
 
+	// Controller Support
+	float hAxis, vAxis; // Left-Stick 
+	float dhAxis, dvAxis; // D-Pad (eventually)
+
 	// Player & Weapon State
 	public int stance = 0;
 	private const int playerStanding = 0;
@@ -62,7 +66,7 @@ public class SimpleMovement : MonoBehaviour
 	public float turnWait = 0.2f;
 	public float turnTime = 0;
 	public bool turning = false;
-	public float transWait = 2f;
+	public float transWait = 1f;
 	public float transTime = 0;
 	public bool transforming = false;
 
@@ -193,8 +197,12 @@ public class SimpleMovement : MonoBehaviour
 		}
 		*/
 		// User Inputs for Aim AND Movement
-		speedX = Input.GetKey (KeyCode.A) ? -1 : Input.GetKey (KeyCode.D) ? 1 : 0;
-	    speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
+		//speedX = Input.GetKey (KeyCode.A) ? -1 : Input.GetKey (KeyCode.D) ? 1 : 0;
+		hAxis = Input.GetAxis("Horizontal");
+		vAxis = Input.GetAxis("Vertical");
+		if (hAxis >= 0.5f) { speedX = 1; } else if (hAxis <= -0.5f) { speedX = -1; } else { speedX = 0; }
+		if (vAxis >= 0.5f) { speedY = 1; } else if (vAxis <= -0.5f) { speedY = -1; } else { speedY = 0; }
+	    //speedY = Input.GetKey (KeyCode.S) ? -1 : Input.GetKey (KeyCode.W) ? 1 : 0;
 		PlayerState();
 		Jump ();
 		if (turning) {
@@ -229,7 +237,7 @@ public class SimpleMovement : MonoBehaviour
 			swapping = true;
 			SwapWeapons (equippedWeapon);
 		}
-		if ((Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) && stance <= 1) {
+		if ((Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) || Input.GetButtonDown("xboxA") && stance <= 1) {
 			anim.SetBool ("isShooting", true);
 			if (Time.time > lastFire + fireRate) {
 				lastFire = Time.time;
@@ -260,7 +268,7 @@ public class SimpleMovement : MonoBehaviour
 			*/
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space) || Input.GetButtonDown("xboxB")) {
 			if ((isGrounded || jumpCount < extraJumps) && !hp.StunnedState) {
 				anim.SetBool ("Jumped", true);
 				jumping = true;
@@ -339,14 +347,14 @@ public class SimpleMovement : MonoBehaviour
 	{
 		if (isGrounded) {
 			// Crouch
-			if (Input.GetKeyDown (KeyCode.S) && speed == 0) {
+			if (Input.GetKeyDown (KeyCode.S) || vAxis == -1 && speed == 0 && stance < 2 && !transforming) {
 				stance = stance < 2 ? stance + 1 : 2;
 				transforming = true;
                 //Crouch Sound
                 FindObjectOfType<AudioManager_2>().Play("Crouch");
 
                 // Standing Up
-            } else if (Input.GetKeyDown (KeyCode.W) && !isCeiling) {
+			} else if (Input.GetKeyDown (KeyCode.W) || vAxis == 1 && !isCeiling && stance > 0 && !transforming) {
 				stance = stance > 0 ? stance - 1 : 0;
                 //Stand Sound
                 FindObjectOfType<AudioManager_2>().Play("Crouch");
