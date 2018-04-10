@@ -11,6 +11,7 @@ namespace Tino
         {
             if (!WorldState.IsItemOn(this.gameObject.scene.name, this.name))
             {
+                
                 Destroy(this.gameObject);
             }
         }
@@ -20,6 +21,7 @@ namespace Tino
             {
                 if (c.gameObject.tag != "Player")
                 {
+                    FindObjectOfType<AudioManager_2>().Play("Grab");
                     return;
                 }
                 SimpleMovement playerMovement = c.gameObject.GetComponent<SimpleMovement>();
