@@ -1732,8 +1732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Black: {fileID: 1850480841}
   Animator: {fileID: 1850480840}
-  fromScene: 
-  toScene: 
+  fromScene: DesertLevel2
+  toScene: scenes1
 --- !u!1001 &1456787196
 Prefab:
   m_ObjectHideFlags: 0
@@ -1971,7 +1971,7 @@ Prefab:
     - target: {fileID: 224962236071360634, guid: f31b575151a0b0042a2ca624030ec5da,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 211
+      value: 190.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f31b575151a0b0042a2ca624030ec5da, type: 2}
@@ -2423,7 +2423,7 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 211
+      value: 190.5
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}

@@ -1175,12 +1175,12 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 427.5
+      value: 392.5
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 190
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
@@ -1738,7 +1738,7 @@ Prefab:
         type: 2}
       propertyPath: sounds.Array.data[2].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 074a18898565b3149a9ed336a6010d1f, type: 3}
+      objectReference: {fileID: 8300000, guid: 80037c63401cafd439540bb0bac5c5af, type: 3}
     - target: {fileID: 114829856838656260, guid: 1a516c78a332e8040b9d0cec0d2fda32,
         type: 2}
       propertyPath: sounds.Array.data[2].volume

@@ -9,7 +9,7 @@ namespace Tino
     {
         private float TextHeight;
         private Text Text;
-        public float ScrollAmount;
+        public float ScrollAmount = 300.0f;
 
         void Start()
         {
@@ -19,7 +19,7 @@ namespace Tino
 
         void Update()
         {
-            this.TextHeight += this.ScrollAmount;
+			this.TextHeight += 4.0f;//ScrollAmount;
             this.Text.transform.position = new Vector3(this.Text.transform.position.x, this.TextHeight, 0);
             if (this.TextHeight > 1000 || Input.GetKeyDown(KeyCode.Escape))
             {

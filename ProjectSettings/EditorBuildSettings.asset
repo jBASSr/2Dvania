@@ -30,14 +30,17 @@ EditorBuildSettings:
     path: Assets/_Scenes/scenes1.unity
     guid: d1623307728bbab41a9eb092da0df247
   - enabled: 0
-    path: Assets/_Scenes/DesertLevel 2.unity
-    guid: ba61d8228e1faea488e3113b11f423de
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/_Scenes/DesertLevel 1.unity
-    guid: 2b26addbbfa2b7b4aa72d80e1d83c19b
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/_Scenes/DesertLevel2.unity
     guid: 8fe1531e4fa789f4d83465c08c0286ba
   - enabled: 1
     path: Assets/_Scenes/DesertLevel1.unity
     guid: c2f2af7b5a74b724eb3a6035ed811d0a
+  - enabled: 1
+    path: Assets/_Scenes/bad_robot.unity
+    guid: 66dfc0bb3fdd73846af868116588eee3

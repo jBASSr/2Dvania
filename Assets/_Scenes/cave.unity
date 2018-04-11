@@ -276,12 +276,12 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 427.5
+      value: 392.5
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 182.5
+      value: 196
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
@@ -1215,7 +1215,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 792969414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 427.5, y: 182.5, z: 0}
+  m_LocalPosition: {x: 392.5, y: 196, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1545294980}
@@ -2403,7 +2403,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1545294979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 537.5, y: 172.5, z: 0}
+  m_LocalPosition: {x: 502.5, y: 186, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 847224293}
@@ -3351,6 +3351,27 @@ Prefab:
       propertyPath: m_Name
       value: Door1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114410288983738044, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2122802833 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1973718669306140, guid: c57ff7f06b4b7cd4fade17f35e011747,
+    type: 2}
+  m_PrefabInternal: {fileID: 2122802832}
+--- !u!114 &2122802834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2122802833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e419a6c5bd48a47b9143e52c7eaf34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Black: {fileID: 163009880}
+  Animator: {fileID: 163009879}
+  fromScene: cave
+  toScene: DesertLevel1
