@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class bad_robot : MonoBehaviour {
 
@@ -129,11 +130,15 @@ public class bad_robot : MonoBehaviour {
 				animator.SetBool ("is_die", true);
 				Destroy (this.gameObject, 1.0f);
 				FindObjectOfType<AudioManager_2>().Play("explode");
+				StartCoroutine (loadCredits ());
 			}
 			Destroy (c.gameObject);
 		}
 	}
-
+	IEnumerator loadCredits (){
+		yield return new WaitForSeconds(1.0f);
+	  SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+	}
 	IEnumerator hitRobot (){
 		Debug.Log ("SETTTING ROBOT COLOR???");
 		gameObject.GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.blue);

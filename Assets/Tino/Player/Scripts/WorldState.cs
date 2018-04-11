@@ -25,11 +25,13 @@ namespace Tino
         {
             WorldState.NewScenePosition = new Dictionary<SceneDoorTuple, SceneDoorTuple>()
             {				
-				{ new D("DesertLevel", "Door_Cave"),  new D("cave", "Door 1") },
-				{ new D("cave", "Door 1"),  new D("DesertLevel", "Door_Cave") },
-				{ new D("DesertLevel", "Door_Locked"),  new D("boss", "Door") },
+				{ new D("DesertLevel1", "Door_Cave"),  new D("cave", "Door1") }
+				/*
+				{ new D("cave", "Door 1"),  new D("DesertLevel1", "Door_Cave") },
+				{ new D("DesertLevel1", "Door_Locked"),  new D("boss", "Door") },
 				{ new D("boss", "DoorExit"),  new D("scenes1", "DoorEnter") },
-				{ new D("scenes1", "Door2"),  new D("DesertLevel2", "DoorDL2Enter") },
+				{ new D("scenes1", "Door2"),  new D("bad_robot", "Door1") },
+
 				{  new D("DesertLevel2", "DoorDL2Enter"), new D("scenes1", "Door2") },
 				{ new D("DesertLevel2", "Door2"),  new D("scenes1", "Door3") },
                 { new D("Tino", "Door 1"),  new D("Tino2", "Door 1") },
@@ -40,6 +42,7 @@ namespace Tino
                 { new D("Tino3", "MF_Doors_23"), new D("Tino3", "MetroidDoor") },
                 { new D("scenes1", "MetroidDoor"), new D("scenes1", "MF_Doors_23") },
                 { new D("scenes1", "MF_Doors_23"), new D("scenes1", "MetroidDoor") }
+                */
             };
 
             WorldState.SceneItemState = new Dictionary<SceneItemTuple, bool>()

@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4922596588586854}
   - component: {fileID: 212451119967378308}
   - component: {fileID: 61004900877084206}
-  - component: {fileID: 114227045751765830}
-  m_Layer: 16
+  - component: {fileID: 114414483375316572}
+  m_Layer: 8
   m_Name: Door_Locked
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114227045751765830
+--- !u!114 &114414483375316572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,13 +75,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1208655019759554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea31c2c5fc9cae43a04dff71c137a7c, type: 3}
+  m_Script: {fileID: 11500000, guid: a6e419a6c5bd48a47b9143e52c7eaf34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myScene: 
-  TargetScene: 
-  TargetDoor: {fileID: 0}
-  targetDoorName: 
+  Black: {fileID: 0}
+  Animator: {fileID: 0}
+  toScene: 
 --- !u!212 &212451119967378308
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -113,9 +112,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1458329823
+  m_SortingLayer: 1
+  m_SortingOrder: 5000
   m_Sprite: {fileID: 21300000, guid: ba017153a0ad1b94eb88d6b8a98c8a17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
