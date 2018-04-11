@@ -192,7 +192,7 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 229
+      value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
@@ -2080,7 +2080,7 @@ Prefab:
     - target: {fileID: 224962236071360634, guid: f31b575151a0b0042a2ca624030ec5da,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 229
+      value: 194
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f31b575151a0b0042a2ca624030ec5da, type: 2}
@@ -2532,7 +2532,7 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 229
+      value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
@@ -2700,7 +2700,7 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 229
+      value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
@@ -2802,7 +2802,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4536440111751028, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 23.86
+      value: 23.72
       objectReference: {fileID: 0}
     - target: {fileID: 4536440111751028, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2830,7 +2830,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4536440111751028, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.960332
+      value: 2.100459
       objectReference: {fileID: 0}
     - target: {fileID: 4536440111751028, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
       propertyPath: m_LocalScale.x
@@ -2850,6 +2850,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973718669306140, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}
+      propertyPath: m_Name
+      value: DoorDL2Enter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c57ff7f06b4b7cd4fade17f35e011747, type: 2}

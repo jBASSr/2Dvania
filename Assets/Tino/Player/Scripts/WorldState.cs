@@ -25,16 +25,13 @@ namespace Tino
         {
             WorldState.NewScenePosition = new Dictionary<SceneDoorTuple, SceneDoorTuple>()
             {				
-				//{ new D("level1", "Door 1"),  new D("cave", "Door 1") },
-				//{ new D("level1", "Door_Locked"),  new D("boss", "Door") },
-				{ new D("DesertLevel", "Door_Cave"),  new D("cave", "Door 1") },//1
-				{ new D("cave", "Door 1"),  new D("DesertLevel", "Door_Cave") },//2
-				{ new D("DesertLevel", "Door_Locked"),  new D("boss", "Door") },//3
-				//{ new D("cave", "Door 1"),  new D("level1", "Door 1") },
-				{ new D("boss", "DoorExit"),  new D("scenes1", "DoorEnter") },//4
-				{ new D("scenes1", "Door2"),  new D("DesertLevel2", "Door") },//5
-				{  new D("DesertLevel2", "Door"), new D("scenes1", "Door2") },//5
-				{ new D("DesertLevel2", "Door2"),  new D("scenes1", "Door3") },//6: Final door
+				{ new D("DesertLevel", "Door_Cave"),  new D("cave", "Door 1") },
+				{ new D("cave", "Door 1"),  new D("DesertLevel", "Door_Cave") },
+				{ new D("DesertLevel", "Door_Locked"),  new D("boss", "Door") },
+				{ new D("boss", "DoorExit"),  new D("scenes1", "DoorEnter") },
+				{ new D("scenes1", "Door2"),  new D("DesertLevel2", "DoorDL2Enter") },
+				{  new D("DesertLevel2", "DoorDL2Enter"), new D("scenes1", "Door2") },
+				{ new D("DesertLevel2", "Door2"),  new D("scenes1", "Door3") },
                 { new D("Tino", "Door 1"),  new D("Tino2", "Door 1") },
                 { new D("Tino", "Door 2"),  new D("Tino2", "Door 2") },
                 { new D("Tino2", "Door 1"), new D("Tino", "Door 1") },
