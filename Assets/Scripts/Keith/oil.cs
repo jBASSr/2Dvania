@@ -56,34 +56,34 @@ public class oil : MonoBehaviour {
 		if (oilPrefab != null) {
 			Destroy (oilPrefab,0.0f);
 		}
-		if (direction == "up") {//To move up->right			
-			if (sr.bounds.min.y> wsr.bounds.max.y+0.3) {				
+		if (sr != null && wsr != null) {
+			if (direction == "up") {//To move up->right			
+				if (sr.bounds.min.y > wsr.bounds.max.y + 0.3) {				
+					if (is_right) {
+						is_right_mul = 1.0f;
+						direction = "right";
+					} else {
+						is_right_mul = -1.0f;
+						direction = "left";
+					}
+					velocityNow = new Vector2 (is_right_mul * speed, 0);
+				}
+			} else if ((direction == "left" || direction == "right") && onGround == false) {//to move right->down
 				if (is_right) {
-					is_right_mul = 1.0f;
-					direction = "right";
+					if (sr.bounds.min.x > wsr.bounds.max.x + 0.3) {
+						velocityNow = new Vector2 (0, -speed);
+						direction = "down";
+					}
 				} else {
-					is_right_mul = -1.0f;
-					direction = "left";
+					//Debug.Log("Direction=" + direction);
+					if (sr.bounds.max.x + 0.3 < wsr.bounds.min.x) {
+						//Debug.Log("Direction=" + direction + "LEFT OF WALL!!!!");
+						velocityNow = new Vector2 (0, -speed);
+						direction = "down";
+					}			
 				}
-				velocityNow = new Vector2 (is_right_mul*speed, 0);
 			}
 		}
-		else if ((direction == "left" || direction == "right") && onGround==false) {//to move right->down
-			if (is_right) {
-				if (sr.bounds.min.x > wsr.bounds.max.x + 0.3) {
-					velocityNow = new Vector2 (0, -speed);
-					direction = "down";
-				}
-			} else {
-				//Debug.Log("Direction=" + direction);
-				if (sr.bounds.max.x + 0.3 < wsr.bounds.min.x) {
-					//Debug.Log("Direction=" + direction + "LEFT OF WALL!!!!");
-					velocityNow = new Vector2 (0, -speed);
-					direction = "down";
-				}			
-			}
-		}
-
 		/*if (robot.scene.name) {
 			Debug.Log ("THE ROBOT IS active?");
 		}
@@ -117,7 +117,7 @@ public class oil : MonoBehaviour {
 					transform.rotation);
 			}
 		}
-		if (Mathf.Abs(this.transform.position.x - xStart) > xRange && Mathf.Abs(this.transform.position.x - xLast)>0.5f) {
+		if (Mathf.Abs(this.transform.position.x - xStart) > xRange && Mathf.Abs(this.transform.position.x - xLast)>(xRange/2)) {
 			//Debug.Log ("SWITCHING DIRECTION!!!!!! direction=" + direction);
 			xLast = this.transform.position.x;
 			is_right = !is_right;
