@@ -215,7 +215,7 @@ public class HealthSystem : MonoBehaviour {
         {
             GameObject doorObject = GameObject.Find(doorName);
             Vector3 doorPos = doorObject.transform.position;
-            this.transform.position = new Vector3(doorPos.x, doorPos.y + 0.5f, doorPos.z);
+            this.transform.position = new Vector3(doorPos.x, doorPos.y + 0.5f, this.transform.position.z);
         }
     }
 
