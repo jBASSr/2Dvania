@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4915894349605284}
   - component: {fileID: 212841064348254540}
   - component: {fileID: 61123892153125438}
-  - component: {fileID: 114447645681222372}
-  m_Layer: 9
+  - component: {fileID: 114696491685599426}
+  m_Layer: 8
   m_Name: Door
   m_TagString: Door_Cave
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114447645681222372
+--- !u!114 &114696491685599426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,14 +75,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1922861387694478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea31c2c5fc9cae43a04dff71c137a7c, type: 3}
+  m_Script: {fileID: 11500000, guid: a6e419a6c5bd48a47b9143e52c7eaf34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myScene: cave
-  myDoorName: 
-  TargetScene: level1
-  TargetDoor: {fileID: 0}
-  targetDoorName: Door2
+  Black: {fileID: 0}
+  Animator: {fileID: 0}
+  toScene: 
 --- !u!212 &212841064348254540
 SpriteRenderer:
   m_ObjectHideFlags: 1

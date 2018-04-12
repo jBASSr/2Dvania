@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class bad_robot : MonoBehaviour {
 
@@ -129,9 +131,15 @@ public class bad_robot : MonoBehaviour {
 				animator.SetBool ("is_die", true);
 				Destroy (this.gameObject, 1.0f);
 				FindObjectOfType<AudioManager_2>().Play("explode");
+				StartCoroutine (loadCredits ());
+				SceneManager.LoadScene("Credits", LoadSceneMode.Single);
 			}
 			Destroy (c.gameObject);
 		}
+	}
+	public IEnumerator loadCredits (){
+		yield return new WaitForSeconds(1.0f);
+		//SceneManager.LoadScene("Credits", LoadSceneMode.Single);
 	}
 
 	IEnumerator hitRobot (){

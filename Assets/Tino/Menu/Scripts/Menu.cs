@@ -54,6 +54,7 @@ namespace Tino
 
             if (this.SelectedOption == 0 && Input.GetKeyDown(KeyCode.Return))
             {
+				Debug.Log ("loading new scene??");
                 UnityEngine.SceneManagement.SceneManager.LoadScene(this.NewGameScene);
             }
 
