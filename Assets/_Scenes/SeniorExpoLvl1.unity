@@ -162,6 +162,15 @@ Prefab:
       propertyPath: boostSpeed
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4696733291363512, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 114687807646793996, guid: 156ae37e049b0274ba0aa75ced14be1b,
+        type: 2}
+      propertyPath: fireRate
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 156ae37e049b0274ba0aa75ced14be1b, type: 2}
   m_IsPrefabParent: 0

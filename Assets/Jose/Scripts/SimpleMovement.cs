@@ -90,7 +90,11 @@ public class SimpleMovement : MonoBehaviour
 	public int equippedWeapon;
 	bool swapping;
 	bool isShooting;
+	bool shot;
+	bool aiming; // Actively pressing LB
 	float swapTime = 0f;
+	float aimTime = 0f;
+	float aimWait = 1f;
 	public float bulletSpeed = 400;
 	// old
 	public GameObject rocketPrefab;
@@ -237,22 +241,43 @@ public class SimpleMovement : MonoBehaviour
 				landTime = 0;
 			}
 		}
+		if (shot) {
+			aimTime += Time.deltaTime;
+			if (aimTime >= aimWait) {
+				shot = false;
+				anim.SetBool ("isShooting", false);
+				aimTime = 0;
+			}
+		}
 		if (Input.GetKey (KeyCode.R) || Input.GetButtonDown("xboxRB") && !swapping) {
 			swapping = true;
 			SwapWeapons (equippedWeapon);
 		}
-		if ((Input.GetKey (KeyCode.F) || Input.GetMouseButton (0)) || rTrigger >= 0.01 && stance <= 1) {
+		if ((Input.GetKey (KeyCode.F) || Input.GetMouseButton (0) || Input.GetButtonDown("xboxY")) && stance < 1) {//rTrigger >= 0.01 && stance < 1) {
 			anim.SetBool ("isShooting", true);
-			isShooting = true;
-			if (Time.time > lastFire + fireRate) {
-				lastFire = Time.time;
-				Fire ();
-                //Shoot Sound
-                FindObjectOfType<AudioManager_2>().Play("Shoot");
-            }
+			//isShooting = true;
+			shot = true;
+			aimTime = 0;
+			// Regular Bullets
+			if (equippedWeapon == 0) {
+				if (Time.time > lastFire + fireRate) {
+					lastFire = Time.time;
+					Fire ();
+					//Shoot Sound
+					FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+				}
+			// Missiles
+			} else if (equippedWeapon == 1) {
+				if (Time.time > lastFire + (fireRate*4)) {
+					lastFire = Time.time;
+					Fire ();
+					//Shoot Sound
+					FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+				}
+			}
 		} else {
-			anim.SetBool ("isShooting", false);
-			isShooting = false;
+			//anim.SetBool ("isShooting", false);
+			//isShooting = false;
 		}
 	}
 
@@ -291,7 +316,7 @@ public class SimpleMovement : MonoBehaviour
 				rb.AddForce (new Vector2 (0.0f, boostSpeed*2));
 			}
 		}
-		if (Input.GetKeyUp (KeyCode.Space) && isMovingUp) {
+		if (Input.GetKeyUp (KeyCode.Space) || Input.GetButtonDown("xboxB") && isMovingUp) {
 			rb.velocity = new Vector2 (rb.velocity.x, 0f);
 		}
 	}
@@ -299,42 +324,55 @@ public class SimpleMovement : MonoBehaviour
 	void AimingState()
 	{
 		if (Input.GetButton("xboxLB")) {
-			Debug.Log ("Left Bumper Hold");
+			aiming = true;
+			//Debug.Log ("Left Bumper Hold");
 			if (speedY < 0) {
 				aimDir = aimDownRight;
 				bulletSpawn = BottomRight;
+				anim.SetInteger ("AimDir", 3);
 			} else {
 				aimDir = aimTopRight;
 				bulletSpawn = TopRight;
+				anim.SetInteger ("AimDir", 1);
 			}
 		} else {
+			aiming = false;
 			if (speedX == 0 && speedY == 0) {
 				aimDir = aimIdle;
 				bulletSpawn = FrontCenter;
+				anim.SetInteger ("AimDir", 2);
 			} else if (speedX == 0 && speedY > 0) {
 				aimDir = aimUp;
 				bulletSpawn = Top;
+				anim.SetInteger ("AimDir", 0);
 			} else if (speedX > 0 && speedY > 0) {
 				aimDir = aimTopRight;
 				bulletSpawn = TopRight;
+				anim.SetInteger ("AimDir", 1);
 			} else if (speedX > 0 && speedY == 0) {
 				aimDir = aimForward;
 				bulletSpawn = FrontCenter;
+				anim.SetInteger ("AimDir", 2);
 			} else if (speedX > 0 && speedY < 0) {
 				aimDir = aimDownRight;
 				bulletSpawn = BottomRight;
+				anim.SetInteger ("AimDir", 3);
 			} else if (speedX == 0 && speedY < 0) {
 				aimDir = aimDown;
 				bulletSpawn = Bottom;
+				anim.SetInteger ("AimDir", 4);
 			} else if (speedX < 0 && speedY == 0) {
 				aimDir = aimIdle;
 				bulletSpawn = FrontCenter;
+				anim.SetInteger ("AimDir", 2);
 			} else if (speedX < 0 && speedY < 0) {
 				aimDir = aimDownRight;
 				bulletSpawn = BottomRight;
+				anim.SetInteger ("AimDir", 3);
 			} else if (speedX < 0 && speedY > 0) {
 				aimDir = aimTopRight;
 				bulletSpawn = TopRight;
+				anim.SetInteger ("AimDir", 1);
 			}
 		}
 		// Bumpers
@@ -365,7 +403,7 @@ public class SimpleMovement : MonoBehaviour
 	{
 		if (isGrounded) {
 			// Crouch
-			if (Input.GetKeyDown (KeyCode.S) || vAxis == -1 && speed == 0 && stance < 2 && !transforming && !isShooting) {
+			if (Input.GetKeyDown (KeyCode.S) || vAxis == -1 && speed == 0 && stance < 2 && !transforming && !isShooting && !aiming) {
 				stance = stance < 2 ? stance + 1 : 2;
 				transforming = true;
                 //Crouch Sound
@@ -458,7 +496,7 @@ public class SimpleMovement : MonoBehaviour
 		*/
 	}
 	void SwapWeapons(int n) {
-		Debug.Log ("Swapping!");
+		//Debug.Log ("Swapping!");
 		if (n == 0) {
 			equippedWeapon++;
 			currentWeapon = missileWeapon;
