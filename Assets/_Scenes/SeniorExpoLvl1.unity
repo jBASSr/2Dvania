@@ -311,7 +311,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 813617561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.13, y: -9.33, z: 10.2578125}
+  m_LocalPosition: {x: 20.13, y: -6.4, z: 10.2578125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1277781635}
@@ -463,7 +463,7 @@ Prefab:
     - target: {fileID: 114868934707403006, guid: 4c42cd515460811469926ce4d1dedfae,
         type: 2}
       propertyPath: boostSpeed
-      value: 250
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114868934707403006, guid: 4c42cd515460811469926ce4d1dedfae,
         type: 2}
