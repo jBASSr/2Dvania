@@ -202,7 +202,6 @@ public class HealthSystem : MonoBehaviour {
         }
         else if (Tino.Save.SaveLoadGame.SaveExists && !Tino.Save.SaveLoadGame.PlayerHealthLoaded)
         {
-            Debug.Log("Save does exist");
             Vector3 newPos;
             newPos.x = Tino.Save.SaveLoadGame.SavedGame.PlayerPosition.X;
             newPos.y = Tino.Save.SaveLoadGame.SavedGame.PlayerPosition.Y;
@@ -212,7 +211,7 @@ public class HealthSystem : MonoBehaviour {
             this.maxHealth = Tino.Save.SaveLoadGame.SavedGame.PlayerMaxHealth;
             Tino.Save.SaveLoadGame.PlayerHealthLoaded = true;
         }
-        else if (!string.IsNullOrEmpty(doorName))
+        if (!string.IsNullOrEmpty(doorName))
         {
             GameObject doorObject = GameObject.Find(doorName);
             Vector3 doorPos = doorObject.transform.position;

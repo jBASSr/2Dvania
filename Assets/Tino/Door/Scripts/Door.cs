@@ -29,17 +29,8 @@ namespace Tino
 		    if(!this.IsColliding) { return; }
             if(!this.SceneTransitioning && !this.StartDoor)
             {
-				Tino.WorldState.ComingFromDoor = this.name;
-				Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
-				string nextScene = WorldState.GetSceneName();
-				Debug.Log ("nextScene=" + nextScene);
-				//LOAD boss scene if hasKey
-				if (nextScene!=null && nextScene != "boss" || GameManager.hasKey == true) {
-					this.SceneTransitioning = true;
-					StartCoroutine (this.FadeToNewScene (nextScene));
-				} else {
-					Debug.Log ("YOU DONT HAVE THE KEY!!!!!");
-				}
+                this.SceneTransitioning = true;
+                StartCoroutine(this.FadeToNewScene());
             }
 	    }
 
@@ -61,11 +52,17 @@ namespace Tino
             }
         }
 
-		public IEnumerator FadeToNewScene(string nextScene)
+        public IEnumerator FadeToNewScene()
         {
             this.Animator.SetBool("Fade", true);
             yield return new WaitUntil(() => this.Black.color.a == 1);
-			SceneManager.LoadScene (nextScene, LoadSceneMode.Single);
+            Tino.WorldState.ComingFromDoor = this.name;
+            Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
+            string nextScene = WorldState.GetSceneName();
+            if(nextScene != null)
+            {
+                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+            }
         }
     }
 }
