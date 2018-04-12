@@ -170,6 +170,6 @@ public class oil_decay : MonoBehaviour {
 			transform.position,
 			transform.rotation);
 		
-		//SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+
 	}
 }
