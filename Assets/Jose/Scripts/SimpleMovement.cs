@@ -287,7 +287,8 @@ public class SimpleMovement : MonoBehaviour
 				anim.SetBool ("Boosted", true);
                 jumpCount++;
                 FindObjectOfType<AudioManager_2>().Play("Boost");
-				rb.AddForce (new Vector2 (0.0f, boostSpeed*4));
+				rb.velocity = new Vector2 (0f, 0f);
+				rb.AddForce (new Vector2 (0.0f, boostSpeed*2));
 			}
 		}
 		if (Input.GetKeyUp (KeyCode.Space) && isMovingUp) {
