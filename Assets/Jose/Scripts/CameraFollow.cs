@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour {
 
@@ -22,6 +23,8 @@ public class CameraFollow : MonoBehaviour {
 	public float marginY;
 	public Vector2 maxXY = new Vector2 (30, 10);
 	public Vector2 minXY = new Vector2 (-30, -10);
+
+    private bool SceneLoad = false;
 
 	// Use this for initialization
 	void Start () {
@@ -49,4 +52,36 @@ public class CameraFollow : MonoBehaviour {
 		targetY = Mathf.Clamp (targetY, minXY.y, maxXY.y);
 		transform.position = new Vector3 (targetX, targetY, transform.position.z);
 	}
+
+    public void LateUpdate()
+    {
+        if(this.SceneLoad)
+        {
+            string doorName = Tino.WorldState.GetDoorName();
+            GameObject doorObject = GameObject.Find(doorName);
+            if(doorObject != null)
+            {
+                Vector3 doorPos = doorObject.transform.position;
+                this.transform.position = new Vector3(doorPos.x, doorPos.y, transform.position.z);
+            }
+            this.SceneLoad = false;
+        }
+    }
+
+    public void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnload;
+    }
+
+    public void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        this.SceneLoad = true;
+    }
+
+    public void OnSceneUnload(Scene scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoad;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnload;
+    }
 }

@@ -48,6 +48,10 @@ namespace Tino
 
             WorldState.SceneItemState = new Dictionary<SceneItemTuple, bool>()
             {
+				{ new I("SeniorExpoLvl1", "HPRefill"), true },
+				{ new I("SeniorExpoLvl1", "HPMaxUp1"), true },
+				{ new I("SeniorExpoLvl1", "HPMaxUp2"), true },
+				{ new I("SeniorExpoLvl1", "DoubleJump"), true },
                 { new I("Tino", "HPRefill 1"), true },
                 { new I("Tino", "HPMaxUp 1"), true },
                 { new I("Tino", "DoubleJump 1"), true },
