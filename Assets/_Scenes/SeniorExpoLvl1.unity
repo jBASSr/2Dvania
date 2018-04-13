@@ -151,6 +151,11 @@ Prefab:
       propertyPath: m_Name
       value: HPMaxUp2
       objectReference: {fileID: 0}
+    - target: {fileID: 114383976538895134, guid: a07c2e8cbf371814f99d6624b9e22f01,
+        type: 2}
+      propertyPath: MaxUpAmount
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a07c2e8cbf371814f99d6624b9e22f01, type: 2}
   m_IsPrefabParent: 0
@@ -262,6 +267,11 @@ Prefab:
     - target: {fileID: 1596971742735186, guid: a07c2e8cbf371814f99d6624b9e22f01, type: 2}
       propertyPath: m_Name
       value: HPMaxUp1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383976538895134, guid: a07c2e8cbf371814f99d6624b9e22f01,
+        type: 2}
+      propertyPath: MaxUpAmount
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a07c2e8cbf371814f99d6624b9e22f01, type: 2}
