@@ -36,13 +36,14 @@ public class ceo : MonoBehaviour {
 	AnimatorStateInfo stateInfo;
 	int currentFrame;
 	private float camera_width = 0.0f;
-
+	private PlayerHUD ph;
 
 
     // Use this for initialization
     void Start () {
 		xStart = transform.position.x;
 		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
+		ph = GameObject.Find ("Robot").GetComponent<PlayerHUD>();
         vec = new Vector2(1, 0);        
         //sr = new SpriteRenderer();
 		is_right = true;
@@ -139,9 +140,12 @@ public class ceo : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
 		Debug.Log("COLLISION WITH GAME OBJECT=" + coll.gameObject.tag);
-			if (coll.gameObject.tag == "Player") {
-				Debug.Log ("PLAYER COLLISION!!");
+		if (coll.gameObject.tag == "Player") {
+			Debug.Log ("PLAYER COLLISION!!");
+			if (ph != null) {
+				ph.adjustHealth (-5.0f);
 			}
+		}
 		if (coll.gameObject.tag != "Rocket") {
 			if (isXRange == false) {
 				Debug.Log ("Flipping on collide!");

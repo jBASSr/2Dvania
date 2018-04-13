@@ -24,10 +24,12 @@ public class oil_fall : MonoBehaviour {
 	private float startBulletHitTime = 0.0f;
 	public float hitRocketTime = 1.0f;
 	public float hitBulletTime = 1.0f;
+	private PlayerHUD ph;
 
 	// Use this for initialization
 	void Start () {
 		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
+		ph = GameObject.Find ("Robot").GetComponent<PlayerHUD>();
 		direction = "horizontal";
    	     sr = GetComponent<SpriteRenderer> ();
 		capcol = robot.GetComponent<CapsuleCollider2D> ();
@@ -50,6 +52,9 @@ public class oil_fall : MonoBehaviour {
 					oil_mess,
 					transform.position,
 					transform.rotation);
+				if (ph != null) {
+					ph.adjustHealth (-5.0f);
+				}
 			}
 		}
 		if (Time.time < startRocketHitTime + hitRocketTime) {

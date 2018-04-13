@@ -28,10 +28,12 @@ public class oil : MonoBehaviour {
 	public float xRange = 3.0f;
 	//private int NWALL = 11; 
 	//private int NGROUND = 13;
+	private PlayerHUD ph;
 
 	// Use this for initialization
 	void Start () {
 		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
+		ph = GameObject.Find ("Robot").GetComponent<PlayerHUD>();
 		Debug.Log ("OIL STARTED!!!!!");
 		direction = "right";
 		is_right = true;
@@ -97,6 +99,10 @@ public class oil : MonoBehaviour {
 					oil_mess,
 					transform.position,
 					transform.rotation);
+				
+			}
+			if (ph != null) {
+				ph.adjustHealth (-0.2f);
 			}
 		}
 		if (Time.time < startRocketHitTime + hitRocketTime) {

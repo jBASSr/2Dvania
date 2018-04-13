@@ -6,9 +6,11 @@ public class fireball : MonoBehaviour {
 
 	private Color old_color;
 	private GameObject robot;
+	private PlayerHUD ph;
 	// Use this for initialization
 	void Start () {
 		robot = GameObject.Find ("Robot");
+		ph = robot.GetComponent<PlayerHUD> ();
 		old_color = robot.gameObject.GetComponent<SpriteRenderer> ().color;
 	}
 	
@@ -21,6 +23,9 @@ public class fireball : MonoBehaviour {
 	{
 		if (c.tag == "Player") {
 			Destroy (this.gameObject, 0.2f);
+			if (ph != null) {
+				ph.adjustHealth (-10.0f);
+			}
 			//this.gameObject.GetComponent<SpriteRenderer>().color=new Color(1, 1, 0, 1);
 			this.gameObject.GetComponent<SpriteRenderer>().color=new Color(0, 0, 0, 1);
 			//StartCoroutine(hitPlayer());

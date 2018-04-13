@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public static string door_start = "Door1";
 	private GameObject robot;
 	private GameObject targetDoor;
+	public static float currentHealth = 100.0f;
 	//Awake is always called before any Start functions
 	void Awake()
 	{		
