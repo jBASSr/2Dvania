@@ -87,7 +87,7 @@ public class SimpleMovement : MonoBehaviour
 	Rigidbody2D bullet;
 	GameObject FrontCenter, TopRight, BottomRight, Top, Bottom;
 	public int aimDir = 0;
-	public int equippedWeapon;
+    public int equippedWeapon; //0: Base Weapon, 1: Missile Weapon
 	bool swapping;
 	bool isShooting;
 	bool shot;
@@ -101,6 +101,9 @@ public class SimpleMovement : MonoBehaviour
 	public float fireRate = 0.5F;
 	public float rocket_speed = 5.0f;
 	private float lastFire = 0.0f;
+
+    private bool HasFreezeWeapon { get; set; }
+    public int MissileAmmo { get; private set; }
 
 	// External Stuff
 	HealthSystem hp;
@@ -249,7 +252,9 @@ public class SimpleMovement : MonoBehaviour
 				aimTime = 0;
 			}
 		}
-		if (Input.GetKey (KeyCode.R) || Input.GetButtonDown("xboxRB") && !swapping) {
+
+        if ((Input.GetKey(KeyCode.R) || Input.GetButtonDown("xboxRB")) && !swapping)
+        {
 			swapping = true;
 			SwapWeapons (equippedWeapon);
 		}
@@ -262,7 +267,8 @@ public class SimpleMovement : MonoBehaviour
 			if (equippedWeapon == 0) {
 				if (Time.time > lastFire + fireRate) {
 					lastFire = Time.time;
-					Fire ();
+                    if(Fire())
+                    {
 					//Shoot Sound
 					FindObjectOfType<AudioManager_2> ().Play ("Shoot");
 				}
@@ -270,7 +276,8 @@ public class SimpleMovement : MonoBehaviour
 			} else if (equippedWeapon == 1) {
 				if (Time.time > lastFire + (fireRate*4)) {
 					lastFire = Time.time;
-					Fire ();
+                    if(Fire())
+                    {
 					//Shoot Sound
 					FindObjectOfType<AudioManager_2> ().Play ("Shoot");
 				}
@@ -453,7 +460,7 @@ public class SimpleMovement : MonoBehaviour
 		}
 	}
 	*/ 
-	void Fire()
+    bool Fire()
 	{
 		// now with ANGLES (hopefully)! :D
 		// TODO: Assign aim direction based on player inputs
@@ -462,6 +469,12 @@ public class SimpleMovement : MonoBehaviour
 		Vector3 bulletPos = bulletSpawn.transform.position;
 		Quaternion bulletRot = bulletSpawn.transform.rotation;
 		// Create bullet object
+
+        if(this.equippedWeapon == 1)
+        {
+            if(this.MissileAmmo <= 0) { return false; } //Out of ammo. No missile to fire.
+            this.MissileAmmo--;
+        }
 		bullet = Instantiate(currentWeapon, bulletPos, bulletRot);// as Rigidbody2D;
 		// Apply players current x and y velocity
 		bullet.velocity = rb.velocity;
@@ -494,16 +507,41 @@ public class SimpleMovement : MonoBehaviour
 			Destroy (rocket, 10.0f);
 		}
 		*/
+        return true; //Bullet was fired
 	}
-	void SwapWeapons(int n) {
-		//Debug.Log ("Swapping!");
-		if (n == 0) {
-			equippedWeapon++;
+    void SwapWeapons(int n)
+    {
+        switch (n)
+        {
+            case 0:
+                if(this.MissileAmmo > 0)
+                {
+                    equippedWeapon = 1;
 			currentWeapon = missileWeapon;
-		} else if (n == 1) {
+                }
+                else if(this.HasFreezeWeapon)
+                {
+                    equippedWeapon = 2;
+                    currentWeapon = missileWeapon; //No freeze weapon yet. When we have one we can change this.
+                }
+                break;
+            case 1:
+                if(this.HasFreezeWeapon)
+                {
+                    equippedWeapon = 2;
+                    currentWeapon = missileWeapon; //No freeze weapon yet. When we have one we can change this.
+                }
+                else
+                {
 			equippedWeapon = 0;
 			currentWeapon = baseWeapon;
 		}
+                break;
+            case 2:
+                equippedWeapon = 0;
+                currentWeapon = baseWeapon;
+                break;
+        }
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -541,5 +579,21 @@ public class SimpleMovement : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoad;
         UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnload;
+    }
+
+    public bool AddMissileAmmo(int amount)
+    {
+        this.MissileAmmo += 5;
+        return true;
+    }
+
+    public bool AcquireFreezeWeapon()
+    {
+        if(!this.HasFreezeWeapon)
+        {
+            this.HasFreezeWeapon = true;
+            return true;
+        }
+        return false;
     }
 }
