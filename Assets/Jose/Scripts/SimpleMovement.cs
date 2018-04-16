@@ -153,7 +153,7 @@ public class SimpleMovement : MonoBehaviour
 		}
 		// Sprite Orientation
 		if ((speedX > 0.0f && !forward) || (speedX < 0.0f && forward)) {
-			Flip ();
+			Flip();
 		}
 		// Implement Wall Slide/Hold (aka prevent played being stuck to wall)
 		isWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsWall);
@@ -215,7 +215,7 @@ public class SimpleMovement : MonoBehaviour
 		lTrigger = Input.GetAxis("xboxLT");
 		rTrigger = Input.GetAxis("xboxRT");
 		PlayerState();
-		Jump ();
+		Jump();
 		if (turning) {
 			turnTime += Time.deltaTime;
 			if (turnTime >= turnWait) {
@@ -267,19 +267,21 @@ public class SimpleMovement : MonoBehaviour
 			if (equippedWeapon == 0) {
 				if (Time.time > lastFire + fireRate) {
 					lastFire = Time.time;
-                    if(Fire())
+                    if (Fire())
                     {
-					//Shoot Sound
-					FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+                        //Shoot Sound
+                        FindObjectOfType<AudioManager_2>().Play("Shoot");
+                    }
 				}
 			// Missiles
 			} else if (equippedWeapon == 1) {
 				if (Time.time > lastFire + (fireRate*4)) {
 					lastFire = Time.time;
-                    if(Fire())
+                    if (Fire())
                     {
-					//Shoot Sound
-					FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+                        //Shoot Sound
+                        FindObjectOfType<AudioManager_2>().Play("Shoot");
+                    }
 				}
 			}
 		} else {
