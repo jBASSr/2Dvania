@@ -54,8 +54,10 @@ namespace Tino
 
             if (this.SelectedOption == 0 && Input.GetKeyDown(KeyCode.Return))
             {
+
 				Debug.Log ("loading new scene??");
                 UnityEngine.SceneManagement.SceneManager.LoadScene(this.NewGameScene);
+                FindObjectOfType<AudioManager_2>().Play("Select");
             }
 
             if (this.SelectedOption == 1 && Input.GetKeyDown(KeyCode.Return))
@@ -246,8 +248,10 @@ namespace Tino
 
         private void BoldMenuItem(GameObject[,] menu, int i)
         {
+           
             menu[i, 0].SetActive(false);
             menu[i, 1].SetActive(true);
+            FindObjectOfType<AudioManager_2>().Play("Click");
         }
 
         private void UnboldMenuItem(GameObject[,] menu, int i)
