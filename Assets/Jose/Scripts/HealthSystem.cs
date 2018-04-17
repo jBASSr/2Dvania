@@ -118,6 +118,23 @@ public class HealthSystem : MonoBehaviour {
 			//charSpeed.bodyState = 0;
 		}
 	}
+	// Collision with Enemy Projectiles
+	void OnTriggerEnter2D(Collider2D other) {
+		if ((other.tag == "Enemy_Bullet") && health > 0 && !StunnedState) {
+			health = Mathf.Clamp(health - 15, 0, 100);
+			Debug.Log ("-15 HP!");
+			if (health <= 0) {
+				Debug.Log("Player Died");
+				Death ();
+				return;
+			}
+			StunnedState = true;
+			Vector2 knockback = new Vector2 (charSpeed.forward ? 
+				-kbForceX : kbForceX, kbForceY);
+			//Debug.Log (knockback);
+			rb.AddForce (knockback);
+		}
+	}
 
 	void Stunned() {
 		if (recoverAnimationTime <= AnimationWaitTime) { recoverAnimationTime += Time.deltaTime; 
