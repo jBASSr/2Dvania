@@ -21,7 +21,6 @@ TagManager:
   - sky
   - sand
   - dirt
-  - Enemy_Bullet
   layers:
   - Default
   - TransparentFX

@@ -525,7 +525,7 @@ public class SimpleMovement : MonoBehaviour
                 if(this.MissileAmmo > 0)
                 {
                     equippedWeapon = 1;
-					currentWeapon = missileWeapon;
+			currentWeapon = missileWeapon;
                 }
                 else if(this.HasFreezeWeapon)
                 {

@@ -3,8 +3,6 @@ using System.Collections;
 
 [RequireComponent (typeof(SpriteRenderer))]
 
-// SOURCE: http://devassets.com/assets/2d-mega-pack/#!/
-
 public class Tiling : MonoBehaviour {
 
 	public int offsetX = 2;			// the offset so that we don't get any weird errors
