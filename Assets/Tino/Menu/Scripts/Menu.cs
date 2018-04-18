@@ -41,8 +41,10 @@ namespace Tino
         {
             int previousSelection = this.SelectedOption;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
+            float controllerVertical = Input.GetAxis("Vertical");
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || controllerVertical >= 0.5f) { this.SelectedOption -= 1; }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || controllerVertical <= -0.5f) { this.SelectedOption += 1; }
             this.SelectedOption = Mathf.Clamp(this.SelectedOption, 0, this.MainMenu.GetLength(0) - 1);
 
             if (this.SelectedOption != previousSelection || this.FreshMenu)
@@ -52,7 +54,7 @@ namespace Tino
                 this.BoldMenuItem(this.MainMenu, this.SelectedOption);
             }
 
-            if (this.SelectedOption == 0 && Input.GetKeyDown(KeyCode.Return))
+            if (this.SelectedOption == 0 && (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("xboxA")))
             {
 
 				Debug.Log ("loading new scene??");
@@ -60,26 +62,26 @@ namespace Tino
                 FindObjectOfType<AudioManager_2>().Play("Select");
             }
 
-            if (this.SelectedOption == 1 && Input.GetKeyDown(KeyCode.Return))
+            if (this.SelectedOption == 1 && (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("xboxA")))
             {
                 Tino.Save.SaveLoadGame.LoadGame();
                 UnityEngine.SceneManagement.SceneManager.LoadScene(Tino.Save.SaveLoadGame.SavedGame.CurrentScene);
             }
             
-            if (this.SelectedOption == 2 && Input.GetKeyDown(KeyCode.Return))
+            if (this.SelectedOption == 2 && (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("xboxA")))
             {
                 this.HideMenu(this.MainMenu);
                 this.ShowMenu(this.OptionsMenu);
                 this.Handler = this.OptionsMenuHandler;
             }
 
-            if (this.SelectedOption == 3 && Input.GetKeyDown(KeyCode.Return))
+            if (this.SelectedOption == 3 && (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("xboxA")))
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
             }
 
-            if ((this.SelectedOption == 4 && Input.GetKeyDown(KeyCode.Return)) ||
-                Input.GetKeyDown(KeyCode.Escape))
+            if (this.SelectedOption == 4 && (Input.GetKeyDown(KeyCode.Return) ||
+                Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("xboxA")))
             {
                 Application.Quit();
             }
@@ -89,8 +91,10 @@ namespace Tino
         {
             int previousSelection = this.SelectedOption;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
+            float controllerVertical = Input.GetAxis("Vertical");
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || controllerVertical >= 0.5f) { this.SelectedOption -= 1; }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || controllerVertical <= -0.5f) { this.SelectedOption += 1; }
             this.SelectedOption = Mathf.Clamp(this.SelectedOption, 0, this.OptionsMenu.GetLength(0) - 1);
 
             if (this.SelectedOption != previousSelection || this.FreshMenu)
@@ -100,21 +104,21 @@ namespace Tino
                 this.BoldMenuItem(this.OptionsMenu, this.SelectedOption);
             }
 
-            if (this.SelectedOption == 0 && Input.GetKeyDown(KeyCode.Return))
+            if (this.SelectedOption == 0 && (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("xboxA")))
             {
                 this.HideMenu(this.OptionsMenu);
                 this.ShowMenu(this.DifficultyMenu);
                 this.Handler = this.DifficultyMenuHandler;
             }
             
-            if (this.SelectedOption == 1 && Input.GetKeyDown(KeyCode.Return))
+            if (this.SelectedOption == 1 && (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("xboxA")))
             {
                 this.HideMenu(this.OptionsMenu);
                 this.ShowMenu(this.HealthMenu);
                 this.Handler = this.HealthMenuHandler;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("xboxX"))
             {
                 this.HideMenu(this.OptionsMenu);
                 this.ShowMenu(this.MainMenu);
@@ -128,8 +132,10 @@ namespace Tino
 
             int previousSelection = this.SelectedOption;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
+            float controllerVertical = Input.GetAxis("Vertical");
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || controllerVertical >= 0.5f) { this.SelectedOption -= 1; }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || controllerVertical <= -0.5f) { this.SelectedOption += 1; }
             this.SelectedOption = Mathf.Clamp(this.SelectedOption, 0, this.DifficultyMenu.GetLength(0) - 1);
 
             Tino.WorldState.Difficulty = difficultyIndex[this.SelectedOption];
@@ -141,7 +147,7 @@ namespace Tino
                 this.BoldMenuItem(this.DifficultyMenu, this.SelectedOption);
             }
             
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("xboxX"))
             {
                 this.HideMenu(this.DifficultyMenu);
                 this.ShowMenu(this.OptionsMenu);
@@ -155,8 +161,10 @@ namespace Tino
 
             int previousSelection = this.SelectedOption;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
+            float controllerVertical = Input.GetAxis("Vertical");
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || controllerVertical >= 0.5f) { this.SelectedOption -= 1; }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || controllerVertical <= -0.5f) { this.SelectedOption += 1; }
             this.SelectedOption = Mathf.Clamp(this.SelectedOption, 0, this.HealthMenu.GetLength(0) - 1);
 
             Tino.PlayerState.StartingHealth = healthIndex[this.SelectedOption];
@@ -168,7 +176,7 @@ namespace Tino
                 this.BoldMenuItem(this.HealthMenu, this.SelectedOption);
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("xboxX"))
             {
                 this.HideMenu(this.HealthMenu);
                 this.ShowMenu(this.OptionsMenu);

@@ -35,7 +35,7 @@ namespace Tino
 
             if(this.IsActive)
             { 
-                if (Input.GetKeyDown(KeyCode.Space) || this.Queued)
+                if (Input.GetKeyDown(KeyCode.Space) || this.Queued || Input.GetButtonDown("xboxA"))
                 {
                     this.Queued = false;
                     if (this.CurrentLines.Count <= 0)

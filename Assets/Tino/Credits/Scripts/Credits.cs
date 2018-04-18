@@ -21,7 +21,7 @@ namespace Tino
         {
             this.TextHeight += this.ScrollAmount;
             this.Text.transform.position = new Vector3(this.Text.transform.position.x, this.TextHeight, 0);
-            if (this.TextHeight > 1000 || Input.GetKeyDown(KeyCode.Escape))
+            if (this.TextHeight > 1000 || Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("xboxStart"))
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
             }

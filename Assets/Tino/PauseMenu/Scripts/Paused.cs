@@ -18,7 +18,7 @@ namespace Tino
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("xboxStart"))
             {
                 if (this.IsPaused)
                 {
