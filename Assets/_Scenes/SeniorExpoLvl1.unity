@@ -422,6 +422,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 224459317112673036, guid: f31b575151a0b0042a2ca624030ec5da,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f31b575151a0b0042a2ca624030ec5da, type: 2}
   m_IsPrefabParent: 0
@@ -858,6 +863,62 @@ Transform:
   m_Father: {fileID: 157160219}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &794229202
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 157160219}
+    m_Modifications:
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 19.862858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -39.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301584115325346, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068108334678984, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+      propertyPath: m_Name
+      value: MissileAmmo1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212835631442616106, guid: 7715d5ba542caaf4292b19fd26b63760,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1633610987
+      objectReference: {fileID: 0}
+    - target: {fileID: 212835631442616106, guid: 7715d5ba542caaf4292b19fd26b63760,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7715d5ba542caaf4292b19fd26b63760, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &813617561
 GameObject:
   m_ObjectHideFlags: 0
