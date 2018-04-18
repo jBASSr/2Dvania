@@ -210,7 +210,7 @@ MonoBehaviour:
   offsetX: 2
   hasARightBuddy: 0
   hasALeftBuddy: 0
-  reverseScale: 0
+  reverseScale: 1
 --- !u!212 &223384988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   offsetX: 2
   hasARightBuddy: 0
   hasALeftBuddy: 0
-  reverseScale: 0
+  reverseScale: 1
 --- !u!212 &1217696099
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
   offsetX: 2
   hasARightBuddy: 0
   hasALeftBuddy: 0
-  reverseScale: 0
+  reverseScale: 1
 --- !u!212 &2083406062
 SpriteRenderer:
   m_ObjectHideFlags: 0
