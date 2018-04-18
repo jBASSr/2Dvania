@@ -21,7 +21,7 @@ namespace Tino
             {
                 if (c.gameObject.tag != "Player")
                 {
-                    FindObjectOfType<AudioManager_2>().Play("Grab");
+					FindObjectOfType<AudioManager_2>().Play("Pickup");
                     return;
                 }
                 SimpleMovement playerMovement = c.gameObject.GetComponent<SimpleMovement>();

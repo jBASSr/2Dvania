@@ -6,14 +6,17 @@ public class AudioManager : MonoBehaviour
 {
 
     public AudioSource BGM;
+	private AudioClip myClip;
     // Use for initialization
     void Start()
     {
-        //if (FindObjectsOfType<AudioManager>().Length > 1)
-        //{
-         //   Destroy(gameObject);
-        //}   
 		DontDestroyOnLoad(gameObject);
+        if (FindObjectsOfType<AudioManager>().Length > 1)
+        {
+           Destroy(gameObject);
+        }   
+		myClip = GetComponent<AudioSource> ().clip;
+		playBGM (myClip);
     }
 
     // Updatecalled once per frame
@@ -22,7 +25,11 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void changeBGM(AudioClip music)
+	public void changeBGM(AudioClip music){
+
+	}
+
+    public void playBGM(AudioClip music)
     {
         if (BGM.clip.name == music.name)
             return;

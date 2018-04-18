@@ -41,8 +41,8 @@ namespace Tino
         {
             int previousSelection = this.SelectedOption;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
+			if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; FindObjectOfType<AudioManager_2>().Play("MenuSelect");}
+			else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; FindObjectOfType<AudioManager_2>().Play("MenuSelect");}
             this.SelectedOption = Mathf.Clamp(this.SelectedOption, 0, this.MainMenu.GetLength(0) - 1);
 
             if (this.SelectedOption != previousSelection || this.FreshMenu)
@@ -89,8 +89,8 @@ namespace Tino
         {
             int previousSelection = this.SelectedOption;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
+			if (Input.GetKeyDown(KeyCode.UpArrow)) { this.SelectedOption -= 1; }
+			else if (Input.GetKeyDown(KeyCode.DownArrow)) { this.SelectedOption += 1; }
             this.SelectedOption = Mathf.Clamp(this.SelectedOption, 0, this.OptionsMenu.GetLength(0) - 1);
 
             if (this.SelectedOption != previousSelection || this.FreshMenu)

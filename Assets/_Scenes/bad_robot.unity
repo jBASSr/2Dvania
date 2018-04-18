@@ -638,7 +638,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1.3584839}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &777217561
 MonoBehaviour:
@@ -812,7 +812,7 @@ Transform:
   m_LocalScale: {x: 2.6774955, y: 2.5251207, z: 4.320048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &989030777
 GameObject:
@@ -885,7 +885,7 @@ Transform:
   m_LocalScale: {x: 2.9600706, y: 0.7866579, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1006045289
 GameObject:
@@ -958,7 +958,7 @@ Transform:
   m_LocalScale: {x: 3.557367, y: 2.9303796, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1058391861
 Prefab:
@@ -1221,12 +1221,12 @@ Prefab:
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434
+      value: 382.5
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 183
+      value: 205
       objectReference: {fileID: 0}
     - target: {fileID: 224854736033622206, guid: c7593c46ada34c34a9aa83abdf51035a,
         type: 2}
@@ -1411,7 +1411,7 @@ Transform:
   m_LocalScale: {x: 2.677401, y: 2.0977561, z: 4.320048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1596204675
 Prefab:
@@ -1534,7 +1534,7 @@ Transform:
   m_LocalScale: {x: 2.9673681, y: 2.5251012, z: 4.320048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1698088524
 Prefab:
@@ -1729,7 +1729,7 @@ Transform:
   m_LocalScale: {x: 2.4842176, y: 2.6105952, z: 4.320048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2041714196
 Prefab:
@@ -1835,6 +1835,11 @@ Prefab:
       propertyPath: sounds.Array.data[4].pitch
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82723993888482434, guid: 1a516c78a332e8040b9d0cec0d2fda32,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fda9ea0d9df69a4b9cddcc430df66dd, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a516c78a332e8040b9d0cec0d2fda32, type: 2}
   m_IsPrefabParent: 0
