@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4301584115325346}
   - component: {fileID: 212835631442616106}
-  - component: {fileID: 114904559053742522}
   - component: {fileID: 61647453450656956}
+  - component: {fileID: 114266903005282534}
   m_Layer: 8
   m_Name: MissileAmmo
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.13}
   m_EdgeRadius: 0
---- !u!114 &114904559053742522
+--- !u!114 &114266903005282534
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068108334678984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25d33a542b9a4ac4788fbd2b5723f1be, type: 3}
+  m_Script: {fileID: 11500000, guid: 99fb2f71931b6b04ea0a72293277cda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 5
@@ -108,8 +108,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1080732395
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f09d5dba8ece81145a89946dfc96f5a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
