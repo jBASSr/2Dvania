@@ -15,10 +15,14 @@ TagManager:
   - Rocket
   - ColumnRight
   - ColumnLeft
-  - sky
-  - dirt
-  - sand
   - Door_Cave
+  - Sky
+  - Ceiling
+  - sky
+  - sand
+  - dirt
+  - Missle
+  - HealthRefill
   layers:
   - Default
   - TransparentFX
@@ -31,14 +35,14 @@ TagManager:
   - Player
   - Backround
   - Background2
+  - Wall
   - oil
   - Ground
   - Object
   - Transparent_Enemies
-  - Wall
   - Door
-  - 
-  - 
+  - Enemy
+  - Enemy_Weapons
   - 
   - 
   - 
@@ -62,7 +66,7 @@ TagManager:
   - name: Player
     uniqueID: 2661356309
     locked: 0
-  - name: New Layer
+  - name: Foreground
     uniqueID: 664977711
     locked: 0
   - name: Characters

@@ -1,0 +1,1 @@
+﻿1. Files you want to load with Resources.Load*<> *HAVE* to be in a folder with the name 'Resources'

@@ -1,42 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Tino
 {
     public class Door : MonoBehaviour {
 
-        public string TargetScene;
-        public GameObject TargetDoor;
+        public Image Black;
+        public Animator Animator;
 
         private GameObject Player;
 
         private bool IsColliding = false;
+        private bool SceneTransitioning = false;
+        private bool StartDoor = false;
 
-	    void Start () { }
-	
-	    void Update () {
-		    if(!this.IsColliding) { return; }
-
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+	    void Start()
+        {
+            if(WorldState.GetDoorName() == this.gameObject.name)
             {
-                if(this.TargetScene.Length > 0)
-                {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(this.TargetScene);
-                }
-                else if(this.TargetDoor != null)
-                {
-                    this.Player.transform.position = this.TargetDoor.transform.position;
-                }
+                this.StartDoor = true;
+            }
+        }
+	
+	    void Update() {
+		    if(!this.IsColliding) { return; }
+            if(!this.SceneTransitioning && !this.StartDoor)
+            {
+                this.SceneTransitioning = true;
+                StartCoroutine(this.FadeToNewScene());
             }
 	    }
 
         void OnTriggerEnter2D(Collider2D c)
-        {
-			Debug.Log ("COLLIDED WITH DOOR!!!!");
+		{
             if(c.gameObject.tag == "Player")
             {
-				Debug.Log ("PLAYER -------->>>>>>  COLLIDED WITH DOOR!!!!");
                 this.Player = c.gameObject;
                 this.IsColliding = true;
             }
@@ -47,6 +48,20 @@ namespace Tino
             if (c.gameObject.tag == "Player")
             {
                 this.IsColliding = false;
+                this.StartDoor = false;
+            }
+        }
+
+        public IEnumerator FadeToNewScene()
+        {
+            this.Animator.SetBool("Fade", true);
+            yield return new WaitUntil(() => this.Black.color.a == 1);
+            Tino.WorldState.ComingFromDoor = this.name;
+            Tino.WorldState.ComingFromScene = SceneManager.GetActiveScene().name;
+            string nextScene = WorldState.GetSceneName();
+            if(nextScene != null)
+            {
+                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             }
         }
     }

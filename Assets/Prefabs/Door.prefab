@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4915894349605284}
   - component: {fileID: 212841064348254540}
   - component: {fileID: 61123892153125438}
-  - component: {fileID: 114447645681222372}
-  m_Layer: 9
+  - component: {fileID: 114696491685599426}
+  m_Layer: 8
   m_Name: Door
-  m_TagString: Door
+  m_TagString: Door_Cave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,9 +35,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922861387694478}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.49, y: -4.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.637, y: -2.818, z: 1}
+  m_LocalScale: {x: 0.96712404, y: 1.810657, z: 1.78087}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114447645681222372
+--- !u!114 &114696491685599426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,11 +75,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1922861387694478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea31c2c5fc9cae43a04dff71c137a7c, type: 3}
+  m_Script: {fileID: 11500000, guid: a6e419a6c5bd48a47b9143e52c7eaf34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetScene: 
-  TargetDoor: {fileID: 0}
+  Black: {fileID: 0}
+  Animator: {fileID: 0}
+  toScene: 
 --- !u!212 &212841064348254540
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -111,9 +112,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1458329823
+  m_SortingLayer: 1
+  m_SortingOrder: 5000
   m_Sprite: {fileID: 21300000, guid: 77ae698e3fbef6d4d9393071e7612211, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

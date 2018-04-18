@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212246439786483944}
   - component: {fileID: 50098137430102428}
   - component: {fileID: 61118913123421014}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: oil_mess
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

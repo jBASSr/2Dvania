@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212014773831773026}
   - component: {fileID: 61093770181029384}
   - component: {fileID: 114410288983738044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea31c2c5fc9cae43a04dff71c137a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Black: {fileID: 0}
+  Animator: {fileID: 0}
   TargetScene: 
   TargetDoor: {fileID: 0}
 --- !u!212 &212014773831773026
@@ -109,8 +111,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1458329823
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 77ae698e3fbef6d4d9393071e7612211, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
