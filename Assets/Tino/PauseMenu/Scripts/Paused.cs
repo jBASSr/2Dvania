@@ -6,7 +6,6 @@ namespace Tino
 {
     public class Paused : MonoBehaviour
     {
-
         public bool IsPaused { get; private set; }
         private GameObject Canvas;
 

@@ -30,6 +30,8 @@ namespace Tino
             playerHealth.MaxHealthIncrease(MaxUpAmount);
             playerHealth.RefillHealth(playerHealth.maxHealth);
 
+            Dialogue.Queue(new string[] { "Max. Health increased by 5" });
+            
             WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
             Destroy(this.gameObject);
         }
