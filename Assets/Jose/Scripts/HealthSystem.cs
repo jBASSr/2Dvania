@@ -25,6 +25,9 @@ public class HealthSystem : MonoBehaviour {
 	// Animations
 	SpriteRenderer spriteRenderer;
 	Animator anim;
+	public GameObject Explode;
+	float timer;
+	bool exploded;
 	public Image black;
 	public Animator fadeanim;
 	Color clearColor = new Color(1, 1, 1, 0);
@@ -37,6 +40,7 @@ public class HealthSystem : MonoBehaviour {
 	public float recoverTime = 1.25f;
 	public float AnimationWaitTime;
 	public float recoverAnimationTime = 0.05f;
+	bool isAlive;
 	// Camera Control
 	private LookAhead look_ahead;
 
@@ -49,6 +53,9 @@ public class HealthSystem : MonoBehaviour {
 		collider = GetComponent<CapsuleCollider2D> ();
 		healthText = GetComponentInChildren<Text>();
 		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
+		isAlive = true;
+		exploded = false;
+		timer = 0.0f;
 	}
 	// Use this for initialization
 	void Start () {
@@ -72,6 +79,16 @@ public class HealthSystem : MonoBehaviour {
 		}
 		hpBar = health / 100;
 		// 2. Sprite / Animations
+		if (!isAlive) {
+			timer += Time.deltaTime;
+			if (timer > 2.0f && !exploded) {
+				// After 2 seconds, blow up.
+				anim.SetBool("Death", true);
+				Debug.Log("Blew up");
+				exploded = true;
+				Instantiate (Explode, rb.transform.position, rb.transform.rotation);
+			}
+		}
 	}
 	/*
 	void OnGUI() {
@@ -149,18 +166,21 @@ public class HealthSystem : MonoBehaviour {
 	}
 
 	void Death() {
+		Debug.Log ("We ded af");
 		// Disable Object
-		this.enabled = false;
+		//this.enabled = false;
 		// Disable Controller
 		charSpeed.enabled = false;
 		// Center Camera on Player "Robot"
 		camera.cameraTarget = GameObject.Find("Robot").transform;
+		GetComponent<AudioSource> ().Pause ();// Hard coding cause I'm bad.
 		// Death Animation
 		anim.SetFloat ("Speed", 0);
 		//anim.SetBool("Death", true);
 		// Game Over Screen
 		fadeanim.SetBool("Fade", true);
-        Invoke("Reload", 2);
+		isAlive = false;
+        //Invoke("Reload", 2);
 	}
     
     /// <summary>

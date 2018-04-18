@@ -83,6 +83,7 @@ public class SimpleMovement : MonoBehaviour
 	public GameObject bulletSpawn;
 	public Rigidbody2D currentWeapon;
 	Rigidbody2D baseWeapon;
+	Rigidbody2D laserWeapon;
 	Rigidbody2D missileWeapon;
 	Rigidbody2D bullet;
 	GameObject FrontCenter, TopRight, BottomRight, Top, Bottom;
@@ -122,6 +123,7 @@ public class SimpleMovement : MonoBehaviour
 		Bottom 		= transform.Find ("Weapon/Bottom").gameObject;
 		missileWeapon = Resources.Load ("Bullet_Missile_Prefab", typeof(Rigidbody2D)) as Rigidbody2D;
 		baseWeapon = Resources.Load ("Bullet_Base_Prefab", typeof(Rigidbody2D)) as Rigidbody2D;
+		laserWeapon = Resources.Load ("Bullet_Laser_Prefab", typeof(Rigidbody2D)) as Rigidbody2D;
 		equippedWeapon = 0;
 		swapping = false;
 		// Find groundCheck transform object
@@ -216,6 +218,15 @@ public class SimpleMovement : MonoBehaviour
 		rTrigger = Input.GetAxis("xboxRT");
 		PlayerState();
 		Jump();
+		// Move to function eventually
+
+		if (Mathf.Abs (speedX) > 0.1f && isGrounded && stance == 0 && hp.health > 0.0) {
+			GetComponent<AudioSource> ().UnPause ();
+		} else {
+			GetComponent<AudioSource> ().Pause ();
+		}
+
+		//
 		if (turning) {
 			turnTime += Time.deltaTime;
 			if (turnTime >= turnWait) {
@@ -267,21 +278,28 @@ public class SimpleMovement : MonoBehaviour
 			if (equippedWeapon == 0) {
 				if (Time.time > lastFire + fireRate) {
 					lastFire = Time.time;
-                    if (Fire())
-                    {
-                        //Shoot Sound
-                        FindObjectOfType<AudioManager_2>().Play("Shoot");
-                    }
+					if (Fire ()) {
+						//Shoot Sound
+						FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+					}
 				}
-			// Missiles
+				// Missiles
 			} else if (equippedWeapon == 1) {
-				if (Time.time > lastFire + (fireRate*4)) {
+				if (Time.time > lastFire + (fireRate * 4)) {
 					lastFire = Time.time;
-                    if (Fire())
-                    {
-                        //Shoot Sound
-                        FindObjectOfType<AudioManager_2>().Play("Shoot");
-                    }
+					if (Fire ()) {
+						//Shoot Sound
+						FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+					}
+				}
+				// Laser
+			} else if (equippedWeapon == 2) {
+				if (Time.time > lastFire + (fireRate * 4)) {
+					lastFire = Time.time;
+					if (Fire ()) {
+						//Shoot Sound
+						FindObjectOfType<AudioManager_2> ().Play ("Shoot");
+					}
 				}
 			}
 		} else {
@@ -524,14 +542,14 @@ public class SimpleMovement : MonoBehaviour
                 else if(this.HasFreezeWeapon)
                 {
                     equippedWeapon = 2;
-                    currentWeapon = missileWeapon; //No freeze weapon yet. When we have one we can change this.
+                    currentWeapon = laserWeapon; //No freeze weapon yet. When we have one we can change this.
                 }
                 break;
             case 1:
                 if(this.HasFreezeWeapon)
                 {
                     equippedWeapon = 2;
-                    currentWeapon = missileWeapon; //No freeze weapon yet. When we have one we can change this.
+                    currentWeapon = laserWeapon; //No freeze weapon yet. When we have one we can change this.
                 }
                 else
                 {

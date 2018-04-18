@@ -62,12 +62,12 @@ TagManager:
   - name: Background
     uniqueID: 2836637473
     locked: 0
-  - name: Player
-    uniqueID: 2661356309
+  - name: Characters
+    uniqueID: 3214234901
     locked: 0
   - name: Foreground
     uniqueID: 664977711
     locked: 0
-  - name: Characters
-    uniqueID: 3214234901
+  - name: Player
+    uniqueID: 2661356309
     locked: 0

@@ -394,6 +394,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1888508937993374, guid: 36b627f9030757a45b1b2349e46c0afb, type: 2}
+      propertyPath: m_Name
+      value: Oil_Boss
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36b627f9030757a45b1b2349e46c0afb, type: 2}
   m_IsPrefabParent: 0

@@ -222,7 +222,7 @@ public class ceo : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c) {
 		if (c.tag == "Bullet") {
 			Debug.Log ("Bullet COLLIDED WITH ENEMY CEO");
-			Destroy (c.gameObject);
+			//Destroy (c.gameObject);
 			hitCount -= 0.5f;
 			if (hitCount <= 0) {
 				Destroy (this.gameObject);
