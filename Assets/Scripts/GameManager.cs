@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	private GameObject robot;
 	private GameObject targetDoor;
 	public static float currentHealth = 100.0f;
+	public static bool canRoll = false;
 	//Awake is always called before any Start functions
 	void Awake()
 	{		
@@ -23,10 +24,13 @@ public class GameManager : MonoBehaviour
 		//} else if (instance != this){
 		//	Destroy (gameObject);    
 	    //}
+		canRoll = false;
 		DontDestroyOnLoad(gameObject);
     }
 
 	void Start(){
+		currentHealth = 100.0f;
+		canRoll = false;
 		robot = GameObject.Find ("Robot");
 		targetDoor = GameObject.Find (door_start);
 		robot.transform.position = targetDoor.transform.position;

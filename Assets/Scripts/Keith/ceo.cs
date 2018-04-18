@@ -194,7 +194,7 @@ public class ceo : MonoBehaviour {
 			             bulletPrefab,
 			             bulletEmitter.transform.position,
 			             bulletEmitter.transform.rotation);
-
+		FindObjectOfType<AudioManager_2>().Play("Fire");
 		bullet.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed*bullet_speed, 0);
 		if (bullet != null) {
 			//Destroy (bullet, 10.0f);

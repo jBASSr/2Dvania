@@ -9,12 +9,11 @@ public class AudioManager : MonoBehaviour
     // Use for initialization
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
-
-        if (FindObjectsOfType<AudioManager>().Length > 1)
-        {
-            Destroy(gameObject);
-        }   
+        //if (FindObjectsOfType<AudioManager>().Length > 1)
+        //{
+         //   Destroy(gameObject);
+        //}   
+		DontDestroyOnLoad(gameObject);
     }
 
     // Updatecalled once per frame

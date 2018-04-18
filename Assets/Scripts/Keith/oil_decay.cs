@@ -40,9 +40,11 @@ public class oil_decay : MonoBehaviour {
 	private GameObject rollability;
 	public GameObject rollabilityPrefab;
 	private GameObject exitDoorPrefab;
+	private bool is_dead = false;
 
 	// Use this for initialization
 	void Start () {
+		is_dead = false;
 		exitDoorPrefab = GameObject.Find ("DoorExit");
 		exitDoorPrefab.SetActive (false);
 		startPosition = transform.position;
@@ -151,7 +153,8 @@ public class oil_decay : MonoBehaviour {
 			Destroy (c.gameObject);
 			hitCount -= 0.5f;
 			startBulletHitTime = Time.time;
-			if (hitCount<= 0.0f) {
+			if (hitCount<= 0.0f && is_dead==false) {
+				is_dead = true;
 				Destroy (this.gameObject, 2.0f);
 				if (oilMess != null) {
 					Destroy (oilMess,0.0f);

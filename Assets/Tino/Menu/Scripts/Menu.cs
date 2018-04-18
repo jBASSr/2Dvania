@@ -55,6 +55,8 @@ namespace Tino
             if (this.SelectedOption == 0 && Input.GetKeyDown(KeyCode.Return))
             {
 				Debug.Log ("loading new scene??");
+				GameManager.currentHealth = 100.0f;
+				GameManager.canRoll = false;
                 UnityEngine.SceneManagement.SceneManager.LoadScene(this.NewGameScene);
             }
 

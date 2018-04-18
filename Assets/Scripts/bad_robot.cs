@@ -128,18 +128,17 @@ public class bad_robot : MonoBehaviour {
 			hitCount -= 0.5f;
 			StartCoroutine(hitRobot());
 			if (hitCount <= 0) {
-				animator.SetBool ("is_die", true);
-				Destroy (this.gameObject, 1.0f);
-				FindObjectOfType<AudioManager_2>().Play("explode");
-				StartCoroutine (loadCredits ());
-				SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+				StartCoroutine (destroyRobot());
 			}
 			Destroy (c.gameObject);
 		}
 	}
-	public IEnumerator loadCredits (){
+	public IEnumerator destroyRobot (){
+		animator.SetBool ("is_die", true);
+		FindObjectOfType<AudioManager_2>().Play("explode");
 		yield return new WaitForSeconds(1.0f);
-		//SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+		SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+		Destroy (this.gameObject, 1.0f);
 	}
 
 	IEnumerator hitRobot (){
@@ -151,6 +150,7 @@ public class bad_robot : MonoBehaviour {
 
 
 	void Fire(){
+		FindObjectOfType<AudioManager_2>().Play("Fire");
 		var fireballLeft = (GameObject)Instantiate (
 			fireballLeftPrefab,
 			fireballLeftEmitter.transform.position,

@@ -403,7 +403,7 @@ public class SimpleMovement : MonoBehaviour
 	{
 		if (isGrounded) {
 			// Crouch
-			if (Input.GetKeyDown (KeyCode.S) || vAxis == -1 && speed == 0 && stance < 2 && !transforming && !isShooting && !aiming) {
+			if (GameManager.canRoll==true && (Input.GetKeyDown (KeyCode.S) || vAxis == -1 && speed == 0 && stance < 2 && !transforming && !isShooting && !aiming)) {
 				stance = stance < 2 ? stance + 1 : 2;
 				transforming = true;
                 //Crouch Sound

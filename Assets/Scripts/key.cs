@@ -18,6 +18,7 @@ public class key : MonoBehaviour {
 	{		
 		if (coll.gameObject.tag == "Player"){
 			Debug.Log("GOT THE KEY!");
+			FindObjectOfType<AudioManager_2>().Play("Pickup");
 			GameManager.hasKey = true;
 			Destroy (this.gameObject);
 		}

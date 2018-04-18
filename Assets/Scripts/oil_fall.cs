@@ -53,7 +53,7 @@ public class oil_fall : MonoBehaviour {
 					transform.position,
 					transform.rotation);
 				if (ph != null) {
-					ph.adjustHealth (-10.0f);
+					ph.adjustHealth (-2.0f);
 				}
 			}
 		}
