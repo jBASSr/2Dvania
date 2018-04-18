@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: ad2f5bd82989f724a9caa7275a986209
-timeCreated: 1523261087
+timeCreated: 1523958170
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Oil__0
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,11 +64,75 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
+    sprites:
+    - serializedVersion: 2
+      name: Oil__0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 88
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -29.022194, y: 0}
+      - {x: -46, y: -17}
+      - {x: -46, y: -56}
+      - {x: -40, y: -64}
+      - {x: 40, y: -64}
+      - {x: 46, y: -57}
+      - {x: 46, y: -10}
+      - {x: 25, y: 0}
+    physicsShape:
+    - - {x: -16, y: 0}
+      - {x: -34, y: -6}
+      - {x: -46, y: -28}
+      - {x: -46, y: -52}
+      - {x: -45, y: -58}
+      - {x: -38, y: -64}
+      - {x: 40, y: -64}
+      - {x: 46, y: -57}
+      - {x: 46, y: -21}
+      - {x: 22, y: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

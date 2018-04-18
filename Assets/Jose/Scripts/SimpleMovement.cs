@@ -74,6 +74,10 @@ public class SimpleMovement : MonoBehaviour
 	private Animator anim;
 	Transform pGraphics;
 
+    //OilBlobEnemy
+    public LayerMask playerMask;
+    Rigidbody2D myBody;
+
 	// Weapons
 	public float cooldown = 0.5f;
 	public float cooldown_start = 0.0f;
@@ -124,6 +128,8 @@ public class SimpleMovement : MonoBehaviour
 		baseWeapon = Resources.Load ("Bullet_Base_Prefab", typeof(Rigidbody2D)) as Rigidbody2D;
 		equippedWeapon = 0;
 		swapping = false;
+
+        myBody = this.GetComponent<Rigidbody2D>();
 		// Find groundCheck transform object
 		// Implement Wall/Obstacle check?
 		// Implement Animations
