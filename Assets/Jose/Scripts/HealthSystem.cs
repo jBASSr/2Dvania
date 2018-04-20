@@ -88,6 +88,10 @@ public class HealthSystem : MonoBehaviour {
 				exploded = true;
 				Instantiate (Explode, rb.transform.position, rb.transform.rotation);
 			}
+			if (timer > 3.0f && exploded) {
+				Debug.Log ("Reloading");
+				Invoke("Reload", 2);
+			}
 		}
 	}
 	/*
@@ -138,8 +142,8 @@ public class HealthSystem : MonoBehaviour {
 	// Collision with Enemy Projectiles
 	void OnTriggerEnter2D(Collider2D other) {
 		if ((other.tag == "Enemy_Bullet") && health > 0 && !StunnedState) {
-			health = Mathf.Clamp(health - 15, 0, 100);
-			Debug.Log ("-15 HP!");
+			health = Mathf.Clamp(health - 10, 0, 100);
+			Debug.Log ("-10 HP!");
 			if (health <= 0) {
 				Debug.Log("Player Died");
 				Death ();

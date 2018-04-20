@@ -38,6 +38,8 @@ public class ceo : MonoBehaviour {
 	private float camera_width = 0.0f;
 	private PlayerHUD ph;
 
+	public GameObject Explode;
+
 
     // Use this for initialization
     void Start () {
@@ -221,13 +223,21 @@ public class ceo : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c) {
 		if (c.tag == "Bullet") {
-			Debug.Log ("Bullet COLLIDED WITH ENEMY CEO");
+			//Debug.Log ("Bullet COLLIDED WITH ENEMY CEO");
 			//Destroy (c.gameObject);
 			hitCount -= 0.5f;
 			if (hitCount <= 0) {
 				Destroy (this.gameObject);
+				Instantiate (Explode, transform.position, transform.rotation);
 			}
-			Bleed ();
+			//Bleed ();
+		}
+		if (c.tag == "Missile") {
+			hitCount -= 2.5f;
+			if (hitCount <= 0) {
+				Destroy (this.gameObject);
+				Instantiate (Explode, transform.position, transform.rotation);
+			}
 		}
 	}
 

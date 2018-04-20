@@ -26,7 +26,17 @@ namespace Tino
             WorldState.NewScenePosition = new Dictionary<SceneDoorTuple, SceneDoorTuple>()
             {				
 				{ new D("SeniorExpoLvl1", "MetroidDoorLevel2"),  new D("SeniorExpoLvl2", "MetroidDoorLevel1") },
-				{ new D("SeniorExpoLvl2", "MetroidDoorLevel1"),  new D("SeniorExpoLvl1", "MetroidDoorLevel2") }
+				{ new D("SeniorExpoLvl2", "MetroidDoorLevel1"),  new D("SeniorExpoLvl1", "MetroidDoorLevel2") },
+				{ new D("SeniorExpoLvl1", "MetroidDoorLevel3a"),  new D("SeniorExpoLvl3", "MetroidDoorLevel1") },
+				{ new D("SeniorExpoLvl1", "MetroidDoorLevel3b"),  new D("SeniorExpoLvl3", "MetroidDoorLevel1Upper") },
+				{ new D("SeniorExpoLvl3", "MetroidDoorLevel1"),  new D("SeniorExpoLvl1", "MetroidDoorLevel3a") },
+				{ new D("SeniorExpoLvl3", "MetroidDoorLevel1Upper"),  new D("SeniorExpoLvl1", "MetroidDoorLevel3b") },
+
+				{ new D("SeniorExpoLvl2", "MetroidDoorLevel2Save"),  new D("SeniorExpoLvl2Save", "MetroidDoorLevel2") },
+				{ new D("SeniorExpoLvl2Save", "MetroidDoorLevel2"),  new D("SeniorExpoLvl2", "MetroidDoorLevel2Save") },
+
+				{ new D("SeniorExpoLvl2", "MetroidDoorLevel2Boss"),  new D("SeniorExpoBossLvl", "MetroidDoorLevel2") },
+				{ new D("SeniorExpoBossLvl", "MetroidDoorLevel2"),  new D("SeniorExpoLvl2", "MetroidDoorLevel2Boss") }
 				/*
 				{ new D("cave", "Door 1"),  new D("DesertLevel1", "Door_Cave") },
 				{ new D("DesertLevel1", "Door_Locked"),  new D("boss", "Door") },
@@ -52,6 +62,7 @@ namespace Tino
                 { new I("SeniorExpoLvl1", "MissileAmmo2"), true },
                 { new I("SeniorExpoLvl1", "FreezeWeapon1"), true },
                 { new I("SeniorExpoLvl1", "FreezeWeapon2"), true },
+				{ new I("SeniorExpoBossLvl", "DoubleJump"), true },
 
                 { new I("SeniorExpoLvl1", "HPRefill"), true },
 				{ new I("SeniorExpoLvl1", "HPMaxUp1"), true },

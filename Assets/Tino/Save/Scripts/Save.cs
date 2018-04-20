@@ -62,6 +62,7 @@ namespace Tino.Save
             SavedGame.PlayerCurrentHealth = playerHealth.health;
             SavedGame.PlayerMaxHealth = playerHealth.maxHealth;
             SavedGame.PlayerExtraJumps = playerMovement.extraJumps;
+			SavedGame.PlayerMissileAmmo = playerMovement.MissileAmmo;
 
             SavedGame.WorldItems = new SceneItemTuple[WorldState.SceneItemState.Count];
             SavedGame.WorldItemStates = new bool[WorldState.SceneItemState.Count];

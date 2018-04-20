@@ -14,6 +14,7 @@ namespace Tino.Save
         public int PlayerExtraJumps;
         public SceneItemTuple[] WorldItems;
         public bool[] WorldItemStates;
+		public int PlayerMissileAmmo;
     }
 
     [System.Serializable]

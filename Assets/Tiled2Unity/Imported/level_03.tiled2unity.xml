@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 4/12/2018 9:28:14 AM-->
-<Tiled2Unity version="1.0.13.2">
+<!--Last exported: 4/18/2018 10:12:23 AM-->
+<Tiled2Unity version="1.0.13.0">
   <AssignMaterial mesh="level_03_mesh_0001" material="tile_cave_bg_rock" />
   <AssignMaterial mesh="level_03_mesh_0002" material="tile_jungle_bottom_grey" />
   <AssignMaterial mesh="level_03_mesh_0003" material="tile_jungle_wall_grey" />
@@ -23,172 +23,10 @@
       <GameObject name="tile_jungle_slopes_grey" x="0" y="0" mesh="level_03_mesh_0006" sortingLayerName="" sortingOrder="1" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>23.2,-42.4 29.6,-59.2 16.8,-60 9.6,-43.2 9.6,-42.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>9.6,-43.2 16.8,-60 0,-60 8.8,-43.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>0,-8.8 8.8,-30.4 8.8,-43.2 0,-60</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>24.8,-28 24.8,-26.4 26.4,-25.6 26.4,-28</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>28.8,-42.4 26.4,-40.8 28.8,-40.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32.8,-44 32,-44 32.8,-42.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32,-44 30.4,-44.8 32.8,-42.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>29.6,-59.2 23.2,-42.4 26.4,-40.8 28.8,-42.4 29.6,-45.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32.8,-42.4 29.6,-45.6 28.8,-42.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>35.2,-52 35.2,-53.6 33.6,-53.6 34.4,-52</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>34.4,-52 33.6,-53.6 32.8,-52.8 32.8,-51.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32.8,-52.8 30.4,-52.8 29.6,-51.2 32.8,-51.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>29.6,-53.6 29.6,-51.2 30.4,-52.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>40.8,-59.2 40,-56.8 37.6,-46.4 37.6,-45.6 47.2,-42.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>40,-59.2 40,-56.8 40.8,-59.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>47.2,-42.4 37.6,-45.6 36.8,-45.6 36.8,-42.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>48.8,-33.6 48.8,-37.6 48,-36 48,-33.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>49.6,-21.6 45.6,-30.4 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>45.6,-30.4 41.6,-40 40,-38.4 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>45.6,-40 41.6,-40 45.6,-30.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>40,-38.4 39.2,-38.4 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>39.2,-38.4 38.4,-39.2 36.8,-39.2 36.8,-36.8 36.8,-27.2 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>36.8,-27.2 34.4,-27.2 32.8,-25.6 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32.8,-25.6 26.4,-25.6 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>26.4,-25.6 24.8,-26.4 13.6,-26.4 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>13.6,-26.4 9.6,-28 0,-8.8 49.6,-8.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>12,-28 9.6,-28 13.6,-26.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>9.6,-30.4 8.8,-30.4 0,-8.8 9.6,-28</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>54.4,-32.8 54.4,-38.4 48.8,-38.4 48.8,-37.6 48.8,-33.6 50.4,-32.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>40,-60 29.6,-59.2 40,-59.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>40,-60 68,-66.4 16.8,-66.4 16.8,-60 29.6,-59.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>68,-66.4 55.2,-33.6 55.2,-32.8 68,-21.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>55.2,-32.8 54.4,-32.8 54.4,-30.4 68,-21.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>68,-21.6 54.4,-30.4 45.6,-30.4 49.6,-21.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>55.2,-33.6 68,-66.4 54.4,-40.8 54.4,-38.4 54.4,-33.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>54.4,-40.8 68,-66.4 40.8,-60 40.8,-59.2 47.2,-42.4 48,-41.6 49.6,-40.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>40.8,-60 68,-66.4 40,-60</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>37.6,-46.4 40,-56.8 36.8,-56.8 36.8,-54.4 36.8,-48.8 36.8,-46.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>36.8,-56.8 33.6,-58.4 30.4,-58.4 30.4,-54.4 36.8,-54.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>36.8,-36.8 36.8,-39.2 36,-37.6 36,-36.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>36.8,-45.6 36.8,-48.8 32.8,-47.2 36,-45.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32.8,-47.2 36.8,-48.8 32,-48.8 32,-47.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>24,-37.6 24,-39.2 21.6,-39.2 21.6,-37.6</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>23.2,-31.2 20.8,-28.8 23.2,-28.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>23.2,-31.2 24.8,-35.2 20.8,-30.4 20.8,-28.8</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>30.4,-28 30.4,-38.4 28.8,-36.8 28.8,-31.2 28.8,-28</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>28.8,-36.8 26.4,-36.8 24.8,-35.2 23.2,-31.2 28.8,-31.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>24.8,-35.2 16.8,-35.2 20.8,-30.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>16.8,-35.2 15.2,-36 20.8,-30.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>14.4,-36.8 12.8,-37.6 9.6,-30.4 20.8,-30.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>12.8,-37.6 11.2,-39.2 9.6,-30.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>11.2,-39.2 11.2,-40 9.6,-40 9.6,-31.2 9.6,-30.4</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>9.6,-31.2 9.6,-42.4 8.8,-42.4 8.8,-31.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>32.8,-32 32.8,-38.4 30.4,-38.4 30.4,-32</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>33.6,-35.2 33.6,-36 32.8,-37.6 32.8,-35.2</Path>
-        </PolygonCollider2D>
-        <PolygonCollider2D>
-          <Path>16.8,-38.4 16.8,-40 15.2,-40 15.2,-38.4</Path>
+          <Path>68,-66.4 68,-21.6 49.6,-21.6 49.6,-8.8 0,-8.8 0,-60 16.8,-60 16.8,-66.4</Path>
+          <Path>29.6,-53.6 30.4,-52.8 32.8,-52.8 33.6,-53.6 35.2,-53.6 35.2,-52 34.4,-52 32.8,-51.2 29.6,-51.2 29.6,-45.6 30.4,-44.8 32,-44 32.8,-44 32.8,-42.4 28.8,-42.4 28.8,-40.8 26.4,-40.8 23.2,-42.4 9.6,-42.4 9.6,-43.2 8.8,-43.2 8.8,-42.4 9.6,-42.4 9.6,-40 11.2,-40 11.2,-39.2 12.8,-37.6 14.4,-36.8 15.2,-36 16.8,-35.2 24.8,-35.2 26.4,-36.8 28.8,-36.8 30.4,-38.4 32.8,-38.4 32.8,-37.6 33.6,-36 33.6,-35.2 32.8,-35.2 32.8,-32 30.4,-32 30.4,-28 28.8,-28 28.8,-31.2 23.2,-31.2 23.2,-28.8 20.8,-28.8 20.8,-30.4 9.6,-30.4 9.6,-31.2 8.8,-31.2 8.8,-30.4 9.6,-30.4 9.6,-28 12,-28 13.6,-26.4 24.8,-26.4 24.8,-28 26.4,-28 26.4,-25.6 32.8,-25.6 34.4,-27.2 36.8,-27.2 36.8,-36.8 36,-36.8 36,-37.6 36.8,-39.2 38.4,-39.2 39.2,-38.4 40,-38.4 41.6,-40 45.6,-40 45.6,-30.4 54.4,-30.4 54.4,-32.8 55.2,-32.8 55.2,-33.6 54.4,-33.6 54.4,-32.8 50.4,-32.8 48.8,-33.6 48,-33.6 48,-36 48.8,-37.6 48.8,-38.4 54.4,-38.4 54.4,-40.8 49.6,-40.8 48,-41.6 47.2,-42.4 36.8,-42.4 36.8,-45.6 37.6,-45.6 37.6,-46.4 36.8,-46.4 36.8,-45.6 36,-45.6 32.8,-47.2 32,-47.2 32,-48.8 36.8,-48.8 36.8,-54.4 30.4,-54.4 30.4,-58.4 33.6,-58.4 36.8,-56.8 40,-56.8 40,-59.2 40.8,-59.2 40.8,-60 40,-60 40,-59.2 29.6,-59.2</Path>
+          <Path>24,-37.6 21.6,-37.6 21.6,-39.2 24,-39.2</Path>
+          <Path>16.8,-38.4 15.2,-38.4 15.2,-40 16.8,-40</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>

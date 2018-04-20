@@ -580,6 +580,7 @@ public class SimpleMovement : MonoBehaviour
     public void OnDisable()
     {
         Tino.PlayerState.ExtraJumps = this.extraJumps;
+		Tino.PlayerState.MissileAmmo = this.MissileAmmo;
     }
 
     public void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -587,11 +588,13 @@ public class SimpleMovement : MonoBehaviour
         if (Tino.Save.SaveLoadGame.SaveExists && !Tino.Save.SaveLoadGame.PlayerMovementLoaded)
         {
             this.extraJumps = Tino.Save.SaveLoadGame.SavedGame.PlayerExtraJumps;
+			this.MissileAmmo = Tino.Save.SaveLoadGame.SavedGame.PlayerMissileAmmo;
             Tino.Save.SaveLoadGame.PlayerMovementLoaded = true;
         }
         else
         {
             this.extraJumps = Tino.PlayerState.ExtraJumps;
+			this.MissileAmmo = Tino.PlayerState.MissileAmmo;
         }
     }
 
