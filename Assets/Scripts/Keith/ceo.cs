@@ -15,10 +15,19 @@ public class ceo : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public GameObject bulletEmitter;
 
+
+	//RAYCAST:
+	RaycastHit2D floor;
+	Vector2 gravity;
+	Vector2 movement;
+	Vector2 vel;
+	//--------------------
+
     private int velx=1;    
     private Vector2 vec;    
     private SpriteRenderer sr;
     private bool is_right;
+	private bool next_direction;
 	private bool is_collided;
 	private GameObject tempBlood;
 	private SimpleMovement robot;
@@ -37,18 +46,21 @@ public class ceo : MonoBehaviour {
 	int currentFrame;
 	private float camera_width = 0.0f;
 	private PlayerHUD ph;
-
+	private Rigidbody2D rb;
 	public GameObject Explode;
 
 
     // Use this for initialization
     void Start () {
 		xStart = transform.position.x;
+		//xLast = transform.position.x;
 		robot = GameObject.Find ("Robot").GetComponent<SimpleMovement>();
 		ph = GameObject.Find ("Robot").GetComponent<PlayerHUD>();
+		rb = GetComponent<Rigidbody2D> ();
         vec = new Vector2(1, 0);        
         //sr = new SpriteRenderer();
 		is_right = true;
+		next_direction = !is_right;
 		is_collided = false;
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
 		animator = GetComponent<Animator> ();
@@ -68,10 +80,21 @@ public class ceo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (is_collided==false){
-        //this.transform.Translate(vec * speed * Time.deltaTime);        
-		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
+		if ((transform.position.x - xStart) > 0) {
+			next_direction = false;//LEFT
+		} else {
+			next_direction = true;//LEFT
+		}
+		if (is_collided == false) {
+			floor = Physics2D.Raycast (rb.position, -Vector2.up);
+			gravity = floor.normal;
+			movement = new Vector2 (gravity.y, -gravity.x);
+			vel = (movement * speed);
+			if (vel.y > 0) {
+				rb.velocity = new Vector2(speed, 0);
+			} else {
+				rb.velocity = vel;
+			}
 			if (tempBlood != null) {
 				//tempBlood.GetComponent<Rigidbody2D> ().velocity = this.GetComponent<Rigidbody2D> ().velocity;
 				Vector2 pos = tempBlood.transform.position;
@@ -115,11 +138,11 @@ public class ceo : MonoBehaviour {
 							//animator.SetBool ("is_shoosting",false);
 					}
 					//STOP THE ENEMY SO HE CAN SHOOT:
-					if (animator.GetBool ("is_shooting") == true) {
-						this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
-					} else {
-						this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
-					}
+					//if (animator.GetBool ("is_shooting") == true) {
+				//		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
+			//		} else {
+			//			this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (speed, 0);
+		//			}
 
 
 				}					
@@ -132,8 +155,9 @@ public class ceo : MonoBehaviour {
 				nextFire = Time.time + fireTime;
 			}
 		}
-		if (isXRange == true && Mathf.Abs(transform.position.x - xStart)>xRange && Mathf.Abs(transform.position.x-xLast)>(xRange/2.0f)){
-			Debug.Log ("Flipping on xRange BOUNDs!");
+
+		if (isXRange == true && Mathf.Abs(transform.position.x - xStart)>xRange && is_right!=next_direction){
+			Debug.LogError ("FLIPPING XRANGE");
 			xLast = transform.position.x;
 			Flip ();
 		}
@@ -141,20 +165,15 @@ public class ceo : MonoBehaviour {
 		
     void OnCollisionEnter2D(Collision2D coll)
     {
-		Debug.Log("COLLISION WITH GAME OBJECT=" + coll.gameObject.tag);
+		Debug.LogError("COLLISION WITH GAME OBJECT=" + coll.gameObject.tag);
 		if (coll.gameObject.tag == "Player") {
 			Debug.Log ("PLAYER COLLISION!!");
+			Flip ();
 			if (ph != null) {
 				ph.adjustHealth (-5.0f);
 			}
 		}
-		if (coll.gameObject.tag != "Rocket") {
-			if (isXRange == false) {
-				Debug.Log ("Flipping on collide!");
-				Flip ();
-			}
-		}
-		else{
+		if (coll.gameObject.tag == "Rocket") {
 			Debug.Log ("ROCKET COLLIDED WITH ENEMY CEO");
 			Destroy (coll.gameObject);
 			hitCount -= 1.0f;
@@ -168,6 +187,7 @@ public class ceo : MonoBehaviour {
 	
 	public void setCollided(bool _is_collided){
 		is_collided = _is_collided;
+		Debug.LogError ("is_collided=" + is_collided);
 	}
 
 	public bool getIsRight(){
@@ -209,19 +229,24 @@ public class ceo : MonoBehaviour {
 		if (is_right == true)
 		{
 			transform.localRotation = Quaternion.Euler(0, 0, 0);
-			transform.Translate (new Vector2 (-0.1f,0));
+			//transform.Translate (new Vector2 (-0.1f,0));
 			//this.transform.Translate(new Vector2(2, 0));
 		}
 		else
 		{
 			transform.localRotation = Quaternion.Euler(0, 180, 0);                
-			transform.Translate (new Vector2 (0.1f,0));
+			//transform.Translate (new Vector2 (0.1f,0));
 			//this.transform.Translate(new Vector2(-20, 0));
 		}
 		speed *= -1;
 	}
 
 	void OnTriggerEnter2D(Collider2D c) {
+		//Debug.LogError ("trigger enter tag=" + c.tag);
+		if (c.tag == "Ground") {
+   		   Debug.LogError ("FLIPPING HIT GROUND");
+		   Flip ();
+	    }
 		if (c.tag == "Bullet") {
 			//Debug.Log ("Bullet COLLIDED WITH ENEMY CEO");
 			//Destroy (c.gameObject);
