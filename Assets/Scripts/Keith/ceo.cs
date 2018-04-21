@@ -91,6 +91,7 @@ public class ceo : MonoBehaviour {
 			movement = new Vector2 (gravity.y, -gravity.x);
 			vel = (movement * speed);
 			if (vel.y > 0) {
+				//SO ENEMY ROBOT DOES NOT CLIMB WALLS:
 				rb.velocity = new Vector2(speed, 0);
 			} else {
 				rb.velocity = vel;

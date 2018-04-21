@@ -43,8 +43,8 @@ public class oil_decay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		exitDoorPrefab = GameObject.Find ("DoorExit");
-		exitDoorPrefab.SetActive (false);
+		//exitDoorPrefab = GameObject.Find ("DoorExit");
+		//exitDoorPrefab.SetActive (false);
 		startPosition = transform.position;
 		robot = GameObject.Find ("Robot");
 		rob_col = robot.GetComponent<CapsuleCollider2D> ();
@@ -66,12 +66,12 @@ public class oil_decay : MonoBehaviour {
 			float myTime = Time.time - offsetTime;
 			transform.position = new Vector2 (transform.position.x + speed, startPosition.y + yRange * (Mathf.Sin (myTime)));
 		}
-
+		//FOR SPECIAL ATTACK SCRIPT:
 		if (Mathf.Abs(transform.position.x - startPosition.x) > xRange) {
 			speed *= -1.0f;
-			count_pass++;
+			//count_pass++;
 		}
-
+		/*
 		if (count_pass >= 2 && (Mathf.Abs(transform.position.x - startPosition.x)<0.1)){
 			animator.SetBool ("isAttack", true);
 			offsetTime += attackTime;
@@ -80,11 +80,11 @@ public class oil_decay : MonoBehaviour {
 			isAttacking = true;
 			count_pass = 0;
 		}
-		if (Time.time > (startAttack + attackTime)) {			
+		if (Time.time > (startAttack + attackTime)) {	'		
 			animator.SetBool ("isAttack", false);
 			isAttacking = false;
 		}
-			
+		*/	
 
 		bool inx = (rob_col.bounds.min.x < oildec_col.bounds.max.x) && (rob_col.bounds.max.x > oildec_col.bounds.min.x);
 		bool iny = (rob_col.bounds.min.y < oildec_col.bounds.max.y) && (rob_col.bounds.max.y > oildec_col.bounds.min.y);
@@ -164,7 +164,7 @@ public class oil_decay : MonoBehaviour {
 	IEnumerator dropRollability (){
 		Debug.Log ("SETTTING ROBOT COLOR???");
 		yield return new WaitForSeconds(1.8f);
-		exitDoorPrefab.SetActive (true);
+		//exitDoorPrefab.SetActive (true);
 		rollability = (GameObject)Instantiate (
 			rollabilityPrefab,
 			transform.position,

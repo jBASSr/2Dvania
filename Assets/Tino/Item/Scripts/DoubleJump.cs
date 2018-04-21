@@ -28,6 +28,7 @@ namespace Tino
                 return;
             }
             playerMovement.extraJumps++;
+
             WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
             FindObjectOfType<AudioManager_2>().Play("Grab");
             Destroy(this.gameObject);
