@@ -49,11 +49,11 @@ public class bad_robot : MonoBehaviour {
 	public float hitCount = 10.0f;
 	public float maxHealth = 10.0f;
 	private GameObject myBadRobot;
-
+	private bool isOutOfRange = false;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
-		robot = GameObject.Find ("Robot");
+			robot = GameObject.Find ("Robot");
 		isGrounded = true;
 		xStart = this.transform.position.x;
 		xLast = xStart;
@@ -68,9 +68,10 @@ public class bad_robot : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-			this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
-		if (Mathf.Abs (this.transform.position.x - xStart) > xRange && Mathf.Abs(this.transform.position.x - xLast)>xRange) {
+	/*
+	void FixedUpdate(){
+		//OUT OF RANGE:
+		if (Mathf.Abs (this.transform.position.x - xStart) > xRange && Mathf.Abs (this.transform.position.x - xLast) > xRange) {
 			xLast = this.transform.position.x;
 			is_right = !is_right;
 			if (is_right) {
@@ -81,28 +82,45 @@ public class bad_robot : MonoBehaviour {
 				animator.SetBool ("is_right", false);
 			}
 		}
-		// TO DO IN RANGE JUMP TO ROBOT POSTION AND FIRE AI:
+
+	}
+*/
+	void Update () {
+
+		this.GetComponent<Rigidbody2D> ().velocity = velocityNow;
 		float diff = this.transform.position.x - robot.transform.position.x;
-		if ((Mathf.Abs (diff) < attackRange) && isGrounded == true) {
-			animator.SetBool ("is_jump", true);
-			if (diff > 0) {//JUMP LEFT
-				velocityNow = new Vector2 (jumpXFactor*-diff,0);
-			} else {//JUMP RIGHT:
-				velocityNow = new Vector2 (jumpXFactor*-diff,0);
-			}
-			rb.AddForce (new Vector2 (0.0f, jumpForce));
-			isGrounded = false;
-			//isAttacking = true;
-		} else {
-			animator.SetBool ("is_jump", false);
-		}
-		if (isGrounded) {
+		//if (Mathf.Abs (this.transform.position.x - xStart) > xRange && Mathf.Abs (this.transform.position.x - xLast) > xRange) {
+	//		xLast = this.transform.position.x;
+	//		is_right = !is_right;
+	//	}
+		// TO DO IN RANGE JUMP TO ROBOT POSTION AND FIRE AI:
+		if (isGrounded == true) {			
 			if (is_right) {
 				velocityNow = new Vector2 (speed, 0);
 				animator.SetBool ("is_right", true);
 			} else {
 				velocityNow = new Vector2 (-speed, 0);
 				animator.SetBool ("is_right", false);
+			}			
+			if ((Mathf.Abs (diff) < attackRange)) {
+				animator.SetBool ("is_jump", true);
+				velocityNow = new Vector2 (jumpXFactor * -diff, 0);
+				if (velocityNow.x < 0) {
+					is_right = false;
+				} else {
+					is_right = true;
+				}
+				rb.AddForce (new Vector2 (0.0f, jumpForce));
+				isGrounded = false;
+			} else {
+				animator.SetBool ("is_jump", false);
+				if (is_right) {
+					velocityNow = new Vector2 (speed, 0);
+					animator.SetBool ("is_right", true);
+				} else {
+					velocityNow = new Vector2 (-speed, 0);
+					animator.SetBool ("is_right", false);
+				}
 			}
 		}
 
@@ -117,6 +135,17 @@ public class bad_robot : MonoBehaviour {
 			if (Time.time > lastFire + fireRate) {
 				lastFire = Time.time;
 				Fire ();
+			}
+		}
+		if (coll.gameObject.tag == "Column") {
+			Debug.Log("BAD ROBOT HIT COLUMN!");
+			is_right = !is_right;
+			if (is_right) {
+				velocityNow = new Vector2 (speed, 0);
+				animator.SetBool ("is_right", true);
+			} else {
+				velocityNow = new Vector2 (-speed, 0);
+				animator.SetBool ("is_right", false);
 			}
 		}
 

@@ -72,7 +72,6 @@ public class ceo : MonoBehaviour {
 				fireTime = ac.animationClips[i].length;
 			}
 		}
-		//Debug.Log ("ceo_shooting length=" +fireTime);
 		Camera cam = Camera.main;
 		float height = 2f * cam.orthographicSize;
 		camera_width = height * cam.aspect;
@@ -158,7 +157,6 @@ public class ceo : MonoBehaviour {
 		}
 
 		if (isXRange == true && Mathf.Abs(transform.position.x - xStart)>xRange && is_right!=next_direction){
-			Debug.LogError ("FLIPPING XRANGE");
 			xLast = transform.position.x;
 			Flip ();
 		}
@@ -166,7 +164,6 @@ public class ceo : MonoBehaviour {
 		
     void OnCollisionEnter2D(Collision2D coll)
     {
-		Debug.LogError("COLLISION WITH GAME OBJECT=" + coll.gameObject.tag);
 		if (coll.gameObject.tag == "Player") {
 			Debug.Log ("PLAYER COLLISION!!");
 			Flip ();
@@ -188,7 +185,6 @@ public class ceo : MonoBehaviour {
 	
 	public void setCollided(bool _is_collided){
 		is_collided = _is_collided;
-		Debug.LogError ("is_collided=" + is_collided);
 	}
 
 	public bool getIsRight(){
@@ -245,7 +241,6 @@ public class ceo : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c) {
 		//Debug.LogError ("trigger enter tag=" + c.tag);
 		if (c.tag == "Ground") {
-   		   Debug.LogError ("FLIPPING HIT GROUND");
 		   Flip ();
 	    }
 		if (c.tag == "Bullet") {

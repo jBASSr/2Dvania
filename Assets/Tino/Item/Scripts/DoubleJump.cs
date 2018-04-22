@@ -27,10 +27,10 @@ namespace Tino
             {
                 return;
             }
-            playerMovement.extraJumps++;
-
+			playerMovement.extraJumps = 1;//++;// = 2;
             WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
             FindObjectOfType<AudioManager_2>().Play("Grab");
+			Debug.LogError ("Extra Jumps after=" + playerMovement.extraJumps);
             Destroy(this.gameObject);
         }
     }

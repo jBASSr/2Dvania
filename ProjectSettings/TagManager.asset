@@ -23,6 +23,7 @@ TagManager:
   - dirt
   - Enemy_Bullet
   - Missile
+  - Column
   layers:
   - Default
   - TransparentFX
