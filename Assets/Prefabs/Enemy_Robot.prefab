@@ -226,7 +226,7 @@ MonoBehaviour:
     type: 2}
   bulletEmitter: {fileID: 1966497472853290}
   hitCount: 5
-  Explode: {fileID: 0}
+  Explode: {fileID: 1887978345178190, guid: b41e927e917849c4e8dfad92f6eaec00, type: 2}
 --- !u!212 &212441387899048558
 SpriteRenderer:
   m_ObjectHideFlags: 1
