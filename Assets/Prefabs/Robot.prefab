@@ -617,8 +617,8 @@ MonoBehaviour:
   emptyBar: {fileID: 0}
   fullBar: {fileID: 0}
   Explode: {fileID: 1593879581682844, guid: 432e6b97f0baa654880410badfaa80db, type: 2}
-  black: {fileID: 0}
-  fadeanim: {fileID: 0}
+  black: {fileID: 114110351799776572, guid: c7593c46ada34c34a9aa83abdf51035a, type: 2}
+  fadeanim: {fileID: 95063499691846160, guid: 71fa4e20ff0ea9f488c714220d47d60c, type: 2}
   kbForceX: 200
   kbForceY: 150
   StunnedState: 0
