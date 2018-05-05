@@ -68,6 +68,8 @@ namespace Tino
 				{ new I("SeniorExpoLvl1", "HPMaxUp1"), true },
 				{ new I("SeniorExpoLvl1", "HPMaxUp2"), true },
 				{ new I("SeniorExpoLvl1", "DoubleJump"), true },
+                { new I("SeniorExpoLvl2Save", "HPMaxUp"), true },
+                { new I("SeniorExpoLvl2Save", "HPRefill"), true },
                 { new I("Tino", "HPRefill 1"), true },
                 { new I("Tino", "HPMaxUp 1"), true },
                 { new I("Tino", "DoubleJump 1"), true },

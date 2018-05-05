@@ -84,7 +84,8 @@ public class HealthSystem : MonoBehaviour {
 			if (timer > 2.0f && !exploded) {
 				// After 2 seconds, blow up.
 				anim.SetBool("Death", true);
-				Debug.Log("Blew up");
+                FindObjectOfType<AudioManager_2>().Play("die");
+                Debug.Log("Blew up");
 				exploded = true;
 				Instantiate (Explode, rb.transform.position, rb.transform.rotation);
 			}

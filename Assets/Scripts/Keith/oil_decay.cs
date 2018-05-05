@@ -41,11 +41,11 @@ public class oil_decay : MonoBehaviour {
 	public GameObject rollabilityPrefab;
 	private GameObject exitDoorPrefab;
 
-	// Use this for initialization
-	void Start () {
-		//exitDoorPrefab = GameObject.Find ("DoorExit");
-		//exitDoorPrefab.SetActive (false);
-		startPosition = transform.position;
+    // Use this for initialization
+    void Start () {
+        //exitDoorPrefab = GameObject.Find ("DoorExit");
+        //exitDoorPrefab.SetActive (false);
+        startPosition = transform.position;
 		robot = GameObject.Find ("Robot");
 		rob_col = robot.GetComponent<CapsuleCollider2D> ();
 		oildec_col = GetComponent<CapsuleCollider2D> ();
@@ -130,7 +130,7 @@ public class oil_decay : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Rocket") {
+        if (coll.gameObject.tag == "Rocket") {
 			Debug.Log ("ROCKET COLLIDED CEO");
 			Destroy (coll.gameObject);
 			hitCount -= 1.0f;
