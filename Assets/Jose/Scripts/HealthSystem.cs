@@ -86,7 +86,8 @@ public class HealthSystem : MonoBehaviour {
 				anim.SetBool("Death", true);
                 FindObjectOfType<AudioManager_2>().Play("die");
                 Debug.Log("Blew up");
-				exploded = true;
+                FindObjectOfType<AudioManager_2>().Play("explode");
+                exploded = true;
 				Instantiate (Explode, rb.transform.position, rb.transform.rotation);
 			}
 			if (timer > 3.0f && exploded) {

@@ -250,7 +250,8 @@ public class ceo : MonoBehaviour {
 			if (hitCount <= 0) {
 				Destroy (this.gameObject);
 				Instantiate (Explode, transform.position, transform.rotation);
-			}
+                FindObjectOfType<AudioManager_2>().Play("explode");
+            }
 			//Bleed ();
 		}
 		if (c.tag == "Missile") {
@@ -258,7 +259,8 @@ public class ceo : MonoBehaviour {
 			if (hitCount <= 0) {
 				Destroy (this.gameObject);
 				Instantiate (Explode, transform.position, transform.rotation);
-			}
+                FindObjectOfType<AudioManager_2>().Play("explode");
+            }
 		}
 	}
 

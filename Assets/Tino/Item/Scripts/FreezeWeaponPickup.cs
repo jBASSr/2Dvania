@@ -26,7 +26,7 @@ namespace Tino
             if (playerMovement.AcquireFreezeWeapon())
             {
                 WorldState.TurnOffItem(this.gameObject.scene.name, this.name);
-                FindObjectOfType<AudioManager_2>().Play("Grab");
+                FindObjectOfType<AudioManager_2>().Play("WeaponPU");
                 Destroy(this.gameObject);
             }
         }

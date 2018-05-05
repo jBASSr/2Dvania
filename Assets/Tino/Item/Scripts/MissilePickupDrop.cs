@@ -19,7 +19,7 @@ namespace Tino
 
             if (playerMovement.AddMissileAmmo(this.Amount))
             {
-                FindObjectOfType<AudioManager_2>().Play("Grab");
+                FindObjectOfType<AudioManager_2>().Play("WeaponPU");
                 Destroy(this.gameObject);
             }
         }
