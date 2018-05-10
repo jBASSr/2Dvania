@@ -41,6 +41,8 @@ public class oil_decay : MonoBehaviour {
 	public GameObject rollabilityPrefab;
 	private GameObject exitDoorPrefab;
 
+	private bool isDying = false;
+
     // Use this for initialization
     void Start () {
         //exitDoorPrefab = GameObject.Find ("DoorExit");
@@ -108,7 +110,7 @@ public class oil_decay : MonoBehaviour {
 				transform.rotation);
 		}
 
-		if (Time.time < startRocketHitTime + hitRocketTime) {
+		if (Time.time < (startRocketHitTime + hitRocketTime) && isDying == false) {
 			if (oilMess == null) {
 				Debug.Log ("Instantiating oil mess...");
 				oilMess = (GameObject)Instantiate (
@@ -117,7 +119,7 @@ public class oil_decay : MonoBehaviour {
 					transform.rotation);
 			}
 		}
-		if (Time.time < startBulletHitTime + hitBulletTime) {
+		if (Time.time < (startBulletHitTime + hitBulletTime) && isDying == false) {
 			if (oilMess == null) {
 				Debug.Log ("Instantiating oil mess...");
 				oilMess = (GameObject)Instantiate (
@@ -135,12 +137,14 @@ public class oil_decay : MonoBehaviour {
 			Destroy (coll.gameObject);
 			hitCount -= 1.0f;
 			startRocketHitTime = Time.time;
-			if (hitCount <= 0.0f) {
+			if (hitCount == 0.0f) {
+				isDying = true;
 				animator.SetBool ("isDie", true);
-				Destroy (this.gameObject, 2.0f);
+				FindObjectOfType<AudioManager_2> ().Play ("explode");
 				if (oilMess != null) {
-					Destroy (oilMess,0.0f);
+					Destroy (oilMess);
 				}
+				StartCoroutine (dropRollability ());
 			}
 		}
 	}
@@ -151,10 +155,12 @@ public class oil_decay : MonoBehaviour {
 			Destroy (c.gameObject);
 			hitCount -= 0.5f;
 			startBulletHitTime = Time.time;
-			if (hitCount<= 0.0f) {
-				Destroy (this.gameObject, 2.0f);
+			if (hitCount== 0.0f) {
+				isDying = true;
+				animator.SetBool ("isDie", true);
+				FindObjectOfType<AudioManager_2> ().Play ("explode");
 				if (oilMess != null) {
-					Destroy (oilMess,0.0f);
+					Destroy (oilMess);
 				}
 				StartCoroutine (dropRollability ());
 			}
@@ -162,8 +168,8 @@ public class oil_decay : MonoBehaviour {
 	}
 
 	IEnumerator dropRollability (){
-		Debug.Log ("SETTTING ROBOT COLOR???");
-		yield return new WaitForSeconds(1.8f);
+		yield return new WaitForSeconds(1.0f);
+		Destroy (this.gameObject);
 		//exitDoorPrefab.SetActive (true);
 		rollability = (GameObject)Instantiate (
 			rollabilityPrefab,

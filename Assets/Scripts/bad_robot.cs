@@ -154,42 +154,51 @@ public class bad_robot : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c) {
 		if (c.tag == "Bullet") {
 			Debug.Log ("Bullet COLLIDED WITH BAD ROBOT!");
-			hitCount -= 0.5f;
 			StartCoroutine(hitRobot());
-			if (hitCount <= 0) {
-				animator.SetBool ("is_die", true);
-				Destroy (this.gameObject, 1.0f);
-				FindObjectOfType<AudioManager_2>().Play("explode");
-				StartCoroutine (loadCredits ());
-				SceneManager.LoadScene("Credits", LoadSceneMode.Single);
-			}
 			Destroy (c.gameObject);
 		}
 	}
 	public IEnumerator loadCredits (){
-		yield return new WaitForSeconds(1.0f);
-		//SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+		Debug.LogError ("loadCredets IEnumberator called!!");
+		yield return new WaitForSeconds(2);
+		Debug.LogError ("CALLING Application.LoadLevel Credits ????!!!!!!!!!!!!");
+		//Application.LoadLevel("Credits");
+		FindObjectOfType<AudioManager_2>().Play("Win");
+		SceneManager.LoadScene("Credits", LoadSceneMode.Single);
 	}
 
 	IEnumerator hitRobot (){
 		Debug.Log ("SETTTING ROBOT COLOR???");
 		gameObject.GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.blue);
-		yield return new WaitForSeconds(0.2f);
-		gameObject.GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.white);
+		hitCount -= 0.5f;
+		if (hitCount == 0) {
+			animator.SetBool ("is_die", true);
+			FindObjectOfType<AudioManager_2> ().Play ("explode");
+			yield return new WaitForSeconds (1.2f);
+			Destroy (this.gameObject);
+			//yield return new WaitForSeconds (2.0f);
+			//yield return new WaitForSeconds (0.2f);
+			SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+		} else {
+			yield return new WaitForSeconds (0.2f);
+			gameObject.GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.white);
+		}
 	}
 
 
 	void Fire(){
+		//lightIntensity = Random.Range(minInt, maxInt);
+		FindObjectOfType<AudioManager_2> ().Play ("Missile");
 		var fireballLeft = (GameObject)Instantiate (
 			fireballLeftPrefab,
 			fireballLeftEmitter.transform.position,
 			fireballLeftEmitter.transform.rotation);
-		fireballLeft.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -fireball_speed);
+		fireballLeft.GetComponent<Rigidbody2D> ().velocity = new Vector2 (rb.velocity.x, -fireball_speed);
 		var fireballRight = (GameObject)Instantiate (
 			fireballRightPrefab,
 			fireballRightEmitter.transform.position,
 			fireballRightEmitter.transform.rotation);
-		fireballRight.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, -fireball_speed);
+		fireballRight.GetComponent<Rigidbody2D> ().velocity = new Vector2 (rb.velocity.x, -fireball_speed);
 
 	}
 }

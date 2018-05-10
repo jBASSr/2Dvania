@@ -39,7 +39,7 @@ using UnityEngine;
 		}
 
 	void OnGUI(){			  
-		Debug.LogError ("BADROBOTHUD ONGUI CALLED!!!!");
+		//Debug.LogError ("BADROBOTHUD ONGUI CALLED!!!!");
 		if (Mathf.Abs (robot.transform.position.x - brObj.transform.position.x) < camera_width) {			
 			style1 = new GUIStyle (GUI.skin.box);
 			style2 = new GUIStyle (GUI.skin.box);

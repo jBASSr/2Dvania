@@ -21,6 +21,7 @@ public class rollability : MonoBehaviour {
 		if (coll.gameObject.tag == "Player") {
 			Debug.LogError ("PLAYER NOW HAS ROLLABILITY!");
 			GameManager.canRoll = true;
+			FindObjectOfType<AudioManager_2> ().Play ("Grab");
 			Destroy (this.gameObject);
 			//exitDoorPrefab.SetActive (true);
 		}
